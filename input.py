@@ -1,4 +1,6 @@
 import webbrowser
+from bs4 import BeautifulSoup
+import requests
 
 ingredients = []
 
@@ -44,7 +46,23 @@ def inputSearch(ingredients_list):
         for ingredient in ingredients:
             search += "&IncIncl=" + ingredient
     
-    webbrowser.open(search)
+    #webbrowser.open(search)
+    findRecipeNames(search)
+
+def findRecipeNames(link):
+    recipeNameList = []
+    source = requests.get(link).text
+    soup = BeautifulSoup(source, 'lxml')
+    for parts in soup.find_all('h3', class_='card__title'):
+        recipeName = parts.get_text()
+        recipeNameList.append(recipeName.strip())
+    
+    printRecipeNames(recipeNameList)
+
+def printRecipeNames(lst):
+    print("These are the possible recipes with your ingredients:")
+    for item in lst:
+        print("\t"+item)
 
 def main():
     readIngredients()
@@ -52,6 +70,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-        
 
 
