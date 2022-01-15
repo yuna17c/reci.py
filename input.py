@@ -44,7 +44,7 @@ def inputSearch(ingredients_list):
         for ingredient in ingredients:
             search += "&IncIncl=" + ingredient
     
-    webbrowser.open(search)
+    webbrowser.open(search) # need to change to return links instead of opening 
 
 def main():
     readIngredients()
