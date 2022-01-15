@@ -1,11 +1,15 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
+#https://www.youtube.com/watch?v=EELySnTPeyw&ab_channel=PyPros
 def get_results(search_term):
     url = "https://www.allrecipes.com/search/results/?IngIncl="
     browser = webdriver.Chrome(ChromeDriverManager().install())
     browser.get(url)
-    search_box = browser.find_element_by_class_name("faceted-search-filters-available-item-filter-choices option include-option")
+    # press Filters button
+    browser.find_element_by_id('faceted-search-filters-prompt').click()
+
+    search_box = browser.find_element_by_xpath("//input[@class='faceted-search-filters-available-item-filter-choices option include-option']")
     search_box.send_keys(search_term)
     search_box.submit()
     try:
