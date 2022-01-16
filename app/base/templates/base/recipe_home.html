@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>Recipe Finder</h1>
-    <p>Ingredient list:</p>
+    <h3>Ingredient list:</h3>
     {% for i in ingredients %}
         <p>{{i.name}}</p>
-        <a href="{% url 'ingredient-update' i.id %}">DELETE</a>
+        <a href="{% url 'ingredient-update' i.id %}">delete</a>
     {% empty %}
         <p>no items</p>
     {% endfor %}
@@ -19,7 +19,11 @@
         {% csrf_token %}
         {{ form }}
         <input placeholder="" name="input">
-        <button type="submit">ADD</button>
+        <button type="submit" name="add_button">add</button>
+    </form>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="done_button">done</button>
     </form>
 </body>
 </html>
