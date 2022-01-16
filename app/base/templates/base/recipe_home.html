@@ -11,6 +11,7 @@
     <p>Ingredient list:</p>
     {% for i in ingredients %}
         <p>{{i.name}}</p>
+        <a href="{% url 'ingredient-update' i.id %}">DELETE</a>
     {% empty %}
         <p>no items</p>
     {% endfor %}
