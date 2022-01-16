@@ -1,3 +1,5 @@
+# SCRAPER PRACTICE THIGNS ARE HERE
+
 from bs4 import BeautifulSoup
 import requests
 # with open(r"C:\Users\Yuna\OneDrive\Documents\yuna17c.github.io\portfolio\index.html") as html_file:

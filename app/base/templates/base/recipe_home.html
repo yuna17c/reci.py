@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UFT-8">
+    <meta name="viewport" content="width=device-width, initial=scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FeedMe</title>
+</head>
+<body>
+    <h1>Recipe Finder</h1>
+    <p>Ingredient list:</p>
+    {% for i in ingredients %}
+        <p>{{i.name}}</p>
+    {% empty %}
+        <p>no items</p>
+    {% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input placeholder="" name="input">
+        <button type="submit">ADD</button>
+    </form>
+</body>
+</html>
