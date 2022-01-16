@@ -37,7 +37,6 @@ class DeleteView(DeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-
 class FridgeHome(ListView):
     model = Ingredient
     template_name = "base/fridge_home.html"
