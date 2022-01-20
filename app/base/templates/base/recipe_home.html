@@ -4,7 +4,7 @@
     <meta charset="UFT-8">
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FeedMe</title>
+    <title>RECI.PY</title>
 </head>
 <body>
     <h1>Recipe Finder</h1>
@@ -25,5 +25,12 @@
         {% csrf_token %}
         <button type="submit" name="done_button">done</button>
     </form>
+    <h3>Recipe list:</h3>
+    {% for i in recipe_list %}
+        <p>{{i.recipe_name}}</p>
+        <a>{{i.link}}</a>
+    {% empty %}
+        <p>no recipes</p>
+    {% endfor %}
 </body>
 </html>
