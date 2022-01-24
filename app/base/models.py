@@ -8,4 +8,12 @@ class Ingredient(models.Model):
     # created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
-        
+
+class RecipeList(models.Model):
+    recipe_name = models.TextField(null=True, blank=True)
+    link = models.TextField(null=True, blank=True)
+    prep_time = models.IntegerField(null=True, blank=True)
+    def __str__(self):
+        return self.recipe_name
+
+ 
