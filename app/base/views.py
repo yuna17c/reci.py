@@ -78,13 +78,6 @@ class FridgeHome(TemplateView):
             user_input = request.POST.get("input", "")
             print(user_input)
             FoodItem.objects.create(name=user_input).save()
-        elif 'done_button' in request.POST:
-            all_entries = FoodItem.objects.all()
-            input_list=[]
-            for a in all_entries:
-                print(a.name)
-                input_list.append(a.name)
-            inputSearch(input_list)
         return HttpResponseRedirect(request.path_info)
 
 
