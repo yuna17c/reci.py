@@ -9,6 +9,12 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+class FoodItem(Ingredient):
+    expiry_date = models.DateField(null=True, blank=True)
+    food_group = models.TextChoices
+    def __str__(self):
+        return self.name
+
 class RecipeList(models.Model):
     recipe_name = models.TextField(null=True, blank=True)
     link = models.TextField(null=True, blank=True)
