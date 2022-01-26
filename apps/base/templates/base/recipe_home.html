@@ -1,36 +1,58 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UFT-8">
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'recipe_style.css' %}">
     <title>RECI.PY</title>
 </head>
-<body>
+<body class="recipe-home">
     <h1>Recipe Finder</h1>
-    <h3>Ingredient list:</h3>
-    {% for i in ingredients %}
-        <p>{{i.name}}</p>
-        <a href="{% url 'ingredient-update' i.id %}">delete</a>
-    {% empty %}
-        <p>no items</p>
-    {% endfor %}
-    <form method="POST">
+    
+    <h3>Add an ingredient</h3>
+    <form method="POST" class="add-button">
         {% csrf_token %}
         {{ form }}
         <input placeholder="" name="input">
         <button type="submit" name="add_button">add</button>
     </form>
-    <form method="POST">
+
+    <h3>Ingredient list:</h3>
+    <table class="ingredients-table">
+        <tr>
+            <th>Ingredient</th>
+            <td></td>
+        </tr>
+        {% for i in ingredients %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td><a href="{% url 'ingredient-update' i.id %}" class="delete-button">delete</a></td>
+            {% empty %}
+            <td>no items</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form method="POST" class="done-button">
         {% csrf_token %}
         <button type="submit" name="done_button">done</button>
     </form>
+
     <h3>Recipe list:</h3>
-    {% for i in recipe_list %}
-        <p>{{i.recipe_name}}</p>
-        <a>{{i.link}}</a>
-    {% empty %}
-        <p>no recipes</p>
-    {% endfor %}
+    <table class="recipe-table">
+        <tr>
+            <th>Recipe</th>
+        </tr>
+        {% for i in recipe_list %}
+        <tr>
+            <td><a href="{{i.link}}" class="recipe-link">{{i.recipe_name}}</a></td>
+            {% empty %}
+            <p>no recipes</p>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

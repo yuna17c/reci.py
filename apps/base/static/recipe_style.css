@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Questrial&display=swap');
+
+.recipe-home {
+    margin: 0rem 1.9%;
+    margin-bottom: 2.6%;
+}
+
+h1 {
+    font-family: 'Baloo 2';
+    font-size: 6.1vh;
+}
+
+h3, button {
+    font-family: 'Questrial';
+    font-size: 3vh;
+}
+
+button {
+    padding: 0.3% 0.2%;
+    font-size: 2.5vh;
+}
+
+input {
+    padding: 0.3% 0.6%;
+}
+
+.done-button {
+    margin-top: 1%;
+}
+
+.recipe-home table {
+    font-family: 'Questrial';
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+    font-size: 2.5vh;
+}
+
+.ingredients-table {
+    width: 50%;
+}
+
+.recipe-table {
+    width: 100%;
+}
+
+td, th {
+    text-align: left;
+    padding: 1.7vh 2vh;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.recipe-link:hover {
+    color: blue;
+}
+.delete-button {
+    text-decoration: none;
+}

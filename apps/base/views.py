@@ -29,7 +29,6 @@ class RecipeFinderHome(TemplateView):
         context = super(RecipeFinderHome, self).get_context_data(**kwargs)
         context['ingredients'] = Ingredient.objects.all()
         context['recipe_list'] = RecipeList.objects.all()
-        # Ingredient.objects.all().delete()
         return context
     def post(self, request):
         if 'add_button' in request.POST:
