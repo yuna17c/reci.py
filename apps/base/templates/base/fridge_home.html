@@ -27,11 +27,11 @@
     <h1 id="fridge">fwidge owo</h1>
     <form method="POST">
         <label for="name">name:</label>
-        <input id="name" name="name">
+        <input id="name" name="name" required>
         <label for="expiry">expiry date:</label>
-        <input type="date" id="expiry" name="expiry">
+        <input type="date" id="expiry" name="expiry" required>
         <label for="cars">food group:</label>
-        <select name="food_group" id="food_group">
+        <select name="food_group" id="food_group" required>
             <option value="fruits">fruits/vegetables</option>
             <option value="fats">fats + oils</option>
             <option value="dairy">eggs, milk and milk products</option>
@@ -58,9 +58,7 @@
              <td>{{ item.expiry_date }}</td>
              <td><a href="{% url 'fridge-update' item.id %}">delete</a></td>
         </tr>
-        {% empty %}
-        <p>no food</p>
-    {% endfor %}
+        {% endfor %}
     </table>
 </body>
 </html>
