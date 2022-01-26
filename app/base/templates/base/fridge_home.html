@@ -62,7 +62,7 @@
         <tr> 
              <td>{{ item.name }}</td>
              <td>{{ item.expiry_date }}</td>
-             <a href="{% url 'fridge-update' i.id %}">delete</a>
+             <a href="{% url 'fridge-update' item.id %}">delete</a>
         </tr>
         {% empty %}
         <p>no food</p>
