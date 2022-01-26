@@ -64,7 +64,7 @@ class DeleteView(DeleteView):
 
 class DeleteFridgeView(DeleteView):
     model = FoodItem
-    context_object_name = 'fooditem'
+    context_object_name = 'item'
     success_url = reverse_lazy('fridge')
 
 class FridgeHome(TemplateView):
