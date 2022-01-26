@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
     <meta charset="UFT-8">
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FeedMe</title>
+    <title>RECI.PY</title>
 </head>
 <body>
-    <h1>This is your fridge.</h1>
+    <h1 id="fridge">fwidge owo</h1>
+    <form method="POST">
+        <label for="name">name:</label>
+        <input id="name" name="name">
+        <label for="expiry">expiry date:</label>
+        <input type="date" id="expiry" name="expiry">
+        <label for="cars">food group:</label>
+        <select name="food_group" id="food_group">
+            <option value="fruits">fruits/vegetables</option>
+            <option value="fats">fats + oils</option>
+            <option value="dairy">eggs, milk and milk products</option>
+            <option value="meat">meat + fish</option>
+            <option value="herbs">herbs + spices</option>
+            <option value="grain">grain, nuts and baking products</option>
+            <option value="pasta">pasta, rice and pulses</option>
+            <option value="other">other</option>
+        </select>
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" name="add_button">add</button>
+    </form>
+    <form action="{% url 'test1' %}">
+        <button type="submit">group 1</button>
+    </form>
+    <form action="{% url 'test2' %}">
+        <button type="submit">group 2</button>
+    </form>
+
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Expiry Date</th>
+          <th>Food Group</th>
+        </tr>
+        {% for item in food_items %}
+        <tr> 
+             <td>{{ item.name }}</td>
+             <td>{{ item.expiry_date }}</td>
+             <a href="{% url 'fridge-update' i.id %}">delete</a>
+        </tr>
+        {% empty %}
+        <p>no food</p>
+    {% endfor %}
+    </table>
 </body>
 </html>

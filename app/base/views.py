@@ -1,3 +1,4 @@
+from django import forms
 from msilib.schema import ListView
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -9,7 +10,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from bs4 import BeautifulSoup
 import requests
-from .models import Ingredient, RecipeList
+from .models import Ingredient, FoodItem, RecipeList
 
 class HomePage(ListView):
     model = Ingredient
@@ -54,7 +55,6 @@ class RecipeFinderHome(TemplateView):
         #return self.get_response(request)
         return HttpResponseRedirect(request.path_info)
 
-
 class DeleteView(DeleteView):
     model = Ingredient
     context_object_name = 'ingredient'
@@ -62,10 +62,24 @@ class DeleteView(DeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-class FridgeHome(ListView):
-    model = Ingredient
-    template_name = "base/fridge_home.html"
+class DeleteFridgeView(DeleteView):
+    model = FoodItem
+    context_object_name = 'fooditem'
+    success_url = reverse_lazy('fridge')
 
+class FridgeHome(TemplateView):
+    model = FoodItem
+    template_name = "base/fridge_home.html"
+    def get_context_data(self, **kwargs):
+        context = super(FridgeHome, self).get_context_data(**kwargs)
+        context['food_items'] = FoodItem.objects.all()
+        return context
+    def post(self, request):
+        if 'add_button' in request.POST:
+            name = request.POST.get("name", "")
+            expiry_date = request.POST.get("expiry", "")
+            FoodItem.objects.create(name=name, expiry_date=expiry_date).save()
+        return HttpResponseRedirect(request.path_info)
 
 def inputSearch(lst):
     search = "https://www.allrecipes.com/search/results/?IngIncl="
