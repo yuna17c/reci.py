@@ -45,24 +45,18 @@
         {{ form }}
         <button type="submit" name="add_button">add</button>
     </form>
-    <form action="{% url 'test1' %}">
-        <button type="submit">group 1</button>
-    </form>
-    <form action="{% url 'test2' %}">
-        <button type="submit">group 2</button>
-    </form>
 
     <table>
         <tr>
           <th>Name</th>
           <th>Expiry Date</th>
-          <th>Food Group</th>
+          
         </tr>
         {% for item in food_items %}
         <tr> 
              <td>{{ item.name }}</td>
              <td>{{ item.expiry_date }}</td>
-             <a href="{% url 'fridge-update' item.id %}">delete</a>
+             <td><a href="{% url 'fridge-update' item.id %}">delete</a></td>
         </tr>
         {% empty %}
         <p>no food</p>
