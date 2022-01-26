@@ -1,3 +1,4 @@
+from django import forms
 from msilib.schema import ListView
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -75,11 +76,10 @@ class FridgeHome(TemplateView):
         return context
     def post(self, request):
         if 'add_button' in request.POST:
-            user_input = request.POST.get("input", "")
-            print(user_input)
-            FoodItem.objects.create(name=user_input).save()
+            name = request.POST.get("name", "")
+            expiry_date = request.POST.get("expiry", "")
+            FoodItem.objects.create(name=name, expiry_date=expiry_date).save()
         return HttpResponseRedirect(request.path_info)
-
 
 def inputSearch(lst):
     search = "https://www.allrecipes.com/search/results/?IngIncl="

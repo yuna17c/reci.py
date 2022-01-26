@@ -24,13 +24,7 @@
     <title>RECI.PY</title>
 </head>
 <body>
-    <h1>fwidge owo</h1>
-    {% for i in ingredients %}
-        <p>{{i.name}}</p>
-        <a href="{% url 'fridge-update' i.id %}">delete</a>
-    {% empty %}
-        <p>no items</p>
-    {% endfor %}
+    <h1 id="fridge">fwidge owo</h1>
     <form method="POST">
         <label for="name">name:</label>
         <input id="name" name="name">
@@ -51,13 +45,28 @@
         {{ form }}
         <button type="submit" name="add_button">add</button>
     </form>
+    <form action="{% url 'test1' %}">
+        <button type="submit">group 1</button>
+    </form>
+    <form action="{% url 'test2' %}">
+        <button type="submit">group 2</button>
+    </form>
+
     <table>
         <tr>
           <th>Name</th>
           <th>Expiry Date</th>
           <th>Food Group</th>
         </tr>
+        {% for item in food_items %}
+        <tr> 
+             <td>{{ item.name }}</td>
+             <td>{{ item.expiry_date }}</td>
+             <a href="{% url 'fridge-update' i.id %}">delete</a>
+        </tr>
+        {% empty %}
+        <p>no food</p>
+    {% endfor %}
     </table>
-    <!--https://codepen.io/kawsar/pen/jybZzM-->
 </body>
 </html>
