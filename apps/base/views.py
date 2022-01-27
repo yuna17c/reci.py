@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from bs4 import BeautifulSoup
 import requests
 from .models import Ingredient, FoodItem, RecipeList
+from datetime import date
 
 class HomePage(ListView):
     model = Ingredient
@@ -66,6 +67,7 @@ class DeleteFridgeView(DeleteView):
     context_object_name = 'item'
     success_url = reverse_lazy('fridge')
 
+
 class FridgeHome(TemplateView):
     model = FoodItem
     template_name = "base/fridge_home.html"
@@ -77,7 +79,8 @@ class FridgeHome(TemplateView):
         if 'add_button' in request.POST:
             name = request.POST.get("name", "")
             expiry_date = request.POST.get("expiry", "")
-            FoodItem.objects.create(name=name, expiry_date=expiry_date).save()
+            food_group = request.POST.get("food_group", "")
+            FoodItem.objects.create(name=name, expiry_date=expiry_date, food_group=food_group).save()
         return HttpResponseRedirect(request.path_info)
 
 def inputSearch(lst):

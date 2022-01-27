@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Questrial&display=swap');
+@import url("base.css");
+
+body {
+    font-family: 'Baloo 2';
+    background-color: var(--light-green);
+    color: var(--medium-green);
+}
+
+h1 {
+    color: var(--dark-green);
+    font-size: 500%;
+}
+
+.row {
+    display:flex;
+    justify-content:flex-start;
+    align-items:stretch;
+    flex-wrap:nowrap;
+    padding: 10px
+}
+
+.cell {
+    min-height:75px;
+    flex-grow:1;
+    flex-basis: 100%;
+}
+
+label {
+    padding-left: 10px;
+}
+
+input, select, option {
+    border-radius: 25px;
+    border: 3px inset var(--medium-green);
+    font-family: 'Baloo 2';
+    text-align: center;
+    background-color: rgb(244, 255, 244);
+    color: var(--dark-green);
+}
+
+.back-button {
+    float: right;
+    background-color: var(--medium-green);
+    font-family: 'Baloo 2';
+    border: solid transparent;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    overflow: visible;
+    padding: 10px;
+    text-align: center;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+button:hover{
+  filter: brightness(1.1);
+}
+
+.fa:hover{
+    filter: brightness(1.5);
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+    cursor: pointer;
+  }
+
+table {
+    font-size: 20px;
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+th {
+    color: var(--dark-green);
+    background-color: var(--medium-green);
+    text-align: center;
+    padding: 8px;
+}
+
+td {
+    text-align: center;
+    padding: 8px;
+    
+}
+
+td p {
+    color: red;
+}
+
+tr:nth-child(even) {
+    background-color: white
+}
+
+i {
+    float: right;
+    color: var(--dark-green);
+    padding: 10px;
+}
+
+@media (max-width: 950px){
+    .row {
+      flex-wrap:wrap;
+    }
+    h1 {
+        text-align: center;
+        font-size: 18vh;
+    }
+    .fridge {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        width: 50%;
+    }
+    .button {
+        width: 100%;
+    }
+}

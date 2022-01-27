@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Questrial&display=swap');
+@import url("base.css");
+
+body {
+    background-color: var(--light-green);
+}
+
+.row {
+    display:flex;
+    justify-content:flex-start;
+    align-items:stretch;
+    flex-wrap:nowrap;
+    padding:10px;
+}
+
+.cell {
+    min-height:75px;
+    flex-grow:1;
+    flex-basis: 100%;
+}
+
+h1 {
+    font-family: 'Baloo 2';
+    font-size: 25vh;
+    color: var(--medium-green);
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.fridge {
+    width: 50%;
+    height: auto;
+    margin-left: 175px;
+    margin-top: 25px;
+}
+
+button {
+    float: center;
+    display: inline;
+    width: 90%;
+    background-color: var(--medium-green);
+    font-family: 'Baloo 2';
+    border: solid transparent;
+    border-radius: 20px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    overflow: visible;
+    padding: 25px 14px;
+    text-align: center;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+button:hover{
+  filter: brightness(1.1);
+}
+
+@media (max-width: 950px){
+    .row {
+      flex-wrap:wrap;
+    }
+    h1 {
+        text-align: center;
+        font-size: 18vh;
+    }
+    .fridge {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        width: 50%;
+    }
+    .button {
+        width: 100%;
+    }
+}

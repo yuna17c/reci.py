@@ -1,0 +1,28 @@
+:root {
+    --light-green: rgb(226, 255, 229);
+    --medium-green: rgb(136, 210, 145);
+    --dark-green: rgb(59, 126, 67);
+}
+
+/* stuff for the scroll bar */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow: overlay;
+}
+
+ ::-webkit-scrollbar {
+    width: 15px;
+}
+
+ ::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background-color: rgb(136, 210, 145);
+    border-radius: 20px;
+}
+/**********************************/

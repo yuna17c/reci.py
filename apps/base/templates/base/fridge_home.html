@@ -1,64 +1,70 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        }
-
-        td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        }
-
-        tr:nth-child(even) {
-        background-color: #dddddd;
-        }
-    </style>
     <meta charset="UFT-8">
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'fridge_style.css' %}">
+    <script src="https://kit.fontawesome.com/b8349432cb.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
 <body>
-    <h1 id="fridge">fwidge owo</h1>
-    <form method="POST">
-        <label for="name">name:</label>
-        <input id="name" name="name" required>
-        <label for="expiry">expiry date:</label>
-        <input type="date" id="expiry" name="expiry" required>
-        <label for="cars">food group:</label>
-        <select name="food_group" id="food_group" required>
-            <option value="fruits">fruits/vegetables</option>
-            <option value="fats">fats + oils</option>
-            <option value="dairy">eggs, milk and milk products</option>
-            <option value="meat">meat + fish</option>
-            <option value="herbs">herbs + spices</option>
-            <option value="grain">grain, nuts and baking products</option>
-            <option value="pasta">pasta, rice and pulses</option>
-            <option value="other">other</option>
-        </select>
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" name="add_button">add</button>
-    </form>
-
-    <table>
-        <tr>
-          <th>Name</th>
-          <th>Expiry Date</th>
-          
-        </tr>
-        {% for item in food_items %}
-        <tr> 
-             <td>{{ item.name }}</td>
-             <td>{{ item.expiry_date }}</td>
-             <td><a href="{% url 'fridge-update' item.id %}">delete</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="row">
+        <div class="cell"><h1 id="fridge">FRIDGE</h1></div>
+        <div class="cell"><a href="{% url 'main' %}" ><i class="fa fa-home fa-3x" aria-hidden="true"></i></a></div>
+    </div>
+    <div class="row">
+        <div class="cell">
+        <form method="POST">
+            <label for="name">name:</label>
+            <input id="name" name="name" required>
+            <label for="expiry">expiry date:</label>
+            <input type="date" id="expiry" name="expiry" required>
+            <label for="food_group">food group:</label>
+            <select name="food_group" id="food_group" required>
+                <option value="fruits">fruits (e.g. apples, bananas)</option>
+                <option value="vegetables">vegetables (e.g. broccoli, carrots)</option>
+                <option value="grains">grains (e.g. bread, rice, pasta)</option>
+                <option value="protein">protein (e.g. seafood, meat, eggs, nuts)</option>
+                <option value="dairy">dairy (e.g. milk, cheese, non-dairy alternatives)</option>
+                <option value="cooking product">cooking products (e.g. flour, cooking oil)</option>
+                <option value="herbs/spices">herbs + spices (e.g. sugar, salt, paprika)</option>
+                <option value="other">other</option>
+            </select>
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" name="add_button">add</button>
+        </form>
+        </div>
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+            <th>Name</th>
+            <th>Expiry Date</th>
+            <th>Food Group</th> 
+            </tr>
+            {% for item in food_items %}
+            <tr> 
+                <td>{{ item.name }}</td>
+                <td>
+                    {% if item.is_expired %}
+                        <p>EXPIRED</p>
+                    {% elif item.is_expiring_soon %}
+                        <p>{{ item.expiry_date }}</p>
+                    {% else %}
+                        {{ item.expiry_date }}
+                    {% endif %}
+                
+                </td>
+                <td>{{ item.food_group }}
+                    <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
