@@ -7,52 +7,61 @@
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'recipe_style.css' %}">
+    <script src="https://kit.fontawesome.com/b8349432cb.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
 <body class="recipe-home">
-    <h1>Recipe Finder</h1>
-    
-    <h3>Add an ingredient</h3>
-    <form method="POST" class="add-button">
-        {% csrf_token %}
-        {{ form }}
-        <input placeholder="" name="input">
-        <button type="submit" name="add_button">add</button>
-    </form>
+    <div class="header">
+        <div><h1>Recipe Finder</h1></div>
+        <div class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home fa-3x" aria-hidden="true"></i></a></div>
+    </div>
+    <div class="content">
+        <h3>Add an ingredient</h3>
+        <form method="POST" class="add-button">
+            {% csrf_token %}
+            {{ form }}
+            <input placeholder="" name="input">
+            <button type="submit" name="add_button">add</button>
+        </form>
 
-    <h3>Ingredient list:</h3>
-    <table class="ingredients-table">
-        <tr>
-            <th>Ingredient</th>
-            <td></td>
-        </tr>
-        {% for i in ingredients %}
-        <tr>
-            <td>{{i.name}}</td>
-            <td><a href="{% url 'ingredient-update' i.id %}" class="delete-button">delete</a></td>
-            {% empty %}
-            <td>no items</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <h3>Ingredient list:</h3>
+        <table class="ingredients-table">
+            <tr>
+                <th>Ingredient</th>
+                <th></th>
+            </tr>
+            {% for i in ingredients %}
+            <tr>
+                <td class="ingredient">{{i.name}}</td>
+                <td class="delete">
+                    <a href="{% url 'ingredient-update' i.id %}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+                {% empty %}
+                <td>no items</td>
+            </tr>
+            {% endfor %}
+        </table>
 
-    <form method="POST" class="done-button">
-        {% csrf_token %}
-        <button type="submit" name="done_button">done</button>
-    </form>
+        <form method="POST" class="done-button">
+            {% csrf_token %}
+            <button type="submit" name="done_button">done</button>
+        </form>
 
-    <h3>Recipe list:</h3>
-    <table class="recipe-table">
-        <tr>
-            <th>Recipe</th>
-        </tr>
-        {% for i in recipe_list %}
-        <tr>
-            <td><a href="{{i.link}}" class="recipe-link">{{i.recipe_name}}</a></td>
-            {% empty %}
-            <p>no recipes</p>
-        </tr>
-        {% endfor %}
-    </table>
+        <h3>Recipe list:</h3>
+        <table class="recipe-table">
+            <tr>
+                <th>Recipe</th>
+            </tr>
+            {% for i in recipe_list %}
+            <tr>
+                <td><a href="{{i.link}}" class="recipe-link">{{i.recipe_name}}</a></td>
+                {% empty %}
+                <p>no recipes</p>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

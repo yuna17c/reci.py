@@ -2,14 +2,17 @@
 @import url("base.css");
 
 body {
-    font-family: 'Baloo 2';
+    font-family: 'Questrial', sans-serif;
     background-color: var(--light-green);
     color: var(--medium-green);
 }
-
-h1 {
-    color: var(--dark-green);
-    font-size: 500%;
+.header {
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.header h1 {
+    padding: 0 5vh;
 }
 
 .row {
@@ -17,7 +20,7 @@ h1 {
     justify-content:flex-start;
     align-items:stretch;
     flex-wrap:nowrap;
-    padding: 10px
+    padding: 0 5vh;
 }
 
 .cell {
@@ -76,7 +79,7 @@ button:hover{
   }
 
 table {
-    font-size: 20px;
+    font-size: 3vh;
     border: 1px solid;
     border-collapse: collapse;
     width: 100%;
@@ -108,7 +111,10 @@ i {
     color: var(--dark-green);
     padding: 10px;
 }
-
+.home-button i {
+   font-size: 7vh;
+   padding: 1vh;
+}
 @media (max-width: 950px){
     .row {
       flex-wrap:wrap;

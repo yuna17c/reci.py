@@ -13,8 +13,14 @@ body {
     overflow: overlay;
 }
 
+h1 {
+    font-size: 11vh;
+    font-family: 'Baloo 2';
+    color: var(--dark-green);
+}
+
  ::-webkit-scrollbar {
-    width: 15px;
+    width: 12px;
 }
 
  ::-webkit-scrollbar-track {
