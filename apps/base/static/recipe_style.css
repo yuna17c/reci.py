@@ -13,10 +13,12 @@
     align-items: flex-start;
 }
 .home-button i {
+    margin-right: 25px;
     padding: 1vh;
     font-size: 7vh;
     color: var(--dark-green);
 }
+
 .home-button:hover{
     filter: brightness(1.5);
     -o-transition: .5s;
@@ -38,12 +40,42 @@ h3 {
     color: var(--dark-green);
     font-size: 4vh;
 }
+
 button {
-    padding: 1.2vh 1.5vh;
-    font-size: 3vh;
-    border: 3px inset var(--medium-green);
-    border-radius: 17px;
+    margin: 10px;
+    background-color: var(--medium-green);
+    font-family: 'Baloo 2';
+    border: solid transparent;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    overflow: visible;
+    padding: 10px;
+    text-align: center;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    vertical-align: middle;
+    white-space: nowrap; 
 }
+
+button:hover{
+    filter: brightness(1.1);
+}
+
+.fa:hover{
+    filter: brightness(1.5);
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+    cursor: pointer;
+  }
 
 input {
     padding: 1.2vh 0.5vh;

@@ -1,6 +1,8 @@
 from django.db import models
+from django.forms import CheckboxSelectMultiple
 from django.utils import timezone
 from datetime import date, timedelta
+import django_filters
 
 FOOD_GROUPS = (
     ("fruits", "fruits (e.g. apples, bananas)"),

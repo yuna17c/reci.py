@@ -44,7 +44,7 @@ input, select, option {
 }
 
 button {
-    float: right;
+    margin: 10px;
     background-color: var(--medium-green);
     font-family: 'Baloo 2';
     border: solid transparent;
@@ -79,6 +79,12 @@ button:hover{
     cursor: pointer;
   }
 
+.home-button i {
+    margin-right: 25px;
+   font-size: 7vh;
+   padding: 1vh;
+}
+
 table {
     font-size: 3vh;
     border: 1px solid;
@@ -111,10 +117,6 @@ i {
     float: right;
     color: var(--dark-green);
     padding: 10px;
-}
-.home-button i {
-   font-size: 7vh;
-   padding: 1vh;
 }
 
 @media (max-width: 950px){
