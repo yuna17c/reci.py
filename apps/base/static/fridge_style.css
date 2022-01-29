@@ -6,13 +6,9 @@ body {
     background-color: var(--light-green);
     color: var(--medium-green);
 }
-.header {
-    display:flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.header h1 {
-    padding: 0 5vh;
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--dark-green);
 }
 
 .row {
@@ -29,9 +25,35 @@ body {
     flex-basis: 100%;
 }
 
+h1 {
+    color: var(--light-green);
+    background-color: blue;
+}
+
+.home-button {
+    float: right;
+}
+
+.home-button i {
+    color: var(--light-green);
+    margin-right: 25px;
+    font-size: 7vh;
+    padding: 3vh;    
+}
+
+.header {
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--medium-green);
+    border-radius: 20px;
+}
+
 label {
-    padding-left: 10px;
-    color: var(--dark-green);
+    padding: 10px;
+    color: white;
+    font-weight: 700;
+    font-size: 30px;
 }
 
 input, select, option {
@@ -41,6 +63,19 @@ input, select, option {
     text-align: center;
     background-color: rgb(244, 255, 244);
     color: var(--dark-green);
+    padding: 2px;
+    font-size: medium;
+}
+
+#input-column {
+    float: left;
+    padding: 0 5vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#input {
+    padding: 10px;
 }
 
 button {
@@ -56,13 +91,21 @@ button {
     font-weight: 700;
     letter-spacing: .8px;
     overflow: visible;
-    padding: 10px;
     text-align: center;
     touch-action: manipulation;
     transform: translateZ(0);
     transition: filter .2s;
     vertical-align: middle;
     white-space: nowrap;
+}
+
+button:not(#add) {
+    padding: 10px;
+}
+
+#add {
+    background-color: var(--dark-green);
+    font-size: 20px;
 }
 
 button:hover{
@@ -78,12 +121,6 @@ button:hover{
     transition: .5s;
     cursor: pointer;
   }
-
-.home-button i {
-    margin-right: 25px;
-   font-size: 7vh;
-   padding: 1vh;
-}
 
 table {
     font-size: 3vh;
@@ -122,10 +159,6 @@ i {
 @media (max-width: 950px){
     .row {
       flex-wrap:wrap;
-    }
-    h1 {
-        text-align: center;
-        font-size: 18vh;
     }
     .fridge {
         display: block;
