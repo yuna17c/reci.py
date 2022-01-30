@@ -25,9 +25,12 @@ body {
     flex-basis: 100%;
 }
 
+
 h1 {
+    font-family: 'Baloo 2';
+    font-size: 8vh;
     color: var(--light-green);
-    background-color: blue;
+    display: flex;
 }
 
 .home-button {
@@ -108,7 +111,7 @@ button:not(#add) {
     font-size: 20px;
 }
 
-button:hover{
+button:hover {
   filter: brightness(1.1);
 }
 
