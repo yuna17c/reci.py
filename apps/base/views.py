@@ -96,6 +96,7 @@ def inputSearch(lst):
 
 def findRecipeNames(link):
     recipeNameList = []
+    recipeLinkList = []
     source = requests.get(link).text
     soup = BeautifulSoup(source, 'lxml')
     for parts in soup.find_all('h3', class_='card__title'):
@@ -106,8 +107,29 @@ def findRecipeNames(link):
         parent_tag = part.find_parent('div')['class']
         if parent_tag==['card__detailsContainer-left']:
             RecipeList.objects.create(recipe_name=recipeNameList[i], link=part['href']).save()
+            elems = part.get('href')
+            recipeLinkList.append(elems)
             i+=1
-    printRecipeNames(recipeNameList)
+
+    for l in recipeLinkList:
+        source = requests.get(l).text
+        soup = BeautifulSoup(source, 'lxml')
+        titles = soup.find('div', class_='two-subcol-content-wrapper')
+        ings = soup.find_all('li', class_="ingredients-item")
+        ing_lst=[]
+        for i in ings:
+            ing = i.get_text()
+            ing_lst.append(ing)
+        
+        child = titles.select_one(":nth-child(3)")
+        total_time = child.get_text().strip()
+        # print(total_time)
+        recipeObject = RecipeList.objects.get(link=l)
+        recipeObject.prep_time = total_time[7:]
+        RecipeList.set_ing(recipeObject, ing_lst)
+        recipeObject.save()
+        minuteTime = changeToMinute(total_time)
+    # printRecipeNames(recipeNameList)
 
 def printRecipeNames(lst):
     if len(lst)==0:
@@ -116,3 +138,20 @@ def printRecipeNames(lst):
         print("These are the possible recipes with your ingredients:")
     for item in lst:
         print("\t"+item)
+
+
+def changeToMinute(str):
+    x = str[7:].split("hr")
+    hour = 0
+    min = 0
+    if len(x) > 1:
+        hour = x[0].strip()
+    min_idx = x[-1].find("min")
+    if min_idx!=-1:
+        min = x[-1][:min_idx].strip()
+        if min[0].isnumeric()==False:
+            min = min[2:]
+    # print("hour: ",hour)
+    # print("min: ",min)
+    total=60*int(hour)+int(min)
+    return total

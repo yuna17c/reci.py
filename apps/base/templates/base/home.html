@@ -6,7 +6,7 @@
     <meta charset="UFT-8">
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'home_style.css' %}?{% now "U"">
+    <link rel="stylesheet" type="text/css" href="{% static 'home_style.css' %}?%{% now "U" %}">
     <title>RECI.PY</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
         <div class="cell"><img class = "fridge" src="{% static 'images/frig.png' %}" alt="frig"></div>
         <div class="cell"><h1>reci.py</h1></div>
     </div>
-    <div class="row">
+    <div class="row bottom">
         <div class="cell">
             <form action="{% url 'fridge' %}">
                 <button type="submit">FRIDGE</button>

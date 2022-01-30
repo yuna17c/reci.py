@@ -40,9 +40,12 @@ h3 {
     color: var(--dark-green);
     font-size: 4vh;
 }
-
+.content button {
+    padding: 1.1vh 1.1vh;
+    font-size: 3vh;
+    font-family: 'Questrial', sans-serif;
+}
 button {
-    margin: 10px;
     background-color: var(--medium-green);
     font-family: 'Baloo 2';
     border: solid transparent;
@@ -78,16 +81,20 @@ button:hover{
   }
 
 input {
-    padding: 1.2vh 0.5vh;
+    padding: 1.2vh 1.9vh;
     border: 3px inset var(--medium-green);
     border-radius: 17px;
     margin-right: 1.5vh;
+    font-family: 'Questrial', sans-serif;
+    font-size: 3vh;
 }
 
 .done-button {
     margin-top: 1%;
 }
-
+.done-button button {
+    padding: 0.6vh 2.4vh;
+}
 .recipe-home table {
     font-family: 'Questrial';
     border: 1px solid #dddddd;
@@ -101,11 +108,12 @@ input {
 }
 .ingredients-table .delete {
     padding: 1vh 2vh;
+    margin: 10px;
 }
 .ingredient {
     padding-right: 30%;
     padding-right: 2vh;
-    min-width: 220px;
+    min-width: 22vh;
 }
 .recipe-table {
     width: 100%;
@@ -130,7 +138,7 @@ a {
 }
 
 .recipe-link {
-    transition: all linear 0.5s;
+    transition: all linear 300ms;
 }
 
 .recipe-link:hover {

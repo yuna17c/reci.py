@@ -7,7 +7,6 @@ body {
 
 .row {
     display:flex;
-    justify-content:flex-start;
     align-items:stretch;
     flex-wrap:nowrap;
     padding:10px;
@@ -18,10 +17,13 @@ body {
     flex-grow:1;
     flex-basis: 100%;
 }
+.bottom .cell {
+    text-align: center;
+}
 
 h1 {
     font-family: 'Baloo 2';
-    font-size: 25vh;
+    font-size: 23vh;
     color: var(--medium-green);
     width: 50%;
     display: flex;

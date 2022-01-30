@@ -1,8 +1,8 @@
+import json
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 from django.utils import timezone
 from datetime import date, timedelta
-import django_filters
 
 FOOD_GROUPS = (
     ("fruits", "fruits (e.g. apples, bananas)"),
@@ -42,8 +42,13 @@ class FoodItem(models.Model):
 class RecipeList(models.Model):
     recipe_name = models.TextField(null=True, blank=True)
     link = models.TextField(null=True, blank=True)
-    prep_time = models.IntegerField(null=True, blank=True)
+    prep_time = models.TextField(null=True, blank=True)
+    ing_lst = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.recipe_name
+    def set_ing(self, x):
+        self.ing_lst = json.dumps(x)
+    def get_ing(self):
+        return json.loads(self.ing_lst)
 
  

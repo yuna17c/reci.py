@@ -21,7 +21,7 @@
             {% csrf_token %}
             {{ form }}
             <input placeholder="" name="input">
-            <button type="submit" name="add_button">add</button>
+            <button type="submit" name="add_button">+</button>
         </form>
 
         <h3>Ingredient list:</h3>
@@ -46,17 +46,21 @@
 
         <form method="POST" class="done-button">
             {% csrf_token %}
-            <button type="submit" name="done_button">done</button>
+            <button type="submit" name="done_button">SEARCH</button>
         </form>
 
         <h3>Recipe list:</h3>
         <table class="recipe-table">
             <tr>
                 <th>Recipe</th>
+                <th>Preparation time</th>
+                <th>Ingredients</th>
             </tr>
             {% for i in recipe_list %}
             <tr>
-                <td><a href="{{i.link}}" class="recipe-link">{{i.recipe_name}}</a></td>
+                <td><a href="{{i.link}}" class="recipe-link" target="_blank">{{i.recipe_name}} </a></td>
+                <td>{{i.prep_time}}</td>
+                <td>{{i.ing_lst}}</td>
                 {% empty %}
                 <p>no recipes</p>
             </tr>
