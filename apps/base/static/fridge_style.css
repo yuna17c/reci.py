@@ -11,6 +11,15 @@ body {
     background-color: var(--dark-green);
 }
 
+.food_item {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
 .row {
     display:flex;
     justify-content:flex-start;
@@ -51,8 +60,19 @@ h1 {
     background-color: var(--medium-green);
     border-radius: 20px;
 }
-
-label {
+/*
+input[type=checkbox] {
+    color: white;
+    font-style: italic;
+    font-size: 20px;
+}
+  
+input[type=checkbox]:checked{
+    color: #f00;
+    font-style: normal;
+}
+*/
+#input label {
     padding: 10px;
     color: white;
     font-weight: 700;
