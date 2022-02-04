@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'fridge_style.css' %}?{% now "U" %}">
-    <script src="{% static 'filter.js' %}"></script>
+    <script src="{% static 'filter.js' %}?{% now "U" %}"></script>
     <script src="https://kit.fontawesome.com/b8349432cb.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
@@ -62,36 +62,38 @@
     
     <div class="row">
         <table id="fridge-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Expiry Date</th>
-                    <th>Food Group</th> 
-                </tr>
-            </thead>
-            <tbody>
-            {% for item in food_items %}
-            <div class="food_item {{ item.name }} {{ item.food_group }}">   
-                <tr>            
-                    <td class="name">{{ item.name }}</td>
-                    <td class="expiry date">
-                        {% if item.is_expired %}
-                            <p>EXPIRED</p>
-                        {% elif item.is_expiring_soon %}
-                            <p>{{ item.expiry_date }}</p>
-                        {% else %}
-                            {{ item.expiry_date }}
-                        {% endif %}
-                    </td>
-                    <td class="food group">{{ item.food_group }}
-                        <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-            </div>
-            {% endfor %}
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Expiry Date</th>
+                <th>Food Group</th> 
+            </tr>
+        </thead>
+        
+        <tbody>
+
+        {% for item in food_items %}
+            <tr class="food_item {{ item.name }} {{ item.food_group }}">        
+                <td class="name">{{ item.name }}</td>
+                <td class="expiry date">
+                    {% if item.is_expired %}
+                        <p>EXPIRED</p>
+                    {% elif item.is_expiring_soon %}
+                        <p>{{ item.expiry_date }}</p>
+                    {% else %}
+                        {{ item.expiry_date }}
+                    {% endif %}
+                </td>
+                <td class="food group">
+                    {{ item.food_group }}
+                    <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+
         </tbody>
         </table>
-        </div>
     </div>
+
 </body>
 </html>

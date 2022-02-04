@@ -18,18 +18,19 @@ function check() {
 function filter(categories) {
     var i;
     var all_elements = document.getElementsByClassName("food_item");
+    
     if (categories.length == 0) {
         categories.push("");
     }
     // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
     for (i = 0; i < all_elements.length; i++) {
         let match = false;
-        w3RemoveClass(all_elements[i], "show");
+        w3AddClass(all_elements[i], "hide");
         for (var c in categories) {
             if (all_elements[i].className.indexOf(categories[c]) > -1) match = true;
         }
         if (match) {
-            w3AddClass(all_elements[i], "show");
+            w3RemoveClass(all_elements[i], "hide");
         }
     }
 }
