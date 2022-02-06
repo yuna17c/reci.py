@@ -154,6 +154,11 @@ th {
     padding: 8px;
 }
 
+th i {
+    float: right;
+    cursor: pointer;
+}
+
 td {
     text-align: center;
     padding: 8px;
@@ -168,7 +173,7 @@ tr:nth-child(even) {
     background-color: white
 }
 
-i {
+.food-group i {
     float: right;
     color: var(--dark-green);
     padding: 10px;
