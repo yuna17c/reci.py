@@ -17,25 +17,7 @@ import random
 class HomePage(ListView):
     model = Ingredient
     template_name = "base/home.html"
-
-class RecipeGenerator(TemplateView):
-    model = FoodItem
-    template_name = "base/home.html"
-    def get_context_data(self, **kwargs):
-        context = super(RecipeGenerator, self).get_context_data(**kwargs)
-        context['ingredients'] = FoodItem.objects.all()
-        context['recipe_list'] = RecipeList.objects.all()
-        return context
-    def post(self, request):
-        RecipeList.objects.all().delete()
-        all_entries = FoodItem.objects.all()
-        input_list=[]
-        for a in all_entries:
-            input_list.append(a.name)
-        inputSearch(input_list)
-        return HttpResponseRedirect(request.path_info)
     
-
 class RecipeFinderHome(TemplateView):
     template_name = "base/recipe_home.html"
     #context_object_name = 'recipe-finder'
@@ -100,6 +82,20 @@ class FridgeHome(TemplateView):
             expiry_date = request.POST.get("expiry", "")
             food_group = request.POST.get("food_group", "")
             FoodItem.objects.create(name=name, expiry_date=expiry_date, food_group=food_group).save()
+        return HttpResponseRedirect(request.path_info)
+
+
+class RecipeGenerator(TemplateView):
+    model = FoodItem
+    template_name = "base/home.html"
+    def get_context_data(self, **kwargs):
+        return FridgeHome.get_context_data(self)
+    def post(self, request):
+        all_entries = FridgeHome.get_context_data(self)['food_items']
+        input_list=[]
+        for a in all_entries:
+            input_list.append(a.name)
+        inputSearch(input_list)
         return HttpResponseRedirect(request.path_info)
 
 def inputSearch(lst):

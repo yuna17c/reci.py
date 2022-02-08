@@ -37,7 +37,7 @@ class FoodItem(models.Model):
         return self.expiry_date <= date.today() + timedelta(days=5)
 
     def __str__(self):
-        return self.name11
+        return self.name
 
 class RecipeList(models.Model):
     recipe_name = models.TextField(null=True, blank=True)
