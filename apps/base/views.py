@@ -1,3 +1,4 @@
+from unicodedata import name
 from django import forms
 from msilib.schema import ListView
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
@@ -11,11 +12,29 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from bs4 import BeautifulSoup
 import requests
 from .models import Ingredient, FoodItem, RecipeList
-from datetime import date
+import random
 
 class HomePage(ListView):
     model = Ingredient
     template_name = "base/home.html"
+
+class RecipeGenerator(TemplateView):
+    model = FoodItem
+    template_name = "base/home.html"
+    def get_context_data(self, **kwargs):
+        context = super(RecipeGenerator, self).get_context_data(**kwargs)
+        context['ingredients'] = FoodItem.objects.all()
+        context['recipe_list'] = RecipeList.objects.all()
+        return context
+    def post(self, request):
+        RecipeList.objects.all().delete()
+        all_entries = FoodItem.objects.all()
+        input_list=[]
+        for a in all_entries:
+            input_list.append(a.name)
+        inputSearch(input_list)
+        return HttpResponseRedirect(request.path_info)
+    
 
 class RecipeFinderHome(TemplateView):
     template_name = "base/recipe_home.html"
