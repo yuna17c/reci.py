@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'fridge_style.css' %}?{% now "U" %}">
+    <script src="{% static 'filter.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'sort.js' %}?{% now "U" %}"></script>
     <script src="https://kit.fontawesome.com/b8349432cb.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
@@ -48,28 +50,31 @@
         <div class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home fa-3x" aria-hidden="true"></i></a></div>
     </div>
     
-    <div class="row">
-        <button type="submit" name="fruits">fruits</button>
-        <button type="submit" name="vegetables">vegetables</button>
-        <button type="submit" name="grains">grains</button>
-        <button type="submit" name="protein">protein</button>
-        <button type="submit" name="dairy">dairy</button>
-        <button type="submit" name="cooking products">cooking products</button>
-        <button type="submit" name="other">other</button>
+    <div class="row" id="food-groups">
+        <label><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check()">fruits</label>
+        <label><input type="checkbox" name="food-group" value="vegetables" id="vegetables" onclick="check()">vegetables</label>
+        <label><input type="checkbox" name="food-group" value="grains" id="grains" onclick="check()">grains</label>
+        <label><input type="checkbox" name="food-group" value="protein" id="protein" onclick="check()">protein</label>
+        <label><input type="checkbox" name="food-group" value="dairy" id="dairy" onclick="check()">dairy</label>
+        <label><input type="checkbox" name="food-group" value="cooking product" id="cooking product" onclick="check()">cooking products</label>
+        <label><input type="checkbox" name="food-group" value="herbs/spices" id="herbs/spices" onclick="check()">herbs/spices</label>
+        <label><input type="checkbox" name="food-group" value="other" id="other" onclick="check()">other</label>
     </div>
     
     <div class="row">
         <table id="fridge-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Expiry Date</th>
-                    <th>Food Group</th> 
-                </tr>
-            </thead>
-            <tbody>
-            {% for item in food_items %}
-            <tr> 
+        <thead>
+            <tr>
+                <th>Name<i class="fas fa-sort" onclick="sortByName()"></i></th>
+                <th>Expiry Date<i class="fas fa-sort" onclick="sortByDate()"></i></th>
+                <th>Food Group</th> 
+            </tr>
+        </thead>
+        
+        <tbody>
+
+        {% for item in food_items %}
+            <tr class="food_item {{ item.name }} {{ item.food_group }}">        
                 <td class="name">{{ item.name }}</td>
                 <td class="expiry date">
                     {% if item.is_expired %}
@@ -80,14 +85,16 @@
                         {{ item.expiry_date }}
                     {% endif %}
                 </td>
-                <td class="food group">{{ item.food_group }}
+                <td class="food-group">
+                    {{ item.food_group }}
                     <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
+
         </tbody>
         </table>
-        </div>
     </div>
+
 </body>
 </html>

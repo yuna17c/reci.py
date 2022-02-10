@@ -52,7 +52,18 @@ h1 {
     border-radius: 20px;
 }
 
-label {
+#food-groups label input {
+    color: white;
+    font-style: italic;
+    font-size: 30px;
+}
+  
+input[type=checkbox]:checked{
+    color: #f00;
+    font-style: normal;
+}
+
+#input label {
     padding: 10px;
     color: white;
     font-weight: 700;
@@ -130,13 +141,22 @@ table {
     border: 1px solid;
     border-collapse: collapse;
     width: 100%;
-    }
+}
+
+.hide {
+    display: none;
+}
 
 th {
     color: var(--dark-green);
     background-color: var(--medium-green);
     text-align: center;
     padding: 8px;
+}
+
+th i {
+    float: right;
+    cursor: pointer;
 }
 
 td {
@@ -153,7 +173,7 @@ tr:nth-child(even) {
     background-color: white
 }
 
-i {
+.food-group i {
     float: right;
     color: var(--dark-green);
     padding: 10px;

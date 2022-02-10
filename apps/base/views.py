@@ -1,3 +1,4 @@
+from unicodedata import name
 from django import forms
 from msilib.schema import ListView
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
@@ -11,12 +12,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from bs4 import BeautifulSoup
 import requests
 from .models import Ingredient, FoodItem, RecipeList
-from datetime import date
+import random
 
 class HomePage(ListView):
     model = Ingredient
     template_name = "base/home.html"
-
+    
 class RecipeFinderHome(TemplateView):
     template_name = "base/recipe_home.html"
     def get_context_data(self, **kwargs):
@@ -65,6 +66,21 @@ class FridgeHome(TemplateView):
             expiry_date = request.POST.get("expiry", "")
             food_group = request.POST.get("food_group", "")
             FoodItem.objects.create(name=name, expiry_date=expiry_date, food_group=food_group).save()
+        
+        all_items = FoodItem.objects.all()
+        names = []
+        for item in all_items:
+            names.append(item.name)
+        request.session['food_names'] = names
+        return HttpResponseRedirect(request.path_info)
+
+
+class RecipeGenerator(TemplateView):
+    model = FoodItem
+    template_name = "base/home.html"
+    def post(self, request):
+        ingredients = request.session['food_names']
+        #inputSearch(ingredients)
         return HttpResponseRedirect(request.path_info)
 
 def inputSearch(lst):
