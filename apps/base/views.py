@@ -19,14 +19,7 @@ class HomePage(ListView):
 
 class RecipeFinderHome(TemplateView):
     template_name = "base/recipe_home.html"
-    #context_object_name = 'recipe-finder'
-    #queryset = Ingredient.objects.all()
     def get_context_data(self, **kwargs):
-        # all_ingredients = Ingredient.objects.all()
-        # all_recipes = RecipeList.objects.all()
-        # context = super(RecipeFinderHome, self).get_context_data(**kwargs)
-        # context['1'] = {'ingredients' : all_ingredients}
-        # context['2'] = {'recipes' : all_recipes}
         context = super(RecipeFinderHome, self).get_context_data(**kwargs)
         context['ingredients'] = Ingredient.objects.all()
         context['recipe_list'] = RecipeList.objects.all()
@@ -36,23 +29,14 @@ class RecipeFinderHome(TemplateView):
             user_input = request.POST.get("input", "")
             print(user_input)
             Ingredient.objects.create(name=user_input).save()
-            # all_entries = Ingredient.objects.all()
-            # for a in all_entries:
-            #     print(a.name)
-            # all_entries = Ingredient.objects.all()
-            #context['ingredients'] = {'ingredients' : all_entries}   
-            #context['ingredients'] = Ingredient.objects.all()
         elif 'done_button' in request.POST:
             RecipeList.objects.all().delete()
             all_entries = Ingredient.objects.all()
-            #context['ingredients'] = Ingredient.objects.all()
             input_list=[]
             for a in all_entries:
                 print(a.name)
                 input_list.append(a.name)
             inputSearch(input_list)
-        #return render(request, "base/recipe_home.html")
-        #return self.get_response(request)
         return HttpResponseRedirect(request.path_info)
 
 class DeleteView(DeleteView):
@@ -116,20 +100,33 @@ def findRecipeNames(link):
         soup = BeautifulSoup(source, 'lxml')
         titles = soup.find('div', class_='two-subcol-content-wrapper')
         ings = soup.find_all('li', class_="ingredients-item")
-        ing_lst=[]
+        ing_text=""
         for i in ings:
             ing = i.get_text()
-            ing_lst.append(ing)
-        
+            ing=replaceUnits(ing)
+            ing_text+=ing.replace(",", "")
+            ing_text += ", "
         child = titles.select_one(":nth-child(3)")
         total_time = child.get_text().strip()
-        # print(total_time)
         recipeObject = RecipeList.objects.get(link=l)
         recipeObject.prep_time = total_time[7:]
-        RecipeList.set_ing(recipeObject, ing_lst)
+        recipeObject.ingredients = ing_text[:-2]
         recipeObject.save()
         minuteTime = changeToMinute(total_time)
     # printRecipeNames(recipeNameList)
+
+def replaceUnits(text):
+    text=text.replace("tablespoons", "tbsp")
+    text=text.replace("tablespoon", "tbsp")
+    text=text.replace("teaspoons", "tsp")
+    text=text.replace("teaspoon", "tsp")
+    text=text.replace("pounds", "lbs")
+    text=text.replace("pound", "lb")
+    text=text.replace("ounce", "oz")
+    lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped"]
+    for i in lst:
+        text=text.replace(i , "")
+    return text
 
 def printRecipeNames(lst):
     if len(lst)==0:

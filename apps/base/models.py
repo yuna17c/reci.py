@@ -43,12 +43,9 @@ class RecipeList(models.Model):
     recipe_name = models.TextField(null=True, blank=True)
     link = models.TextField(null=True, blank=True)
     prep_time = models.TextField(null=True, blank=True)
-    ing_lst = models.TextField(null=True, blank=True)
+    ingredients = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.recipe_name
-    def set_ing(self, x):
-        self.ing_lst = json.dumps(x)
-    def get_ing(self):
-        return json.loads(self.ing_lst)
+
 
  

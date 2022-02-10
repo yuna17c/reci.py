@@ -6,7 +6,12 @@
     background-color: var(--light-green);
     color: black;
 }
-
+h1 {
+    font-family: 'Baloo 2';
+    font-size: 8vh;
+    color: var(--medium-green);
+    display: flex;
+}
 .recipe-home .header {
     display:flex;
     justify-content: space-between;

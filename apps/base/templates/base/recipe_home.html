@@ -60,11 +60,13 @@
             <tr>
                 <td><a href="{{i.link}}" class="recipe-link" target="_blank">{{i.recipe_name}} </a></td>
                 <td>{{i.prep_time}}</td>
-                <td>{{i.ing_lst}}</td>
+
+                <td id="ingredient">{{i.ingredients}}</td>
                 {% empty %}
                 <p>no recipes</p>
             </tr>
             {% endfor %}
+            
         </table>
     </div>
 </body>
