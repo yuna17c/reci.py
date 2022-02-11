@@ -82,20 +82,21 @@ class FridgeHome(TemplateView):
             expiry_date = request.POST.get("expiry", "")
             food_group = request.POST.get("food_group", "")
             FoodItem.objects.create(name=name, expiry_date=expiry_date, food_group=food_group).save()
+        
+        all_items = FoodItem.objects.all()
+        names = []
+        for item in all_items:
+            names.append(item.name)
+        request.session['food_names'] = names
         return HttpResponseRedirect(request.path_info)
 
 
 class RecipeGenerator(TemplateView):
     model = FoodItem
     template_name = "base/home.html"
-    def get_context_data(self, **kwargs):
-        return FridgeHome.get_context_data(self)
     def post(self, request):
-        all_entries = FridgeHome.get_context_data(self)['food_items']
-        input_list=[]
-        for a in all_entries:
-            input_list.append(a.name)
-        inputSearch(input_list)
+        ingredients = request.session['food_names']
+        #inputSearch(ingredients)
         return HttpResponseRedirect(request.path_info)
 
 def inputSearch(lst):

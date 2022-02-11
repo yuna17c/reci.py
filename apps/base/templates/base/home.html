@@ -25,10 +25,14 @@
                 <h2>title</h2>
                 <a class="close" href="#">&times;</a>
                 <div class="content">
-                    <p> test </p>
-                {% for item in food_items %}
-                    <p> {{ item.name }} </p>
-                {% endfor %}
+                    <ul>
+                        <li>hi</li>
+                        <li>{{ request.session.food_names }}</li>
+                        {% for item in food_items %}
+                        <li> {{ item.name }} </li>
+                        {% endfor %}
+                    </ul>
+                
                 </div>
             </div>
         </div>
