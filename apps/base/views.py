@@ -13,6 +13,15 @@ from bs4 import BeautifulSoup
 import requests
 from .models import Ingredient, FoodItem, RecipeList
 import random
+'''
+def all_food_items(request):
+    food_list = FoodItem.objects.all()
+    return render(request, 'base/home.html', 
+    { 'food_list' : food_list })
+
+def modal_view(request):
+'''
+
 
 class HomePage(ListView):
     model = Ingredient
@@ -79,6 +88,7 @@ class RecipeGenerator(TemplateView):
     model = FoodItem
     template_name = "base/home.html"
     def post(self, request):
+        FridgeHome.post(self, request)
         ingredients = request.session['food_names']
         #inputSearch(ingredients)
         return HttpResponseRedirect(request.path_info)
