@@ -16,28 +16,7 @@
         <div class="cell"><h1>reci.py</h1></div>
     </div>
 
-    <div class="row">
-        <div class="box">
-            <a class="button" href="#recipe_generator">CLICK ME</a>
-        </div>
-        <div id="recipe_generator" class="overlay">
-            <div class="popup">
-                <h2>title</h2>
-                <a class="close" href="#">&times;</a>
-                <div class="content">
-                    <ul>
-                        <li>hi</li>
-                        <li>{{ request.session.food_names }}</li>
-                        {% for item in food_items %}
-                        <li> {{ item.name }} </li>
-                        {% endfor %}
-                    </ul>
-                
-                </div>
-            </div>
-        </div>
-
-    </div>
+    {% include "base/recipe_generator.html" %}
 
     <div class="row bottom">
         <div class="cell">

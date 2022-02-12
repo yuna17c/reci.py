@@ -14,6 +14,18 @@ import requests
 from .models import Ingredient, FoodItem, RecipeList
 import random
 
+
+def all_food_items(request):
+    food_list = FoodItem.objects.all()
+    return render(request, 'base/home.html', 
+    { 'food_list' : food_list })
+
+def modal_view(request):
+    text = "test"
+    return render(request, "base/recipe_generator.html", locals())
+
+
+
 class HomePage(ListView):
     model = Ingredient
     template_name = "base/home.html"
@@ -79,6 +91,7 @@ class RecipeGenerator(TemplateView):
     model = FoodItem
     template_name = "base/home.html"
     def post(self, request):
+        FridgeHome.post(self, request)
         ingredients = request.session['food_names']
         #inputSearch(ingredients)
         return HttpResponseRedirect(request.path_info)

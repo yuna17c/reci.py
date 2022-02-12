@@ -34,11 +34,6 @@ body {
     text-align: center;
   }
 
-.button {
-    font-size: 2em;
-    text-decoration: none;
-}
-  
 .overlay {
     position: fixed;
     top: 0;
@@ -112,6 +107,8 @@ h1 {
 }
 
 button, .button {
+    font-size: 3em;
+    text-decoration: none;
     float: center;
     display: inline;
     width: 90%;
@@ -123,7 +120,6 @@ button, .button {
     box-sizing: border-box;
     color: #FFFFFF;
     cursor: pointer;
-    font-size: 50px;
     font-weight: 700;
     letter-spacing: .8px;
     overflow: visible;
