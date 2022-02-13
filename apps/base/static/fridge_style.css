@@ -5,6 +5,7 @@ body {
     font-family: 'Questrial', sans-serif;
     background-color: var(--light-green);
     color: var(--medium-green);
+    width: 100%;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -48,18 +49,18 @@ h1 {
     align-items: flex-start;
     background-color: var(--medium-green);
     border-radius: 20px;
+    width: 100%;
 }
 
 #checkboxes {
     flex-basis: 200%;
     flex-wrap: wrap;
     color: var(--medium-green);
-    font-size: 23px;
+    font-size: 21px;
 }
 
 #food-groups {
     padding-top: 10px;
-    padding: 30px;
 }
 
 input[type="checkbox"] {
@@ -68,7 +69,9 @@ input[type="checkbox"] {
 
  #food-groups label {
     padding: 5px;
+    display: inline-block;
  }
+
 #food-groups span {
     margin-left: 1em;
  }
@@ -81,7 +84,7 @@ input#search_input {
     padding: 10px;
     color: white;
     font-weight: 700;
-    font-size: 1em;
+    font-size: 1.5em;
 }
 
 input, select, option {
@@ -131,7 +134,11 @@ button:not(#add) {
 
 #add {
     background-color: var(--dark-green);
-    font-size: 20px;
+    font-size: 25px;
+}
+
+#add_button {
+    padding: 10px;
 }
 
 .fa:hover, .fas:hover, button:hover {
@@ -191,9 +198,6 @@ tr:nth-child(even) {
     .row {
       flex-direction: column;
     }
-    input#searchinput {
-        float: none;
-    }
     .fridge {
         display: block;
         margin-left: auto;
@@ -204,12 +208,29 @@ tr:nth-child(even) {
     .button {
         width: 100%;
     }
+    #food-groups {
+        flex-direction: column;
+    }
+    #search {
+        padding: 10px;
+    }
+    input#search_input {
+        float: left;
+    }
+    #add {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 600px) {
     #food-groups label {
         display:flex;
         align-items: baseline;
         font-size: 20px;
     }
-    
+    #food-groups span {
+        margin-left: 1.2em;
+     }
     input[type=checkbox] {
         margin-right: 8px;
     }
