@@ -21,10 +21,8 @@ body {
 
 .cell {
     min-height:75px;
-    flex-grow:1;
     flex-basis: 100%;
 }
-
 
 h1 {
     font-family: 'Baloo 2';
@@ -52,22 +50,38 @@ h1 {
     border-radius: 20px;
 }
 
-#food-groups label input {
-    color: white;
-    font-style: italic;
-    font-size: 30px;
+#checkboxes {
+    flex-basis: 200%;
+    flex-wrap: wrap;
+    color: var(--medium-green);
+    font-size: 23px;
 }
-  
-input[type=checkbox]:checked{
-    color: #f00;
-    font-style: normal;
+
+#food-groups {
+    padding-top: 10px;
+    padding: 30px;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+ }
+
+ #food-groups label {
+    padding: 5px;
+ }
+#food-groups span {
+    margin-left: 1em;
+ }
+
+input#search_input {
+    float: right;
 }
 
 #input label {
     padding: 10px;
     color: white;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 1em;
 }
 
 input, select, option {
@@ -78,7 +92,7 @@ input, select, option {
     background-color: rgb(244, 255, 244);
     color: var(--dark-green);
     padding: 2px;
-    font-size: medium;
+    font-size: 1em;
 }
 
 #input-column {
@@ -175,7 +189,10 @@ tr:nth-child(even) {
 
 @media (max-width: 950px){
     .row {
-      flex-wrap:wrap;
+      flex-direction: column;
+    }
+    input#searchinput {
+        float: none;
     }
     .fridge {
         display: block;
@@ -186,5 +203,14 @@ tr:nth-child(even) {
     }
     .button {
         width: 100%;
+    }
+    #food-groups label {
+        display:flex;
+        align-items: baseline;
+        font-size: 20px;
+    }
+    
+    input[type=checkbox] {
+        margin-right: 8px;
     }
 }

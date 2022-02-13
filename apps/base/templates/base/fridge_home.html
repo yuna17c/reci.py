@@ -51,14 +51,19 @@
     </div>
     
     <div class="row" id="food-groups">
-        <label><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check();">fruits</label>
-        <label><input type="checkbox" name="food-group" value="vegetables" id="vegetables" onclick="check();">vegetables</label>
-        <label><input type="checkbox" name="food-group" value="grains" id="grains" onclick="check();">grains</label>
-        <label><input type="checkbox" name="food-group" value="protein" id="protein" onclick="check();">protein</label>
-        <label><input type="checkbox" name="food-group" value="dairy" id="dairy" onclick="check();">dairy</label>
-        <label><input type="checkbox" name="food-group" value="cooking product" id="cooking product" onclick="check();">cooking products</label>
-        <label><input type="checkbox" name="food-group" value="herbs/spices" id="herbs/spices" onclick="check();">herbs/spices</label>
-        <label><input type="checkbox" name="food-group" value="other" id="other" onclick="check();">other</label>
+        <div class="cell" id="checkboxes">
+            <label><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check();"><span>fruits</span></label>
+            <label><input type="checkbox" name="food-group" value="vegetables" id="vegetables" onclick="check();"><span>vegetables</span></label>
+            <label><input type="checkbox" name="food-group" value="grains" id="grains" onclick="check();"><span>grains</span></label>
+            <label><input type="checkbox" name="food-group" value="protein" id="protein" onclick="check();"><span>protein</span></label>
+            <label><input type="checkbox" name="food-group" value="dairy" id="dairy" onclick="check();"><span>dairy</span></label>
+            <label><input type="checkbox" name="food-group" value="cooking product" id="cooking product" onclick="check();"><span>cooking products</span></label>
+            <label><input type="checkbox" name="food-group" value="herbs/spices" id="herbs/spices" onclick="check();"><span>herbs/spices</span></label>
+            <label><input type="checkbox" name="food-group" value="other" id="other" onclick="check();"><span>other</span></label>
+        </div>
+        <div class="cell">
+            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search for names..">
+        </div>
     </div>
     
     <div class="row">
