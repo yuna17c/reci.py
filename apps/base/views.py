@@ -129,6 +129,13 @@ def findRecipeNames(link):
         soup = BeautifulSoup(source, 'lxml')
         titles = soup.find('div', class_='two-subcol-content-wrapper')
         ings = soup.find_all('li', class_="ingredients-item")
+        if soup.find('div', class_="image-container") is not None:
+            image = soup.find('div', class_="image-container").find("img")
+            img_link = image.attrs['src']
+        else: 
+            img_link = "../static/images/default.png"
+        if img_link=="/img/icons/recipe-add-photo.jpg":
+            img_link="../static/images/default.png"
         ing_text=""
         for i in ings:
             ing = i.get_text()
@@ -136,12 +143,16 @@ def findRecipeNames(link):
             ing_text+=ing.replace(",", "")
             ing_text += ", "
         child = titles.select_one(":nth-child(3)")
-        total_time = child.get_text().strip()
+        if child is not None:
+            total_time = child.get_text().strip()[7:]
+            #minuteTime = changeToMinute(total_time)
+        else: 
+            total_time=""
         recipeObject = RecipeList.objects.get(link=l)
-        recipeObject.prep_time = total_time[7:]
+        recipeObject.prep_time = total_time
+        recipeObject.img_link = img_link
         recipeObject.ingredients = ing_text[:-2]
         recipeObject.save()
-        minuteTime = changeToMinute(total_time)
     # printRecipeNames(recipeNameList)
 
 def replaceUnits(text):
@@ -167,7 +178,7 @@ def printRecipeNames(lst):
 
 
 def changeToMinute(str):
-    x = str[7:].split("hr")
+    x = str.split("hr")
     hour = 0
     min = 0
     if len(x) > 1:
@@ -177,7 +188,5 @@ def changeToMinute(str):
         min = x[-1][:min_idx].strip()
         if min[0].isnumeric()==False:
             min = min[2:]
-    # print("hour: ",hour)
-    # print("min: ",min)
     total=60*int(hour)+int(min)
     return total

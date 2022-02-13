@@ -5,12 +5,31 @@
     margin-bottom: 10vh;
     background-color: var(--light-green);
     color: black;
+    font-family: 'Questrial', sans-serif;
 }
+
 h1 {
     font-family: 'Baloo 2';
-    font-size: 8vh;
+    font-size: 4vw;
     color: var(--medium-green);
     display: flex;
+    margin-left: 2.5vw;
+}
+
+h3 {
+    color: var(--dark-green);
+    font-size: 1.6vw;
+}
+
+.left {
+    position: fixed;
+    background-color: rgb(235, 235, 235);
+    padding: 3px 20px 23px 20px;
+    /* top: 50%; */
+}
+
+.right {
+    margin-left: 20vw;
 }
 .recipe-home .header {
     display:flex;
@@ -33,36 +52,21 @@ h1 {
     transition: .5s;
     cursor: pointer;
 }
-.content, .header h1 {
-    padding: 0 5vh;
-}
 
-h3, button {
-    font-family: 'Questrial';
-    
-}
-h3 {
-    color: var(--dark-green);
-    font-size: 4vh;
-}
-.content button {
-    padding: 1.1vh 1.1vh;
-    font-size: 3vh;
+button, input {
+    font-size: 1.5vw;
     font-family: 'Questrial', sans-serif;
 }
+
 button {
     background-color: var(--medium-green);
-    font-family: 'Baloo 2';
     border: solid transparent;
-    border-radius: 20px;
+    padding: 1.1vh 0.6vw;
+    border-radius: 15px;
     box-sizing: border-box;
     color: #FFFFFF;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: .8px;
     overflow: visible;
-    padding: 10px;
     text-align: center;
     touch-action: manipulation;
     transform: translateZ(0);
@@ -86,12 +90,11 @@ button:hover{
   }
 
 input {
-    padding: 1.2vh 1.9vh;
+    padding: 1vh 1vw;
     border: 3px inset var(--medium-green);
     border-radius: 17px;
-    margin-right: 1.5vh;
-    font-family: 'Questrial', sans-serif;
-    font-size: 3vh;
+    margin-right: 0.6vw;
+    width: 10vw;
 }
 
 .done-button {
@@ -100,41 +103,88 @@ input {
 .done-button button {
     padding: 0.6vh 2.4vh;
 }
-.recipe-home table {
+.container, table {
     font-family: 'Questrial';
-    border: 1px solid #dddddd;
-    border-collapse: collapse;
+    /* border: 1px solid #dddddd; */
     font-size: 3vh;
 }
+.container {
+    border-spacing: 30px 30px;
+    margin-top: -53px;
+    width: 100%;
+}
 
-.ingredients-table {
+.container td {
+    width: 25%;
+
+}
+
+.wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 24vh;
+}
+
+#slide {
+    position: absolute;
+    width: 100%;
+    height:100%;
+    background-position: center center;
+    object-fit:cover;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.container .cell {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    transition: 1s;
+    filter:brightness(100%);
 }
-.ingredients-table .delete {
-    padding: 1vh 2vh;
-    margin: 10px;
+.container .cell:hover {
+    filter: brightness(50%);
+    background-color: rgba(0,0,0,.4);
 }
-.ingredient {
-    padding-right: 30%;
-    padding-right: 2vh;
-    min-width: 22vh;
+.view-button {
+    display: none;
+}
+.cell:hover + .view-button, .view-button:hover {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 10px;
+    font-size: 1.2vw;
+    transform: translate(-50%, -50%);
+}
+.item {
+    position: relative;
+}
+.item .text-content {
+    padding: 20px;
+}
+#name {
+    font-size: 1.3vw;
 }
 .recipe-table {
     width: 100%;
 }
 
-td, th {
+.ingredients-table { 
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1.5vw;
+}
+
+.ingredients-table .cell {
+    padding: 1vh 1vw;
+}
+
+td {
     text-align: left;
-    padding: 1.7vh 2vh;
-    
-}
-th {
-    background-color: var(--medium-green);
-    color: var(--dark-green)
-}
-tr {
-    background-color: rgb(235, 235, 235);
 }
 
 a {
@@ -149,4 +199,3 @@ a {
 .recipe-link:hover {
     color: var(--medium-green);
 }
-

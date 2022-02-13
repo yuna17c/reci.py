@@ -16,58 +16,64 @@
         <div class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home fa-3x" aria-hidden="true"></i></a></div>
     </div>
     <div class="content">
-        <h3>Add an ingredient</h3>
-        <form method="POST" class="add-button">
-            {% csrf_token %}
-            {{ form }}
-            <input placeholder="" name="input">
-            <button type="submit" name="add_button">+</button>
-        </form>
+        <div class="left">
+            <h3>Add an ingredient</h3>
+            <form method="POST" class="add-button">
+                {% csrf_token %}
+                {{ form }}
+                <input placeholder="" name="input">
+                <button type="submit" name="add_button">+</button>
+            </form>
 
-        <h3>Ingredient list:</h3>
-        <table class="ingredients-table">
-            <tr>
-                <th>Ingredient</th>
-                <th></th>
-            </tr>
-            {% for i in ingredients %}
-            <tr>
-                <td class="ingredient">{{i.name}}</td>
-                <td class="delete">
-                    <a href="{% url 'ingredient-update' i.id %}">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </a>
+            <h3>Your Ingredients</h3>
+            <table class="ingredients-table">
+                {% for i in ingredients %}
+                <tr>
+                        <td class="cell">{{i.name}}</td>
+                        <td class="cell">
+                            <a href="{% url 'ingredient-update' i.id %}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        {% empty %}
+                        <td>no items</td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+
+            <form method="POST" class="done-button">
+                {% csrf_token %}
+                <button type="submit" name="done_button">SEARCH</button>
+            </form>
+
+            <h3>Sort</h3>
+            <h3>Filter</h3>
+        </div>
+        
+        <div class="right">
+        <h3>Recipes</h3>
+        <table class="container">
+            {% for i in recipe_list %}
+                {% ifequal forloop.counter0|divisibleby:"4" True %}
+                <tr></tr>
+                {% endifequal %}
+                <td class="item">
+                    <div class="cell">
+                        <div class="wrapper"><img src="{{i.img_link}}"id="slide"/></div>
+                        <div class="text-content">       
+                            <p id="name">{{i.recipe_name}}</p>
+                        </div> 
+                    </div>
+                    <button class="view-button" id="myBtn">VIEW</button>                       
                 </td>
                 {% empty %}
-                <td>no items</td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        <form method="POST" class="done-button">
-            {% csrf_token %}
-            <button type="submit" name="done_button">SEARCH</button>
-        </form>
-
-        <h3>Recipe list:</h3>
-        <table class="recipe-table">
-            <tr>
-                <th>Recipe</th>
-                <th>Preparation time</th>
-                <th>Ingredients</th>
-            </tr>
-            {% for i in recipe_list %}
-            <tr>
-                <td><a href="{{i.link}}" class="recipe-link" target="_blank">{{i.recipe_name}} </a></td>
-                <td>{{i.prep_time}}</td>
-
-                <td id="ingredient">{{i.ingredients}}</td>
-                {% empty %}
                 <p>no recipes</p>
-            </tr>
-            {% endfor %}
-            
+            {% endfor %}        
         </table>
+        </div>
     </div>
 </body>
 </html>
+
+{% comment %} <a href="{{i.link}}" class="name" target="_blank">{{i.recipe_name}}</a> {% endcomment %}

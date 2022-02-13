@@ -44,6 +44,7 @@ class RecipeList(models.Model):
     link = models.TextField(null=True, blank=True)
     prep_time = models.TextField(null=True, blank=True)
     ingredients = models.TextField(null=True, blank=True)
+    img_link = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.recipe_name
 
