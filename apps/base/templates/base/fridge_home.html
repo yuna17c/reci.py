@@ -51,22 +51,28 @@
     </div>
     
     <div class="row" id="food-groups">
-        <label><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check()">fruits</label>
-        <label><input type="checkbox" name="food-group" value="vegetables" id="vegetables" onclick="check()">vegetables</label>
-        <label><input type="checkbox" name="food-group" value="grains" id="grains" onclick="check()">grains</label>
-        <label><input type="checkbox" name="food-group" value="protein" id="protein" onclick="check()">protein</label>
-        <label><input type="checkbox" name="food-group" value="dairy" id="dairy" onclick="check()">dairy</label>
-        <label><input type="checkbox" name="food-group" value="cooking product" id="cooking product" onclick="check()">cooking products</label>
-        <label><input type="checkbox" name="food-group" value="herbs/spices" id="herbs/spices" onclick="check()">herbs/spices</label>
-        <label><input type="checkbox" name="food-group" value="other" id="other" onclick="check()">other</label>
+        <label><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check();">fruits</label>
+        <label><input type="checkbox" name="food-group" value="vegetables" id="vegetables" onclick="check();">vegetables</label>
+        <label><input type="checkbox" name="food-group" value="grains" id="grains" onclick="check();">grains</label>
+        <label><input type="checkbox" name="food-group" value="protein" id="protein" onclick="check();">protein</label>
+        <label><input type="checkbox" name="food-group" value="dairy" id="dairy" onclick="check();">dairy</label>
+        <label><input type="checkbox" name="food-group" value="cooking product" id="cooking product" onclick="check();">cooking products</label>
+        <label><input type="checkbox" name="food-group" value="herbs/spices" id="herbs/spices" onclick="check();">herbs/spices</label>
+        <label><input type="checkbox" name="food-group" value="other" id="other" onclick="check();">other</label>
     </div>
     
     <div class="row">
         <table id="fridge-table">
         <thead>
             <tr>
-                <th>Name<i class="fas fa-sort" onclick="sortByName()"></i></th>
-                <th>Expiry Date<i class="fas fa-sort" onclick="sortByDate()"></i></th>
+                <th>
+                    Name
+                    <span onclick="sortByName()"><i class="fas fa-sort"></i></span>
+                </th>
+                <th>
+                    Expiry Date
+                    <span onclick="sortByDate()"><i class="fas fa-sort"></i></span>
+                </th>
                 <th>Food Group</th> 
             </tr>
         </thead>

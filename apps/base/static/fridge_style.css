@@ -106,9 +106,7 @@ button {
     letter-spacing: .8px;
     overflow: visible;
     text-align: center;
-    touch-action: manipulation;
-    transform: translateZ(0);
-    transition: filter .2s;
+    cursor: pointer;
     vertical-align: middle;
     white-space: nowrap;
 }
@@ -122,12 +120,8 @@ button:not(#add) {
     font-size: 20px;
 }
 
-button:hover {
-  filter: brightness(1.1);
-}
-
-.fa:hover{
-    filter: brightness(1.5);
+.fa:hover, .fas:hover, button:hover {
+    filter: brightness(1.3);
     -o-transition: .5s;
     -ms-transition: .5s;
     -moz-transition: .5s;
