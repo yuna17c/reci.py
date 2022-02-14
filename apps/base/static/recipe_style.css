@@ -3,8 +3,8 @@
 
 .recipe-home {
     margin-bottom: 10vh;
-    background-color: var(--light-green);
-    color: black;
+    background-color: #121212;
+    color: white;
     font-family: 'Questrial', sans-serif;
 }
 
@@ -16,20 +16,82 @@ h1 {
     margin-left: 2.5vw;
 }
 
-h3 {
-    color: var(--dark-green);
+h3, span {
+    color: white;
     font-size: 1.6vw;
 }
 
+td { text-align: left; }
+
+/* side bar */
 .left {
     position: fixed;
-    background-color: rgb(235, 235, 235);
+    margin-left: 20px;
+    background-color: #424242;
     padding: 3px 20px 23px 20px;
-    /* top: 50%; */
 }
+
+.ingredients-table { 
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 1.4vw;
+    font-family: 'Questrial', sans-serif;
+}
+
+.fa-trash { 
+    font-size: 1.15vw; 
+    color: white;
+}
+.ingredients-table.spacer { height: 10px; }
+.ingredients-table .cell { padding: 0.8vh 0.6vw; }
+button, input { font-size: 1.4vw; }
+
+.ingredients-table .row { 
+    border-radius: 15px;
+    /* background-color: var(--medium-green); */
+    border-bottom: black 2px solid;
+}
+
+.ingredients-table td:first-child { 
+    border-top-left-radius: 15px; 
+    border-bottom-left-radius: 15px;
+}
+
+.ingredients-table td:last-child { 
+    border-top-right-radius: 15px; 
+    border-bottom-right-radius: 15px;
+}
+
+input {
+    padding: 0.6vh 0.6vw;
+    border: 3px inset var(--medium-green);
+    border-radius: 15px;
+    margin-right: 0.5vw;
+    width: 7.3vw;
+}
+
+button {
+    background-color: var(--medium-green);
+    border: solid transparent;
+    padding: 0.5vh 0.6vw;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    overflow: visible;
+    text-align: center;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    vertical-align: middle;
+    white-space: nowrap; 
+}
+
+button:hover{ filter: brightness(1.1); }
 
 .right {
     margin-left: 20vw;
+    position: relative;
 }
 .recipe-home .header {
     display:flex;
@@ -53,31 +115,7 @@ h3 {
     cursor: pointer;
 }
 
-button, input {
-    font-size: 1.5vw;
-    font-family: 'Questrial', sans-serif;
-}
 
-button {
-    background-color: var(--medium-green);
-    border: solid transparent;
-    padding: 1.1vh 0.6vw;
-    border-radius: 15px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    overflow: visible;
-    text-align: center;
-    touch-action: manipulation;
-    transform: translateZ(0);
-    transition: filter .2s;
-    vertical-align: middle;
-    white-space: nowrap; 
-}
-
-button:hover{
-    filter: brightness(1.1);
-}
 
 .fa:hover{
     filter: brightness(1.5);
@@ -89,27 +127,15 @@ button:hover{
     cursor: pointer;
   }
 
-input {
-    padding: 1vh 1vw;
-    border: 3px inset var(--medium-green);
-    border-radius: 17px;
-    margin-right: 0.6vw;
-    width: 10vw;
-}
 
-.done-button {
-    margin-top: 1%;
-}
-.done-button button {
-    padding: 0.6vh 2.4vh;
-}
+
 .container, table {
     font-family: 'Questrial';
     /* border: 1px solid #dddddd; */
     font-size: 3vh;
 }
 .container {
-    border-spacing: 30px 30px;
+    border-spacing: 5px 20px;
     margin-top: -53px;
     width: 100%;
 }
@@ -140,7 +166,7 @@ input {
     display: flex;
     justify-content: flex-start;
     border-radius: 20px;
-    background-color: whitesmoke;
+    background-color: #424242;
     transition: 1s;
     filter:brightness(100%);
 }
@@ -148,10 +174,8 @@ input {
     filter: brightness(50%);
     background-color: rgba(0,0,0,.4);
 }
-.view-button {
-    display: none;
-}
-.cell:hover + .view-button, .view-button:hover {
+
+.cell:hover + .open-modal, .open-modal:hover {
     display: block;
     position: absolute;
     left: 50%;
@@ -160,6 +184,7 @@ input {
     font-size: 1.2vw;
     transform: translate(-50%, -50%);
 }
+
 .item {
     position: relative;
 }
@@ -173,20 +198,6 @@ input {
     width: 100%;
 }
 
-.ingredients-table { 
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    font-size: 1.5vw;
-}
-
-.ingredients-table .cell {
-    padding: 1vh 1vw;
-}
-
-td {
-    text-align: left;
-}
-
 a {
     color: black;
     text-decoration: none;
@@ -198,4 +209,51 @@ a {
 
 .recipe-link:hover {
     color: var(--medium-green);
+}
+
+/* MODAL */
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.35s ease-in;
+    background-color: #121212;
+    border-radius: 20px;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 60%;
+}
+
+.modal.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.open-modal {
+    display:none;
+}
+
+.popup-info {
+    display: none;
+}
+.popup-img {
+    width: 100%;
+}
+.popup-text {
+    /* display: flex; */
+    padding: 50px;
+}
+.popup-header {
+    text-align: end;
+}
+.close-modal {
+    font-size: 0.8vw;
+    padding:  0.6vh;
+}
+.popup-text td:first-child {
+    width: 50%;
+}
+.right .spacer {
+    width: 30px;
+    /* background-color: blue; */
 }

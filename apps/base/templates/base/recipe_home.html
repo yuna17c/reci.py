@@ -17,31 +17,30 @@
     </div>
     <div class="content">
         <div class="left">
-            <h3>Add an ingredient</h3>
-            <form method="POST" class="add-button">
-                {% csrf_token %}
-                {{ form }}
-                <input placeholder="" name="input">
-                <button type="submit" name="add_button">+</button>
-            </form>
-
             <h3>Your Ingredients</h3>
             <table class="ingredients-table">
                 {% for i in ingredients %}
-                <tr>
+                    <tr class="row">
                         <td class="cell">{{i.name}}</td>
                         <td class="cell">
                             <a href="{% url 'ingredient-update' i.id %}">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
-                        {% empty %}
-                        <td>no items</td>
-                    
-                </tr>
+                    </tr>
+                    <tr class="spacer"><td></td></tr>
+                    {% empty %}
+                    <tr>no items</tr>
                 {% endfor %}
+                <tr>
+                    <form method="POST" class="add-button">
+                        {% csrf_token %}
+                        {{ form }}
+                        <td><input placeholder="" name="input"></td>
+                        <td><button type="submit" name="add_button">+</button></td>
+                    </form>
+                </tr>
             </table>
-
             <form method="POST" class="done-button">
                 {% csrf_token %}
                 <button type="submit" name="done_button">SEARCH</button>
@@ -53,6 +52,21 @@
         
         <div class="right">
         <h3>Recipes</h3>
+        <div class="modal" id="modal1">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <button class="close-modal" aria-label="close modal" data-close>✕</button>
+                </div>
+                <table class="popup-text">
+                    <td><img class="popup-img" /></td>
+                    <td class="spacer"></td>
+                    <td>
+                        <span class="popup-title"></span>
+                        <p class="popup-ing"></p>
+                    </td>
+                </table>
+            </div>
+        </div>  
         <table class="container">
             {% for i in recipe_list %}
                 {% ifequal forloop.counter0|divisibleby:"4" True %}
@@ -65,13 +79,21 @@
                             <p id="name">{{i.recipe_name}}</p>
                         </div> 
                     </div>
-                    <button class="view-button" id="myBtn">VIEW</button>                       
+                    <button class="open-modal" data-open="modal1">VIEW</button>
+                    <div class="popup-info">   <!-- this div will be hidden by default and I use it to store all the info I'll need to display on the popup for each project -->
+                        <p>{{i.recipe_name}}</p>
+                        <p>{{i.ingredients}}</p>
+                        <p>{{i.img_link}}</p>
+                    </div>               
                 </td>
+                <td class="spacer">.....</td>
                 {% empty %}
                 <p>no recipes</p>
             {% endfor %}        
         </table>
+        <script src="../static/modal.js"></script>
         </div>
+
     </div>
 </body>
 </html>

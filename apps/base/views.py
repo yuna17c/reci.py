@@ -1,3 +1,4 @@
+from ast import Try
 from unicodedata import name
 from django import forms
 from msilib.schema import ListView
@@ -13,6 +14,9 @@ from bs4 import BeautifulSoup
 import requests
 from .models import Ingredient, FoodItem, RecipeList
 import random
+import aiohttp
+import asyncio
+from asgiref.sync import async_to_sync, sync_to_async
 
 
 def all_food_items(request):
@@ -23,8 +27,6 @@ def all_food_items(request):
 def modal_view(request):
     text = "test"
     return render(request, "base/recipe_generator.html", locals())
-
-
 
 class HomePage(ListView):
     model = Ingredient
@@ -63,7 +65,6 @@ class DeleteFridgeView(DeleteView):
     model = FoodItem
     context_object_name = 'item'
     success_url = reverse_lazy('fridge')
-
 
 class FridgeHome(TemplateView):
     model = FoodItem
@@ -124,11 +125,37 @@ def findRecipeNames(link):
             recipeLinkList.append(elems)
             i+=1
 
-    for l in recipeLinkList:
-        source = requests.get(l).text
-        soup = BeautifulSoup(source, 'lxml')
-        titles = soup.find('div', class_='two-subcol-content-wrapper')
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    asyncio.run(get_details(recipeLinkList))
+
+async def fetch(session, url):
+    try:
+        async with session.get(url) as response:
+            text = await response.text()
+            ingredients = await extract_ingredients(text)
+            img_link = await extract_img_link(text)
+            prep_time = await extract_prep_time(text)
+            return text, url, ingredients, img_link, prep_time
+    except Exception as e:
+        print(str(e))
+
+async def extract_ingredients(text):
+    try:
+        soup = BeautifulSoup(text, 'lxml')
         ings = soup.find_all('li', class_="ingredients-item")
+        ing_text=""
+        for i in ings:
+            ing = i.get_text()
+            ing=replaceUnits(ing)
+            ing_text+=ing.replace(",", "")
+            ing_text += ", "
+        return ing_text
+    except Exception as e:
+        print(str(e))
+
+async def extract_img_link(text):
+    try:
+        soup = BeautifulSoup(text, 'lxml')
         if soup.find('div', class_="image-container") is not None:
             image = soup.find('div', class_="image-container").find("img")
             img_link = image.attrs['src']
@@ -136,23 +163,64 @@ def findRecipeNames(link):
             img_link = "../static/images/default.png"
         if img_link=="/img/icons/recipe-add-photo.jpg":
             img_link="../static/images/default.png"
-        ing_text=""
-        for i in ings:
-            ing = i.get_text()
-            ing=replaceUnits(ing)
-            ing_text+=ing.replace(",", "")
-            ing_text += ", "
+        return img_link
+    except Exception as e:
+        print(str(e))
+
+async def extract_prep_time(text):
+    try:
+        soup = BeautifulSoup(text, 'lxml')
+        titles = soup.find('div', class_='two-subcol-content-wrapper')
         child = titles.select_one(":nth-child(3)")
         if child is not None:
             total_time = child.get_text().strip()[7:]
             #minuteTime = changeToMinute(total_time)
         else: 
             total_time=""
-        recipeObject = RecipeList.objects.get(link=l)
-        recipeObject.prep_time = total_time
-        recipeObject.img_link = img_link
-        recipeObject.ingredients = ing_text[:-2]
-        recipeObject.save()
+        return total_time
+    except Exception as e:
+        print(str(e))
+
+async def get_details(urls):
+    tasks=[]
+    all_data=[]
+    async with aiohttp.ClientSession() as session:
+        for url in urls:
+            tasks.append(fetch(session, url))
+        htmls = await asyncio.gather(*tasks)
+        all_data.extend(htmls)
+        for html in htmls:
+            if html is not None:
+                recipeObject = RecipeList.objects.get(link=html[1])
+                recipeObject.prep_time = html[4]
+                recipeObject.img_link = html[3]
+                recipeObject.ingredients = html[2]
+                recipeObject.save()
+
+# async def get_details(lst):
+#     for l in lst:
+#         source = requests.get(l).text
+#         soup = BeautifulSoup(source, 'lxml')
+#         titles = soup.find('div', class_='two-subcol-content-wrapper')
+#         ings = soup.find_all('li', class_="ingredients-item")
+#         
+#         ing_text=""
+#         for i in ings:
+#             ing = i.get_text()
+#             ing=replaceUnits(ing)
+#             ing_text+=ing.replace(",", "")
+#             ing_text += ", "
+#         child = titles.select_one(":nth-child(3)")
+#         if child is not None:
+#             total_time = child.get_text().strip()[7:]
+#             #minuteTime = changeToMinute(total_time)
+#         else: 
+#             total_time=""
+#         recipeObject = RecipeList.objects.get(link=l)
+#         recipeObject.prep_time = total_time
+#         recipeObject.img_link = img_link
+#         recipeObject.ingredients = ing_text[:-2]
+#         recipeObject.save()
     # printRecipeNames(recipeNameList)
 
 def replaceUnits(text):
@@ -190,3 +258,5 @@ def changeToMinute(str):
             min = min[2:]
     total=60*int(hour)+int(min)
     return total
+
+
