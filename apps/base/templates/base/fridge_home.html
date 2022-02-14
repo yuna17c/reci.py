@@ -32,18 +32,20 @@
                     <div id="input">
                         <label for="food_group">food group:</label>
                         <select name="food_group" id="food_group" required>
-                            <option value="fruits">fruits (e.g. apples, bananas)</option>
-                            <option value="vegetables">vegetables (e.g. broccoli, carrots)</option>
-                            <option value="grains">grains (e.g. bread, rice, pasta)</option>
-                            <option value="protein">protein (e.g. seafood, meat, eggs, nuts)</option>
-                            <option value="dairy">dairy (e.g. milk, cheese, non-dairy alternatives)</option>
-                            <option value="cooking product">cooking products (e.g. flour, cooking oil)</option>
-                            <option value="herbs/spices">herbs + spices (e.g. sugar, salt, paprika)</option>
+                            <option value="fruits">fruits</option>
+                            <option value="vegetables">vegetables</option>
+                            <option value="grains">grains</option>
+                            <option value="protein">protein</option>
+                            <option value="dairy">dairy</option>
+                            <option value="cooking product">cooking products</option>
+                            <option value="herbs/spices">herbs + spices</option>
                             <option value="other">other</option>
                         </select>
+                    </div>
+                    <div id="add_button">
                         {% csrf_token %}
                         {{ form }}
-                        <button type="submit" id="add" name="add_button">+</button>
+                        <button type="submit" id="add" name="add_button">ADD</button>
                     </div>
                 </form>
             </div>
@@ -52,16 +54,16 @@
     
     <div class="row" id="food-groups">
         <div class="cell" id="checkboxes">
-            <label><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check();"><span>fruits</span></label>
+            <label for="fruits"><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check();"><span>fruits</span></label>
             <label><input type="checkbox" name="food-group" value="vegetables" id="vegetables" onclick="check();"><span>vegetables</span></label>
             <label><input type="checkbox" name="food-group" value="grains" id="grains" onclick="check();"><span>grains</span></label>
             <label><input type="checkbox" name="food-group" value="protein" id="protein" onclick="check();"><span>protein</span></label>
             <label><input type="checkbox" name="food-group" value="dairy" id="dairy" onclick="check();"><span>dairy</span></label>
             <label><input type="checkbox" name="food-group" value="cooking product" id="cooking product" onclick="check();"><span>cooking products</span></label>
-            <label><input type="checkbox" name="food-group" value="herbs/spices" id="herbs/spices" onclick="check();"><span>herbs/spices</span></label>
+            <label for="herbs/spices"><input type="checkbox" name="food-group" value="herbs/spices" id="herbs/spices" onclick="check();"><span>herbs/spices</span></label>
             <label><input type="checkbox" name="food-group" value="other" id="other" onclick="check();"><span>other</span></label>
         </div>
-        <div class="cell">
+        <div class="cell" id="search">
             <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search for names..">
         </div>
     </div>
