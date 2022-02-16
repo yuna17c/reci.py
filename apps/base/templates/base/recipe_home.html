@@ -7,15 +7,25 @@
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'recipe_style.css' %}?{% now "U" %}">
-    <script src="https://kit.fontawesome.com/b8349432cb.js" crossorigin="anonymous"></script>
+    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> {% endcomment %}
+    <script src="https://kit.fontawesome.com/2fb3127217.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
-<body class="recipe-home">
-    <div class="header">
-        <div><h1>Recipe Finder</h1></div>
-        <div class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home fa-3x" aria-hidden="true"></i></a></div>
+<div id="overlay">
+<body class="recipe-home" id="window">
+    <div class="nav">
+        <table class="nav-items">
+            <td>RECI.PY</td>
+            <td><a href="{% url 'fridge' %}">FRIDGE</a></td>
+            <td><a class="active" href="#">RECIPE FINDER</a></td>
+            <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
+        </table>
     </div>
+    <div><h1>Recipe Finder</h1></div>
     <div class="content">
+        {% comment %} <div class="sort">
+            <p>Sort</p>
+        </div> {% endcomment %}
         <div class="left">
             <h3>Your Ingredients</h3>
             <table class="ingredients-table">
@@ -33,7 +43,7 @@
                     <tr>no items</tr>
                 {% endfor %}
                 <tr>
-                    <form method="POST" class="add-button">
+                    <form method="POST">
                         {% csrf_token %}
                         {{ form }}
                         <td><input placeholder="" name="input"></td>
@@ -45,26 +55,35 @@
                 {% csrf_token %}
                 <button type="submit" name="done_button">SEARCH</button>
             </form>
-
-            <h3>Sort</h3>
-            <h3>Filter</h3>
+            <div class="filter">
+                <h3>Filter</h3>
+                <button type="button" class="collapsible">+</button>
+                <div class="filter-content">
+                    <p>exclude..</p>
+                    <p>hello..</p>
+                </div>
+            </div>
         </div>
         
         <div class="right">
-        <h3>Recipes</h3>
         <div class="modal" id="modal1">
             <div class="popup-content">
                 <div class="popup-header">
                     <button class="close-modal" aria-label="close modal" data-close>✕</button>
                 </div>
-                <table class="popup-text">
-                    <td><img class="popup-img" /></td>
-                    <td class="spacer"></td>
-                    <td>
-                        <span class="popup-title"></span>
-                        <p class="popup-ing"></p>
-                    </td>
-                </table>
+                <div class="popup-box">
+                    <div><img class="popup-img" /></div>
+                    <div class="popup-text">
+                        <p class="popup-title"></p>
+                        <div class="box">
+                            <div><p><a class="popup-link" target="blank">more details</a></p></div>
+                            <div><p class="popup-prep"></p></div>
+                            <div><p>spicy</p></div>
+                        </div>
+                        <ul class="popup-ing" id="ul-ing">
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>  
         <table class="container">
@@ -76,14 +95,16 @@
                     <div class="cell">
                         <div class="wrapper"><img src="{{i.img_link}}"id="slide"/></div>
                         <div class="text-content">       
-                            <p id="name">{{i.recipe_name}}</p>
+                            <h3 id="name">{{i.recipe_name}}</h3>
                         </div> 
                     </div>
-                    <button class="open-modal" data-open="modal1">VIEW</button>
+                    <button class="open-modal" data-open="modal1">QUICK VIEW</button>
                     <div class="popup-info">   <!-- this div will be hidden by default and I use it to store all the info I'll need to display on the popup for each project -->
                         <p>{{i.recipe_name}}</p>
                         <p>{{i.ingredients}}</p>
+                        <p>{{i.prep_time}}</p>
                         <p>{{i.img_link}}</p>
+                        <p>{{i.link}}</p>
                     </div>               
                 </td>
                 <td class="spacer">.....</td>
@@ -92,10 +113,12 @@
             {% endfor %}        
         </table>
         <script src="../static/modal.js"></script>
+        <script src="../static/collapsible.js"></script>
         </div>
 
     </div>
 </body>
+</div>
 </html>
 
 {% comment %} <a href="{{i.link}}" class="name" target="_blank">{{i.recipe_name}}</a> {% endcomment %}

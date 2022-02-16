@@ -1,139 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Questrial&display=swap');
 @import url("base.css");
 
-.recipe-home {
-    margin-bottom: 10vh;
-    background-color: #121212;
-    color: white;
-    font-family: 'Questrial', sans-serif;
-}
-
-h1 {
-    font-family: 'Baloo 2';
-    font-size: 4vw;
-    color: var(--medium-green);
-    display: flex;
-    margin-left: 2.5vw;
-}
-
-h3, span {
-    color: white;
-    font-size: 1.6vw;
-}
-
+h1 {margin-left: 2.5vw;}
 td { text-align: left; }
 
 /* side bar */
 .left {
     position: fixed;
-    margin-left: 20px;
-    background-color: #424242;
-    padding: 3px 20px 23px 20px;
+    margin-left: 30px;
+    margin-top: 40px;
+    background-color: var(--secondary);
+    padding: 3px 30px 23px 30px;
+    border-radius: 20px;
 }
 
 .ingredients-table { 
     border-collapse: collapse;
     margin-bottom: 20px;
-    font-size: 1.4vw;
+    font-size: 1.3vw;
+    margin-top: -10px;
     font-family: 'Questrial', sans-serif;
 }
 
 .fa-trash { 
-    font-size: 1.15vw; 
-    color: white;
-}
-.ingredients-table.spacer { height: 10px; }
-.ingredients-table .cell { padding: 0.8vh 0.6vw; }
-button, input { font-size: 1.4vw; }
-
-.ingredients-table .row { 
-    border-radius: 15px;
-    /* background-color: var(--medium-green); */
-    border-bottom: black 2px solid;
+    font-size: 1.1vw; 
+    color: gray;
 }
 
-.ingredients-table td:first-child { 
-    border-top-left-radius: 15px; 
-    border-bottom-left-radius: 15px;
-}
+.ingredients-table .cell { padding: 1vh 0 0.45vh 0.75vw; }
 
-.ingredients-table td:last-child { 
-    border-top-right-radius: 15px; 
-    border-bottom-right-radius: 15px;
-}
+.ingredients-table .row { box-shadow: 0 3px 2px -2px var(--accent); }
 
 input {
-    padding: 0.6vh 0.6vw;
-    border: 3px inset var(--medium-green);
+    border: 2px inset var(--medium-green);
     border-radius: 15px;
     margin-right: 0.5vw;
     width: 7.3vw;
+    font-family: 'Questrial';
+    font-size: 1.3vw;
+    padding: 1vh 0.7vw;
 }
 
-button {
-    background-color: var(--medium-green);
-    border: solid transparent;
-    padding: 0.5vh 0.6vw;
-    border-radius: 15px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    overflow: visible;
-    text-align: center;
-    touch-action: manipulation;
-    transform: translateZ(0);
-    transition: filter .2s;
-    vertical-align: middle;
-    white-space: nowrap; 
+.ingredients-table input, .ingredients-table button {
+    margin-top: 17px;
 }
-
-button:hover{ filter: brightness(1.1); }
 
 .right {
-    margin-left: 20vw;
+    margin-left: 22vw;
     position: relative;
 }
-.recipe-home .header {
-    display:flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.home-button i {
-    margin-right: 25px;
-    padding: 1vh;
-    font-size: 7vh;
-    color: var(--dark-green);
-}
-
-.home-button:hover{
-    filter: brightness(1.5);
-    -o-transition: .5s;
-    -ms-transition: .5s;
-    -moz-transition: .5s;
-    -webkit-transition: .5s;
-    transition: .5s;
-    cursor: pointer;
-}
-
-
-
-.fa:hover{
-    filter: brightness(1.5);
-    -o-transition: .5s;
-    -ms-transition: .5s;
-    -moz-transition: .5s;
-    -webkit-transition: .5s;
-    transition: .5s;
-    cursor: pointer;
-  }
-
-
 
 .container, table {
     font-family: 'Questrial';
-    /* border: 1px solid #dddddd; */
     font-size: 3vh;
 }
+
 .container {
     border-spacing: 5px 20px;
     margin-top: -53px;
@@ -142,7 +62,6 @@ button:hover{ filter: brightness(1.1); }
 
 .container td {
     width: 25%;
-
 }
 
 .wrapper {
@@ -159,20 +78,18 @@ button:hover{ filter: brightness(1.1); }
     background-position: center center;
     object-fit:cover;
     border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .container .cell {
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
     border-radius: 20px;
-    background-color: #424242;
+    background-color: var(--secondary);
     transition: 1s;
     filter:brightness(100%);
-}
-.container .cell:hover {
-    filter: brightness(50%);
-    background-color: rgba(0,0,0,.4);
+    height: 36vh;
 }
 
 .cell:hover + .open-modal, .open-modal:hover {
@@ -185,15 +102,24 @@ button:hover{ filter: brightness(1.1); }
     transform: translate(-50%, -50%);
 }
 
+.container .cell:hover {
+    filter: brightness(50%);
+    background-color: rgba(0,0,0,.4);
+}
+
+.cell h3 {
+    color: black;
+    font-size: 1.3vw;
+    font-weight: 500;
+}
+
+.item .text-content {
+    padding: 0 20px;
+}
 .item {
     position: relative;
 }
-.item .text-content {
-    padding: 20px;
-}
-#name {
-    font-size: 1.3vw;
-}
+
 .recipe-table {
     width: 100%;
 }
@@ -216,12 +142,16 @@ a {
     visibility: hidden;
     opacity: 0;
     transition: all 0.35s ease-in;
-    background-color: #121212;
+    background-color: var(--primary);
     border-radius: 20px;
     display: block;
     position: absolute;
     z-index: 1;
-    width: 60%;
+    width: 80%;
+    top: 0;
+    left: 0;
+    margin-left: 10%;
+    border: black 1px solid;
 }
 
 .modal.is-visible {
@@ -240,20 +170,91 @@ a {
     width: 100%;
 }
 .popup-text {
-    /* display: flex; */
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -30px;
+}
+.popup-box {
+    display: grid;
+    padding: 30px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+.popup-title {
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 500;
+    font-size: 2vw;
+}
+.popup-box ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    margin-left: -20px;
 }
 .popup-header {
     text-align: end;
 }
 .close-modal {
-    font-size: 0.8vw;
-    padding:  0.6vh;
+    font-size: 1.5vw;
+    background-color: var(--primary);
+    color: black;
 }
 .popup-text td:first-child {
     width: 50%;
 }
+.popup-link {
+    color: white;
+}
+.popup-link:hover {
+    color: var(--accent);
+}
+.popup-text .box {
+    margin-top: -35px;
+    display: inline-block;
+}
+.popup-text .box p {
+    background-color: var(--medium-green);
+    color: var(--primary);
+    border-radius: 10px;
+    padding: 10px;
+    float:left;
+    margin-right: 10px;
+}
 .right .spacer {
     width: 30px;
-    /* background-color: blue; */
+    color: var(--primary);
+}
+
+.ingredients-table.spacer { height: 10px; }
+
+/* Filter */
+.filter {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.collapsible {
+    cursor: pointer;
+    background-color: var(--secondary);
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    color: var(--accent);
+    font-size: 1.5vw;
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 700;
+}
+  
+.filter.active, .collapsible:hover {
+    color: var(--medium-green);
+    background-color: var(--secondary);
+}
+
+.filter-content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    color: black;
+    transition: max-height 0.2s ease-out;
 }

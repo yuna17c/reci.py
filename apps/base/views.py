@@ -197,32 +197,6 @@ async def get_details(urls):
                 recipeObject.ingredients = html[2]
                 recipeObject.save()
 
-# async def get_details(lst):
-#     for l in lst:
-#         source = requests.get(l).text
-#         soup = BeautifulSoup(source, 'lxml')
-#         titles = soup.find('div', class_='two-subcol-content-wrapper')
-#         ings = soup.find_all('li', class_="ingredients-item")
-#         
-#         ing_text=""
-#         for i in ings:
-#             ing = i.get_text()
-#             ing=replaceUnits(ing)
-#             ing_text+=ing.replace(",", "")
-#             ing_text += ", "
-#         child = titles.select_one(":nth-child(3)")
-#         if child is not None:
-#             total_time = child.get_text().strip()[7:]
-#             #minuteTime = changeToMinute(total_time)
-#         else: 
-#             total_time=""
-#         recipeObject = RecipeList.objects.get(link=l)
-#         recipeObject.prep_time = total_time
-#         recipeObject.img_link = img_link
-#         recipeObject.ingredients = ing_text[:-2]
-#         recipeObject.save()
-    # printRecipeNames(recipeNameList)
-
 def replaceUnits(text):
     text=text.replace("tablespoons", "tbsp")
     text=text.replace("tablespoon", "tbsp")
@@ -231,8 +205,17 @@ def replaceUnits(text):
     text=text.replace("pounds", "lbs")
     text=text.replace("pound", "lb")
     text=text.replace("ounce", "oz")
-    lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped"]
+    lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped", "minced", "cooked", "beaten", "peeled"]
+    find_next=False
     for i in lst:
+        words = text.split(" ")
+        for word in words:
+            if find_next:
+                if word=="and":
+                    text=text.replace(word, "")
+                find_next=False
+            if word==i:   
+                find_next=True
         text=text.replace(i , "")
     return text
 
