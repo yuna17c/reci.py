@@ -1,7 +1,7 @@
 <!--https://medium.com/@antoinewg/simple-modal-to-open-details-of-an-item-django-bootstrap-ffeeb11f12c1-->
 
 <script>
-    $(document).on("click", ".open-incident", function (e) {
+    $(document).on("click", ".open-recipe", function (e) {
       e.preventDefault();
       var $popup = $("#popup");
       var popup_url = $(this).data("popup-url");
@@ -9,23 +9,13 @@
         $popup.modal("show");
       });
     });
-  </script>
+</script>
 
 <div class="row">
     <div class="box">
-        <a class="button open-modal" href="{% url '">CLICK ME</a>
+        <a class="button" 
+        href="meow"
+        data-popup-url="meow">CLICK ME</a>
     </div>
-    <div id="recipe_generator" class="overlay">
-        <div class="popup">
-            <h2>title</h2>
-            <a class="close" href="#">&times;</a>
-            <div class="content">
-                <ul>
-                    <li>hi</li>
-                    <li> {{ food_list }} </li>
-                </ul>
-            
-            </div>
-        </div>
-    </div>
+    
 </div>

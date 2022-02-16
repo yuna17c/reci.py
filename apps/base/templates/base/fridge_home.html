@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fridge_style.css' %}?{% now "U" %}">
     <script src="{% static 'filter.js' %}?{% now "U" %}"></script>
     <script src="{% static 'sort.js' %}?{% now "U" %}"></script>
+    <script src="{% static 'search.js' %}?{% now "U" %}"></script>
     <script src="https://kit.fontawesome.com/b8349432cb.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
@@ -70,7 +71,7 @@
             <label><input type="checkbox" name="food-group" value="other" id="other" onclick="check();"><span>other</span></label>
         </div>
         <div class="cell" id="search">
-            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search for names..">
+            <input type="text" id="search_input" onkeyup="searchTable()" placeholder="Search for food..">
         </div>
     </div>
     
