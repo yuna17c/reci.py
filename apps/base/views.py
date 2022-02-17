@@ -21,12 +21,8 @@ from .shorten import replaceUnits
 
 def all_food_items(request):
     food_list = FoodItem.objects.all()
-    return render(request, 'base/home.html', 
+    return render(request, 'base/recipe-generator.html', 
     { 'food_list' : food_list })
-
-def modal_view(request):
-    text = "test"
-    return render(request, "base/recipe_generator.html", locals())
 
 class HomePage(ListView):
     model = Ingredient

@@ -65,3 +65,22 @@
       });
     }) {% endcomment %}
 </script>
+{% comment %} <script>
+    $(document).on("click", ".open-recipe", function (e) {
+      e.preventDefault();
+      var $popup = $("#popup");
+      var popup_url = $(this).data("popup-url");
+      $(".modal-body", $popup).load(popup_url, function () {
+        $popup.modal("show");
+      });
+    });
+</script> {% endcomment %}
+
+{% comment %} <div class="row">
+    <div class="box">
+        <a class="button" 
+        href="meow"
+        data-popup-url="meow">CLICK ME</a>
+    </div>
+    
+</div> {% endcomment %}
