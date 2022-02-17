@@ -164,3 +164,20 @@ button:hover, .button:hover {
       width: 70%;
     }
 }
+#popup {
+    display:none;
+    background-color: red;
+}
+
+.close-modal {
+    font-size: 1.5vw;
+    background-color: var(--primary);
+    color: black;
+}
+
+.modal {
+    width: 50%;
+    top: 0;
+    left: 0;
+    margin-left: 25%;
+}

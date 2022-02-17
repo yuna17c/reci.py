@@ -13,12 +13,12 @@ for(const el of openEls) {
     var ing_list = ingredient.split(", ")
     ing_list.splice(-1)
     var ul = document.getElementById("ul-ing");
+    ul.innerHTML = "";
     for (i of ing_list) {
       var li = document.createElement("li");
       li.appendChild(document.createTextNode(i));
       ul.appendChild(li);
     }
-    // popupContent.querySelector(".popup-ing").textContent = popupinfo.children[1].textContent
     popupContent.querySelector(".popup-prep").textContent = popupinfo.children[2].textContent
     popupContent.querySelector(".popup-img").src = popupinfo.children[3].textContent
     popupContent.querySelector(".popup-link").href = popupinfo.children[4].textContent
@@ -31,7 +31,5 @@ for (const el of closeEls) {
   el.addEventListener("click", function() {
     console.log("yes")
     this.parentElement.parentElement.parentElement.classList.remove(isVisible);
-    overlay.fadeOut(300);
-    dialog.fadeOut(250);
   });
 }

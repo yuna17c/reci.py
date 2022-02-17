@@ -1,3 +1,8 @@
+# replace cooking action verbs that are included in the ingredient list (e.g. minced, peeled)
+# From the website, most ingredients are described with action verbs e.g. 10g minced garlic. 
+# In order to shorten the list of ingredients, this function removes any action verbs that are not
+# necessary to the ingredient list. 
+
 def replaceUnits(text):
     text=text.replace("tablespoons", "tbsp")
     text=text.replace("tablespoon", "tbsp")
@@ -6,12 +11,11 @@ def replaceUnits(text):
     text=text.replace("pounds", "lbs")
     text=text.replace("pound", "lb")
     text=text.replace("ounce", "oz")
-    lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped", "minced", "cooked", "beaten"]
+    lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped", "minced", "cooked", "beaten", "peeled"]
     find_next=False
     for i in lst:
         words = text.split(" ")
         for word in words:
-            #print(word, i)
             if find_next:
                 if word=="and":
                     text=text.replace(word, "")
@@ -20,6 +24,3 @@ def replaceUnits(text):
                 find_next=True
         text=text.replace(i , "")
     return text
-
-newtext = replaceUnits("hello I am diced and minced")
-print(newtext)

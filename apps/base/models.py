@@ -43,6 +43,7 @@ class RecipeList(models.Model):
     recipe_name = models.TextField(null=True, blank=True)
     link = models.TextField(null=True, blank=True)
     prep_time = models.TextField(null=True, blank=True)
+    prep_min = models.IntegerField(null=True, blank=True, default=0)
     ingredients = models.TextField(null=True, blank=True)
     img_link = models.TextField(null=True, blank=True)
     def __str__(self):

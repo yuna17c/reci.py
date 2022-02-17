@@ -1,21 +1,14 @@
 <!--https://medium.com/@antoinewg/simple-modal-to-open-details-of-an-item-django-bootstrap-ffeeb11f12c1-->
 
-<script>
-    $(document).on("click", ".open-incident", function (e) {
-      e.preventDefault();
-      var $popup = $("#popup");
-      var popup_url = $(this).data("popup-url");
-      $(".modal-body", $popup).load(popup_url, function () {
-        $popup.modal("show");
-      });
-    });
-  </script>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <div class="row">
     <div class="box">
-        <a class="button open-modal" href="{% url '">CLICK ME</a>
+        <a class="button open-button" id="generator">CLICK ME</a>
     </div>
-    <div id="recipe_generator" class="overlay">
+    {% comment %} <div id="recipe_generator" class="overlay">
         <div class="popup">
             <h2>title</h2>
             <a class="close" href="#">&times;</a>
@@ -27,5 +20,48 @@
             
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
+    <div id="popup" class="modal">
+        <div class="popup-content">
+            <div class="popup-header">
+                <button class="close-modal" aria-label="close modal" id="close">✕</button>
+            </div>
+            <div class="popup-box">
+                <div><img class="popup-img" src="../static/images/default.png"/></div>
+                <div class="popup-text">
+                    <p class="popup-title">CHICKEN </p>
+                    <div class="box">
+                        <div><p><a class="popup-link" target="blank">more details</a></p></div>
+                        <div><p class="popup-prep">20 min</p></div>
+                        <div><p>spicy</p></div>
+                    </div>
+                    <ul class="popup-ing" id="ul-ing">
+                        <li>chicken</li>
+                        <li>salt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>  
 </div>
+
+<script>
+    var open = document.getElementById("generator");
+    var modal = document.getElementById("popup");
+    var span = document.getElementById("close");
+    open.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    {% comment %} $(document).on("click", ".open-incident", function (e) {
+      e.preventDefault();
+      var $popup = $("#popup");
+      var popup_url = $(this).data("popup-url");
+      $(".modal-body", $popup).load(popup_url, function () {
+        $popup.modal("show");
+      });
+    }) {% endcomment %}
+</script>

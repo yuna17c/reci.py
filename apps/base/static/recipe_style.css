@@ -9,7 +9,7 @@ td { text-align: left; }
     margin-left: 30px;
     margin-top: 40px;
     background-color: var(--secondary);
-    padding: 3px 30px 23px 30px;
+    padding: 3px 30px 25px 30px;
     border-radius: 20px;
 }
 
@@ -141,17 +141,6 @@ a {
 .modal {
     visibility: hidden;
     opacity: 0;
-    transition: all 0.35s ease-in;
-    background-color: var(--primary);
-    border-radius: 20px;
-    display: block;
-    position: absolute;
-    z-index: 1;
-    width: 80%;
-    top: 0;
-    left: 0;
-    margin-left: 10%;
-    border: black 1px solid;
 }
 
 .modal.is-visible {
@@ -163,63 +152,16 @@ a {
     display:none;
 }
 
-.popup-info {
-    display: none;
-}
-.popup-img {
-    width: 100%;
-}
-.popup-text {
-    display: flex;
-    flex-direction: column;
-    margin-top: -30px;
-}
-.popup-box {
-    display: grid;
-    padding: 30px;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 30px;
-}
-.popup-title {
-    font-family: "Baloo 2", sans-serif;
-    font-weight: 500;
-    font-size: 2vw;
-}
-.popup-box ul {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-    margin-left: -20px;
-}
-.popup-header {
-    text-align: end;
-}
 .close-modal {
     font-size: 1.5vw;
     background-color: var(--primary);
     color: black;
 }
-.popup-text td:first-child {
-    width: 50%;
+
+.popup-info {
+    display: none;
 }
-.popup-link {
-    color: white;
-}
-.popup-link:hover {
-    color: var(--accent);
-}
-.popup-text .box {
-    margin-top: -35px;
-    display: inline-block;
-}
-.popup-text .box p {
-    background-color: var(--medium-green);
-    color: var(--primary);
-    border-radius: 10px;
-    padding: 10px;
-    float:left;
-    margin-right: 10px;
-}
+
 .right .spacer {
     width: 30px;
     color: var(--primary);
@@ -230,7 +172,22 @@ a {
 /* Filter */
 .filter {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "title plus"
+                           "div div";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 3fr 1fr;
+}
+.filter a {
+    align-self: center;
+}
+.filter > h3 {
+    grid-area: title;
+}
+.filter > button {
+    grid-area: plus;
+}
+.filter > div.filter-content {
+    grid-area: div;
 }
 
 .collapsible {
@@ -252,9 +209,38 @@ a {
 }
 
 .filter-content {
-    padding: 0 18px;
     max-height: 0;
     overflow: hidden;
     color: black;
     transition: max-height 0.2s ease-out;
+    margin-top: -20px;
+}
+
+.filter-content p {
+    font-size: 1.2vw;
+    font-family: 'Baloo 2', sans-serif;
+}
+
+.filter-content button {
+    margin-top: 10px;
+}
+
+.sort {
+    width: 92%;
+    text-align: right;
+    margin-left: 4%;
+}
+.sort p {
+    font-size: 1.2vw;
+    font-family: "Baloo 2", sans-serif;
+}
+.sort p button {
+    background-color: var(--primary);
+    font-size: 1.1vw;
+    padding: 10px;
+    color: black;
+}
+
+.sort p button:last-child {
+    display: none;
 }

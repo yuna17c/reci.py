@@ -15,9 +15,9 @@ import requests
 from .models import Ingredient, FoodItem, RecipeList
 import random
 import aiohttp
-import asyncio
-from asgiref.sync import async_to_sync, sync_to_async
-
+import asyncio  
+from .changeToMin import changeToMinute
+from .shorten import replaceUnits
 
 def all_food_items(request):
     food_list = FoodItem.objects.all()
@@ -52,6 +52,20 @@ class RecipeFinderHome(TemplateView):
                 print(a.name)
                 input_list.append(a.name)
             inputSearch(input_list)
+        elif 'desc_button' in request.POST:
+            # compare = request.POST.get("compare", "")
+            # amount = request.POST.get("amount", "")
+            print("yes")
+            recipe = RecipeList.objects.all().order_by('prep_min')
+            # for i in recipe:
+            #     recipeObject = RecipeList.objects.get(recipe_name=i)
+
+
+            # all_entries = RecipeList.objects.all()
+            # for a in all_entries:
+            #     print(a.recipe_name, a.prep_min)
+        elif 'asc_button' in request.POST:
+            print("asc")
         return HttpResponseRedirect(request.path_info)
 
 class DeleteView(DeleteView):
@@ -86,7 +100,6 @@ class FridgeHome(TemplateView):
             names.append(item.name)
         request.session['food_names'] = names
         return HttpResponseRedirect(request.path_info)
-
 
 class RecipeGenerator(TemplateView):
     model = FoodItem
@@ -132,10 +145,13 @@ async def fetch(session, url):
     try:
         async with session.get(url) as response:
             text = await response.text()
+            print("++++")
             ingredients = await extract_ingredients(text)
+            print("\\\\")
             img_link = await extract_img_link(text)
-            prep_time = await extract_prep_time(text)
-            return text, url, ingredients, img_link, prep_time
+            print("====")
+            prep_time, minute = await extract_prep_time(text)
+            return text, url, ingredients, img_link, prep_time, minute
     except Exception as e:
         print(str(e))
 
@@ -156,30 +172,40 @@ async def extract_ingredients(text):
 async def extract_img_link(text):
     try:
         soup = BeautifulSoup(text, 'lxml')
+        print("*new*")
         if soup.find('div', class_="image-container") is not None:
             image = soup.find('div', class_="image-container").find("img")
             img_link = image.attrs['src']
-        else: 
+            print("--" , str(img_link))
+        elif soup.find('div', class_="image-slide") is not None:
+            if soup.find_all('div', class_="image-slide")[1]:
+                image = soup.find_all('div', class_="image-slide")[1].find("img")
+                img_link = image.attrs['src']
+        else:
             img_link = "../static/images/default.png"
         if img_link=="/img/icons/recipe-add-photo.jpg":
-            img_link="../static/images/default.png"
+            img_link ="../static/images/default.png"
         return img_link
     except Exception as e:
+        img_link = "../static/images/default.png"
         print(str(e))
+        return img_link
 
 async def extract_prep_time(text):
     try:
         soup = BeautifulSoup(text, 'lxml')
-        titles = soup.find('div', class_='two-subcol-content-wrapper')
-        child = titles.select_one(":nth-child(3)")
-        if child is not None:
-            total_time = child.get_text().strip()[7:]
-            #minuteTime = changeToMinute(total_time)
-        else: 
-            total_time=""
-        return total_time
+        minute=0
+        total_time=""
+        if soup.find("div", class_='recipe-meta-item-header', string="total:"):
+            total = soup.find_all("div", class_='recipe-meta-item-header', string="total:")
+            child = total[0].find_next_sibling("div")
+            if child is not None:
+                total_time = child.get_text()
+                minute = changeToMinute(total_time)
+        return total_time, minute
     except Exception as e:
         print(str(e))
+        return "", 0
 
 async def get_details(urls):
     tasks=[]
@@ -193,53 +219,8 @@ async def get_details(urls):
             if html is not None:
                 recipeObject = RecipeList.objects.get(link=html[1])
                 recipeObject.prep_time = html[4]
+                recipeObject.prep_min = html[5]
                 recipeObject.img_link = html[3]
                 recipeObject.ingredients = html[2]
                 recipeObject.save()
-
-def replaceUnits(text):
-    text=text.replace("tablespoons", "tbsp")
-    text=text.replace("tablespoon", "tbsp")
-    text=text.replace("teaspoons", "tsp")
-    text=text.replace("teaspoon", "tsp")
-    text=text.replace("pounds", "lbs")
-    text=text.replace("pound", "lb")
-    text=text.replace("ounce", "oz")
-    lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped", "minced", "cooked", "beaten", "peeled"]
-    find_next=False
-    for i in lst:
-        words = text.split(" ")
-        for word in words:
-            if find_next:
-                if word=="and":
-                    text=text.replace(word, "")
-                find_next=False
-            if word==i:   
-                find_next=True
-        text=text.replace(i , "")
-    return text
-
-def printRecipeNames(lst):
-    if len(lst)==0:
-        print("There are no possible recipes that match your ingredients.")
-    else:
-        print("These are the possible recipes with your ingredients:")
-    for item in lst:
-        print("\t"+item)
-
-
-def changeToMinute(str):
-    x = str.split("hr")
-    hour = 0
-    min = 0
-    if len(x) > 1:
-        hour = x[0].strip()
-    min_idx = x[-1].find("min")
-    if min_idx!=-1:
-        min = x[-1][:min_idx].strip()
-        if min[0].isnumeric()==False:
-            min = min[2:]
-    total=60*int(hour)+int(min)
-    return total
-
 
