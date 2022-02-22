@@ -55,17 +55,11 @@
     span.onclick = function() {
         modal.style.display = "none";
     }
-
-    {% comment %} $(document).on("click", ".open-incident", function (e) {
-      e.preventDefault();
-      var $popup = $("#popup");
-      var popup_url = $(this).data("popup-url");
-      $(".modal-body", $popup).load(popup_url, function () {
-        $popup.modal("show");
-      });
-    }) {% endcomment %}
 </script>
-{% comment %} <script>
+
+{% comment %} 
+
+<script>
     $(document).on("click", ".open-recipe", function (e) {
       e.preventDefault();
       var $popup = $("#popup");
@@ -74,13 +68,5 @@
         $popup.modal("show");
       });
     });
-</script> {% endcomment %}
+</script> 
 
-{% comment %} <div class="row">
-    <div class="box">
-        <a class="button" 
-        href="meow"
-        data-popup-url="meow">CLICK ME</a>
-    </div>
-    
-</div> {% endcomment %}
