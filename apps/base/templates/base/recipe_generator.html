@@ -1,26 +1,7 @@
-<!--https://medium.com/@antoinewg/simple-modal-to-open-details-of-an-item-django-bootstrap-ffeeb11f12c1-->
-
-<!DOCTYPE html>
-<html lang="en">
-
-
 <div class="row">
     <div class="box">
-        <a class="button open-button" id="generator">CLICK ME</a>
+        <a class="button open-modal" id="generator">CLICK ME</a>
     </div>
-    {% comment %} <div id="recipe_generator" class="overlay">
-        <div class="popup">
-            <h2>title</h2>
-            <a class="close" href="#">&times;</a>
-            <div class="content">
-                <ul>
-                    <li>hi</li>
-                    <li> {{ food_list }} </li>
-                </ul>
-            
-            </div>
-        </div>
-    </div> {% endcomment %}
     <div id="popup" class="modal">
         <div class="popup-content">
             <div class="popup-header">
@@ -48,25 +29,11 @@
 <script>
     var open = document.getElementById("generator");
     var modal = document.getElementById("popup");
-    var span = document.getElementById("close");
+    var close = document.getElementById("close");
     open.onclick = function() {
         modal.style.display = "block";
     }
-    span.onclick = function() {
+    close.onclick = function() {
         modal.style.display = "none";
     }
 </script>
-
-{% comment %} 
-
-<script>
-    $(document).on("click", ".open-recipe", function (e) {
-      e.preventDefault();
-      var $popup = $("#popup");
-      var popup_url = $(this).data("popup-url");
-      $(".modal-body", $popup).load(popup_url, function () {
-        $popup.modal("show");
-      });
-    });
-</script> 
-
