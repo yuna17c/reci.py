@@ -29,11 +29,9 @@ html {
 
 body {
     overflow: overlay;
-    margin-bottom: 10vh;
     background-color: var(--primary);
     color: black;
     font-family: 'Questrial', sans-serif;
-    width: 98%;
 }
 
 /* Navigation bar */
@@ -101,6 +99,7 @@ h1 {
     font-size: 4vw;
     color: var(--medium-green);
     display: flex;
+    margin-left: 2.5vw;
 }
 
 h3 {

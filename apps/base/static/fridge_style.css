@@ -1,5 +1,19 @@
 @import url("base.css");
 
+.left {
+    position: fixed;
+    margin-left: 30px;
+    background-color: var(--secondary);
+    padding: 10px 30px 25px 30px;
+    border-radius: 20px;
+    width: 25%;
+}
+
+.right {
+    margin-left: calc(25% + 100px);
+    position: relative;
+}
+
 .row {
     display:flex;
     justify-content:flex-start;
@@ -13,8 +27,29 @@
     flex-basis: 100%;
 }
 
+.notif {
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    font-size: 25px;
+    margin: 0;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.notif span {
+    color: #FF8181;
+    font-size: 40px;
+    font-weight: 700;
+}
+
 h1 {
-    color: var(--primary);
+    color: var(--medium-green);
+    padding: 0;
 }
 
 .home-button {
@@ -22,12 +57,9 @@ h1 {
 }
 
 .header {
-    display:flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    background-color: var(--medium-green);
-    border-radius: 20px;
-    width: 100%;
+    display: flex;
+    background-color: var(--secondary);
+    border-radius: 25px;
 }
 
 #checkboxes {
@@ -59,22 +91,22 @@ input#search_input {
 }
 
 #input label {
-    padding: 10px;
-    color: white;
-    font-weight: 700;
-    font-size: 1.5em;
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.2vw;
+    color: var(--accent);
+    padding-right: 20px;
 }
 
 input, select, option {
-    border-radius: 25px;
-    border: 2px inset var(--accent);
+    border-radius: 15px;
+    border: 2px inset var(--medium-green);
     font-family: 'Baloo 2';
     text-align: center;
-    background-color: rgb(244, 255, 244);
     color: var(--accent);
     padding: 2px;
-    font-size: 1.4vw;
+    font-size: 1.2vw;
 }
+
 
 #input-column {
     float: left;
@@ -85,15 +117,6 @@ input, select, option {
 
 #input {
     padding: 10px;
-}
-
-button:not(#add) {
-    padding: 10px;
-}
-
-#add {
-    background-color: var(--accent);
-    font-size: 25px;
 }
 
 #add_button {
@@ -128,7 +151,7 @@ td {
     padding: 8px;
 }
 
-td p {
+.expired, .warning {
     color: #FF8181;
 }
 
@@ -145,13 +168,6 @@ tr:nth-child(even) {
 @media (max-width: 950px){
     .row {
       flex-direction: column;
-    }
-    .fridge {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 0px;
-        width: 50%;
     }
     .button {
         width: 100%;
