@@ -88,6 +88,7 @@
                     <span onclick="sortByDate()"><i class="fas fa-sort"></i></span>
                 </th>
                 <th>Food Group</th> 
+                <th></th>
             </tr>
         </thead>
         
@@ -99,21 +100,24 @@
                 <tr class="food_item {{ item.name }} {{ item.food_group }} expired">     
                     <td class="name">{{ item.name }}</td>
                     <td class="expiry">EXPIRED</td>
-                    <td class="food-group">{{ item.food_group }} <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td class="food-group">{{ item.food_group }}</td>
+                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
                 
             {% elif item.is_expiring_soon %}
                 <tr class="food_item {{ item.name }} {{ item.food_group }} warning">
                     <td class="name">{{ item.name }}</td>
                     <td class="expiry">{{ item.expiry_date }}</td>
-                    <td class="food-group">{{ item.food_group }} <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td class="food-group">{{ item.food_group }}</td>
+                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
 
             {% else %}
             <tr class="food_item {{ item.name }} {{ item.food_group }}">
                     <td class="name">{{ item.name }}</td>
                     <td class="expiry date">{{ item.expiry_date }}</td>
-                    <td class="food-group">{{ item.food_group }} <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td class="food-group">{{ item.food_group }}</td>
+                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
             </tr>
             {% endif %}
 

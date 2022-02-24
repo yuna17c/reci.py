@@ -1,19 +1,5 @@
 @import url("base.css");
 
-.left {
-    position: fixed;
-    margin-left: 30px;
-    background-color: var(--secondary);
-    padding: 10px 30px 25px 30px;
-    border-radius: 20px;
-    width: 25%;
-}
-
-.right {
-    margin-left: calc(25% + 100px);
-    position: relative;
-}
-
 .row {
     display:flex;
     justify-content:flex-start;
@@ -32,18 +18,17 @@
     height: 100%;
     text-align: center;
     width: 100%;
-    background: var(--accent);
+    background: #FF8181;
     color: white;
     font-weight: 600;
-    font-size: 25px;
+    font-size: 20px;
     margin: 0;
-    padding: 5px;
     vertical-align: middle;
 }
 
 .notif span {
-    color: #FF8181;
-    font-size: 40px;
+    color: white;
+    font-size: 4vh;
     font-weight: 700;
 }
 
@@ -92,7 +77,7 @@ input#search_input {
 
 #input label {
     font-family: 'Baloo 2', sans-serif;
-    font-size: 1.2vw;
+    font-size: 2.5vh;
     color: var(--accent);
     padding-right: 20px;
 }
@@ -104,15 +89,7 @@ input, select, option {
     text-align: center;
     color: var(--accent);
     padding: 2px;
-    font-size: 1.2vw;
-}
-
-
-#input-column {
-    float: left;
-    padding: 0 5vh;
-    display: flex;
-    flex-direction: column;
+    font-size: 2.5vh;
 }
 
 #input {
@@ -121,14 +98,14 @@ input, select, option {
 
 #add_button {
     padding: 10px;
+    font-size: 2.5vh;
 }
 
 table {
-    font-size: 3vh;
+    font-size: 2.5vh;
     border-collapse: collapse;
     width: 100%;
 }
-
 
 .hide {
     display: none;
@@ -159,43 +136,47 @@ tr:nth-child(even) {
     background-color: white
 }
 
-.food-group i {
+td i {
     float: right;
     color: var(--accent);
     padding: 10px;
 }
 
-@media (max-width: 950px){
+@media(max-width: 1000px) {
+    input#search_input {
+        float: left;
+    }
     .row {
-      flex-direction: column;
+        flex-direction: column;
     }
     .button {
         width: 100%;
-    }
-    #food-groups {
-        flex-direction: column;
-    }
-    #search {
-        padding: 10px;
-    }
-    input#search_input {
-        float: left;
     }
     #add {
         display: inline-block;
     }
 }
 
-@media (max-width: 600px) {
-    #food-groups label {
-        display:flex;
-        align-items: baseline;
-        font-size: 20px;
+@media (max-width: 840px){
+    .left { 
+        width: 25%;
     }
-    #food-groups span {
-        margin-left: 1.2em;
-     }
-    input[type=checkbox] {
-        margin-right: 8px;
+    .right {
+        margin-left: calc(25% + 100px);
+    }
+    
+}
+
+@media (max-width: 685px) {
+    body {
+        margin: 0;
+    }
+    .left { 
+        width: 75%;
+    }
+    .right {
+        padding-top: 300px;
+        width: 90%;
+        margin: 0;
     }
 }

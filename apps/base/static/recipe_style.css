@@ -3,20 +3,20 @@
 td { text-align: left; }
 
 /* side bar */
+
 .left {
-    position: fixed;
-    margin-left: 30px;
-    margin-top: 40px;
-    background-color: var(--secondary);
     padding: 3px 30px 25px 30px;
-    border-radius: 20px;
+}
+
+.left h3 {
+    margin: auto;
+    padding: 10px;
 }
 
 .ingredients-table { 
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin: auto;
     font-size: 1.3vw;
-    margin-top: -10px;
     font-family: 'Questrial', sans-serif;
 }
 
@@ -41,11 +41,6 @@ input {
 
 .ingredients-table input, .ingredients-table button {
     margin-top: 17px;
-}
-
-.right {
-    margin-left: 22vw;
-    position: relative;
 }
 
 .container, table {
