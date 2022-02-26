@@ -21,14 +21,14 @@
     background: #FF8181;
     color: white;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 2.3vh;
     margin: 0;
     vertical-align: middle;
 }
 
 .notif span {
     color: white;
-    font-size: 4vh;
+    font-size: 3vh;
     font-weight: 700;
 }
 
@@ -173,9 +173,9 @@ td i {
     }
     .left { 
         width: 75%;
+        position: static;
     }
     .right {
-        padding-top: 300px;
         width: 90%;
         margin: 0;
     }
