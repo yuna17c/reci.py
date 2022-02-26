@@ -17,51 +17,52 @@
 <body>
     <div class="nav">
         <table class="nav-items">
-            <td>RECI.PY</td>
+            <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
             <td><a class="active"  href="#">FRIDGE</a></td>
             <td><a href="{% url 'recipe-finder' %}">RECIPE FINDER</a></td>
-            <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
         </table>
     </div>
-    <div class="header">    
-        <div id="input-column">
-        <h1 id="fridge">FRIDGE</h1>
-                <form method="POST">
-                    <div id="input">
-                        <label for="name">name:</label>
-                        <input id="name" name="name" required>
-                    </div>
-
-                    <div id="input">
-                        <label for="expiry">expiry date:</label>
-                        <input type="date" id="expiry" name="expiry" required>
-                    </div>
-
-                    <div id="input">
-                        <label for="food_group">food group:</label>
-                        <select name="food_group" id="food_group" required>
-                            <option value="fruits">fruits</option>
-                            <option value="vegetables">vegetables</option>
-                            <option value="grains">grains</option>
-                            <option value="protein">protein</option>
-                            <option value="dairy">dairy</option>
-                            <option value="cooking product">cooking products</option>
-                            <option value="herbs/spices">herbs + spices</option>
-                            <option value="other">other</option>
-                        </select>
-                    </div>
-                    <div id="add_button">
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type="submit" id="add" name="add_button">ADD</button>
-                    </div>
-                </form>
+    <h1>Fridge</h1>
+    <div class="notif row">
+        <p>there are <span id="count1">0</span> item(s) that are expired and <span id="count2">0</span> item(s) that are expiring soon!</p>
+    </div>
+    <div class="row"><p>    </p></div>
+    <div class="left">
+        <form method="POST">
+            <div id="input">
+                <label for="name">food name:</label>
+                <input id="name" name="name" size = "10" required>
             </div>
-        </div>
-    
+
+            <div id="input">
+                <label for="expiry">expiry date:</label>
+                <input type="date" id="expiry" name="expiry" required>
+            </div>
+
+            <div id="input">
+                <label for="food_group">food group:</label>
+                <select name="food_group" id="food_group" required>
+                    <option value="fruits">fruits</option>
+                    <option value="vegetables">vegetables</option>
+                    <option value="grains">grains</option>
+                    <option value="protein">protein</option>
+                    <option value="dairy">dairy</option>
+                    <option value="cooking product">cooking products</option>
+                    <option value="herbs/spices">herbs + spices</option>
+                    <option value="other">other</option>
+                </select>
+            </div>
+            <div id="add_button">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" id="add" name="add_button">ADD</button>
+            </div>
+        </form>
+    </div>
+    <div class="right">
     <div class="row" id="food-groups">
         <div class="cell" id="checkboxes">
-            <label for="fruits"><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check();"><span>fruits</span></label>
+            <label><input type="checkbox" name="food-group" value="fruits" id="fruits" onclick="check();"><span>fruits</span></label>
             <label><input type="checkbox" name="food-group" value="vegetables" id="vegetables" onclick="check();"><span>vegetables</span></label>
             <label><input type="checkbox" name="food-group" value="grains" id="grains" onclick="check();"><span>grains</span></label>
             <label><input type="checkbox" name="food-group" value="protein" id="protein" onclick="check();"><span>protein</span></label>
@@ -74,7 +75,6 @@
             <input type="text" id="search_input" onkeyup="searchTable()" placeholder="Search for food..">
         </div>
     </div>
-    
     <div class="row">
         <table id="fridge-table">
         <thead>
@@ -88,32 +88,43 @@
                     <span onclick="sortByDate()"><i class="fas fa-sort"></i></span>
                 </th>
                 <th>Food Group</th> 
+                <th></th>
             </tr>
         </thead>
         
         <tbody>
 
         {% for item in food_items %}
-            <tr class="food_item {{ item.name }} {{ item.food_group }}">        
-                <td class="name">{{ item.name }}</td>
-                <td class="expiry date">
-                    {% if item.is_expired %}
-                        <p>EXPIRED</p>
-                    {% elif item.is_expiring_soon %}
-                        <p>{{ item.expiry_date }}</p>
-                    {% else %}
-                        {{ item.expiry_date }}
-                    {% endif %}
-                </td>
-                <td class="food-group">
-                    {{ item.food_group }}
-                    <a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                </td>
-            </tr>
-        {% endfor %}
+        
+            {% if item.is_expired %}
+                <tr class="food_item {{ item.name }} {{ item.food_group }} expired">     
+                    <td class="name">{{ item.name }}</td>
+                    <td class="expiry">EXPIRED</td>
+                    <td class="food-group">{{ item.food_group }}</td>
+                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
+                
+            {% elif item.is_expiring_soon %}
+                <tr class="food_item {{ item.name }} {{ item.food_group }} warning">
+                    <td class="name">{{ item.name }}</td>
+                    <td class="expiry">{{ item.expiry_date }}</td>
+                    <td class="food-group">{{ item.food_group }}</td>
+                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
 
+            {% else %}
+            <tr class="food_item {{ item.name }} {{ item.food_group }}">
+                    <td class="name">{{ item.name }}</td>
+                    <td class="expiry date">{{ item.expiry_date }}</td>
+                    <td class="food-group">{{ item.food_group }}</td>
+                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+            {% endif %}
+
+        {% endfor %}
         </tbody>
         </table>
+        <script src="{% static 'expiration.js' %}?{% now "U" %}"></script>
     </div>
 
 </body>

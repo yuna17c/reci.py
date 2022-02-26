@@ -1,12 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Questrial&display=swap');
 :root {
-    /* --light-green: rgb(226, 255, 229); */
-    --light-green: #E8F5E9;
+    --light-green: #e6ffe8;
     --medium-green: rgb(136, 210, 145);
     --dark-green: rgb(59, 126, 67);
     --primary: #fafafa;
     --secondary: #e4e5f1;
     --accent: rgb(59, 126, 67);
+}
+
+.left {
+    position: fixed;
+    margin-left: 30px;
+    background-color: var(--secondary);
+    padding: 3px 30px 25px 30px;
+    border-radius: 20px;
+    width: 15%;
+}
+
+.right {
+    margin-left: calc(15% + 100px);
+    position: relative;
 }
 
 /* stuff for the scroll bar */
@@ -29,11 +42,9 @@ html {
 
 body {
     overflow: overlay;
-    margin-bottom: 10vh;
     background-color: var(--primary);
     color: black;
     font-family: 'Questrial', sans-serif;
-    width: 98%;
 }
 
 /* Navigation bar */
@@ -72,7 +83,7 @@ body {
 }
 
 .fa-home:hover, .nav-items a:hover {
-    filter: brightness(1.5);
+    filter: brightness(1.2);
     -o-transition: .5s;
     -ms-transition: .5s;
     -moz-transition: .5s;
@@ -101,6 +112,7 @@ h1 {
     font-size: 4vw;
     color: var(--medium-green);
     display: flex;
+    margin-left: 2.5vw;
 }
 
 h3 {

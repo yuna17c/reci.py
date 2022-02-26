@@ -15,10 +15,9 @@
 <body class="recipe-home" id="window">
     <div class="nav">
         <table class="nav-items">
-            <td>RECI.PY</td>
+            <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
             <td><a href="{% url 'fridge' %}">FRIDGE</a></td>
             <td><a class="active" href="#">RECIPE FINDER</a></td>
-            <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
         </table>
     </div>
     <div>
@@ -64,6 +63,7 @@
                 </table>
             </div>
         </div> {% endcomment %}
+        
         <div class="left">
             <h3>Your Ingredients</h3>
             <table class="ingredients-table">
@@ -109,6 +109,7 @@
                             <div><p class="popup-prep"></p></div>
                             <div><p>spicy</p></div>
                         </div>
+                        
                         <ul class="popup-ing" id="ul-ing">
                         </ul>
                     </div>
