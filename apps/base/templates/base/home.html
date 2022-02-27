@@ -6,30 +6,40 @@
     <meta charset="UFT-8">
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'home_style.css' %}?%{% now "U" %}">
-    <script src="{% static 'popup.js' %}?{% now "U" %}"></script>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'home_style.css' %}?%{% now "U" %}">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'home_style_v2.css' %}?%{% now "U" %}">
+    <script src="https://kit.fontawesome.com/a73e2d7b3a.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
 <body>
-    <div class="row">
-        <div class="cell"><img class = "fridge" src="{% static 'images/frig.png' %}" alt="frig"></div>
-        <div class="cell"><h1>reci.py</h1></div>
+    <div class="nav">
+        <table class="nav-items">
+            <td class="home-button"><i class="fa fa-home active" aria-hidden="true"></i></td>
+            <td><a href="{% url 'pantry' %}">PANTRY</a></td>
+            <td><a href="{% url 'recipe-finder' %}">RECIPE FINDER</a></td>
+        </table>
     </div>
-
-    {% include "base/recipe_generator.html" %}
-
-    <div class="row bottom">
-        <div class="cell">
-            <form action="{% url 'fridge' %}">
-                <button type="submit">FRIDGE</button>
-            </form>
+    <div class="center">
+        <div class= "row">
+            <h1 class="floating">reci.py</h1>
         </div>
-        <div class="cell">
-            <form action="{% url 'recipe-finder' %}">
-                <button type="submit">RECIPE FINDER</button>
-            </form>
+        <div class="row">
+            <div class="cell">
+                <form action="{% url 'pantry' %}">
+                    <button type="submit"><i class="fa-solid fa-box"></i></button>
+                </form>
+            </div>
+            <div class="cell">
+                <button><i class="fa-solid fa-shuffle"></i></button>
+            </div>
+            <div class="cell">
+                <form action="{% url 'recipe-finder' %}">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
         </div>
     </div>
+    <!--{% include "base/recipe_generator.html" %}-->
 
 </body>
 </html>

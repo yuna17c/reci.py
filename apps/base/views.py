@@ -71,16 +71,16 @@ class DeleteView(DeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-class DeleteFridgeView(DeleteView):
+class DeletePantryView(DeleteView):
     model = FoodItem
     context_object_name = 'item'
-    success_url = reverse_lazy('fridge')
+    success_url = reverse_lazy('pantry')
 
-class FridgeHome(TemplateView):
+class PantryHome(TemplateView):
     model = FoodItem
-    template_name = "base/fridge_home.html"
+    template_name = "base/pantry_home.html"
     def get_context_data(self, **kwargs):
-        context = super(FridgeHome, self).get_context_data(**kwargs)
+        context = super(PantryHome, self).get_context_data(**kwargs)
         context['food_items'] = FoodItem.objects.all()
         return context
     def post(self, request):
@@ -101,7 +101,7 @@ class RecipeGenerator(TemplateView):
     model = FoodItem
     template_name = "base/home.html"
     def post(self, request):
-        FridgeHome.post(self, request)
+        PantryHome.post(self, request)
         ingredients = request.session['food_names']
         #inputSearch(ingredients)
         return HttpResponseRedirect(request.path_info)

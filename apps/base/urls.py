@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', HomePage.as_view(), name='main'),
-    path('fridge/', FridgeHome.as_view(), name='fridge'),
+    path('pantry/', PantryHome.as_view(), name='pantry'),
     path('recipefinder/', RecipeFinderHome.as_view(), name='recipe-finder'),
     path('ingredient-update/<int:pk>/', DeleteView.as_view(), name='ingredient-update'),
-    path('fridge-update/<int:pk>/', DeleteFridgeView.as_view(), name='fridge-update')
+    path('pantry-update/<int:pk>/', DeletePantryView.as_view(), name='pantry-update')
 ]
