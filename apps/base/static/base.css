@@ -68,15 +68,14 @@ body {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: var(--primary);
-    box-shadow: 0 3px 2px -2px gray;
+    background-color: var(--medium-green);
     font-size: 3vh;
 }
 
 table.nav-items {
     position: relative;
     display: inline-block;
-    color: black;
+    color: white;
     font-family: 'Baloo 2';
     font-weight: 600;
 }
@@ -91,13 +90,13 @@ table.nav-items {
 }
 
 .nav-items a:visited, .nav-items a:link {
-    color:black;
+    color:white;
     text-decoration: none;
 }
 
 .fa-home {
     font-size: 23px;
-    color: black;
+    color: white;
     padding-top: 2px;
 }
 
