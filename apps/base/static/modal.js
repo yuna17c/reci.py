@@ -19,7 +19,7 @@ for(const el of openEls) {
       li.appendChild(document.createTextNode(i));
       ul.appendChild(li);
     }
-    popupContent.querySelector(".popup-prep").textContent = popupinfo.children[2].textContent
+    popupContent.querySelector(".popup-prep").textContent += popupinfo.children[2].textContent
     popupContent.querySelector(".popup-img").src = popupinfo.children[3].textContent
     popupContent.querySelector(".popup-link").href = popupinfo.children[4].textContent
     const modal1 = this.dataset.open;

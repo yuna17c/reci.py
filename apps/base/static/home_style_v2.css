@@ -13,7 +13,7 @@ button i {
     padding-bottom: 10px;
 }
 
-button {
+button:not(.close-modal) {
     width: 150px;
     height: 150px;
     font-size: 20px;
@@ -43,6 +43,41 @@ button {
     100%   { transform: translate(0, -0px); }   
 }
 
+/* MODAL */
+
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    top: 50%;
+    border-color: black;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+
+.popup-content {
+    border-radius: 40%;
+}
+
+.popup-content i {
+    padding-right: 10px;
+}
+
+.close-modal {
+    font-size: 2.5vh;
+    background-color: var(--primary);
+    color: black;
+    margin-right: 10px;
+}
+
+.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/**************************/
+
 @media (max-width: 650px){
     h1 {
         font-size: 75px;
@@ -50,7 +85,7 @@ button {
     .cell {
         padding: 10px;
     }
-    button {
+    button:not(.close-modal) {
         width: 100px;
         height: 100px;
         font-size: 10px;

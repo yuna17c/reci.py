@@ -64,6 +64,9 @@ input#search_input {
     float: right;
 }
 
+#search {
+}
+
 #input label {
     font-family: 'Baloo 2', sans-serif;
     font-size: 2.5vh;
@@ -142,6 +145,10 @@ input, select, option {
     }
     .right {
         margin-left: calc(25% + 100px);
+    }
+
+    #food-groups {
+        padding-top: 10px;
     }
 }
 
