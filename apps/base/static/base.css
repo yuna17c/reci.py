@@ -10,14 +10,14 @@
 
 .row {
     display:flex;
+    justify-content:flex-start;
     align-items:stretch;
     flex-wrap:nowrap;
-    padding:10px;
+    padding: 0 5vh;
 }
 
 .cell {
     min-height:75px;
-    flex-grow:1;
     flex-basis: 100%;
 }
 
@@ -59,6 +59,7 @@ body {
     background-color: var(--primary);
     color: black;
     font-family: 'Questrial', sans-serif;
+    margin: 0;
 }
 
 /* Navigation bar */
@@ -123,10 +124,10 @@ table.nav-items {
 
 h1 {
     font-family: 'Baloo 2';
-    font-size: 4vw;
+    font-size: 4.3vw;
     color: var(--medium-green);
     display: flex;
-    margin-left: 2.5vw;
+    padding-top: 5vh;
 }
 
 h3 {

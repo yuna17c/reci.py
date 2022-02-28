@@ -1,17 +1,5 @@
 @import url("base.css");
 
-.row {
-    display:flex;
-    justify-content:flex-start;
-    align-items:stretch;
-    flex-wrap:nowrap;
-    padding: 0 5vh;
-}
-
-.cell {
-    min-height:75px;
-    flex-basis: 100%;
-}
 
 .notif {
     display: inline-block;
@@ -35,6 +23,7 @@
 h1 {
     color: var(--medium-green);
     padding: 0;
+    padding-top: 5vh;
 }
 
 .home-button {
