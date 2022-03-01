@@ -25,6 +25,7 @@ class HomePage(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
         recipes = list(RecipeGenerator.objects.all())
+        context['ingredients'] = FoodItem.objects.all()
         context['recipe'] = random.choice(random.sample(recipes, 1)) 
         return context
     def post(self, request):

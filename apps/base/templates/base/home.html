@@ -69,8 +69,10 @@
         var openbtn = document.getElementById("open");
         var closebtn = document.getElementById("close");
         var ingredients = '{{ recipe.ingredients }}';
+        var input = '{{ ingredients }}';
 
         openbtn.onclick = function(e) {
+            console.log(input);
             popup.classList.add('show');
             
             var ing_list = ingredients.split(", ")
@@ -81,13 +83,13 @@
                 var li = document.createElement("li");
                 li.appendChild(document.createTextNode(i));
                 ul.appendChild(li);
-            }
-
+            } 
             e.preventDefault();
         };
 
         closebtn.onclick = function() {
             popup.classList.remove('show');
+            location.reload();
         };
     </script>
 </body>
