@@ -29,14 +29,12 @@
                     <button type="submit"><i class="fa-solid fa-3x fa-box"></i><br>pantry</button>
                 </form>
             </div>
-            <!--
             <div class="cell">
-                <form method="POST" class="generator">
+                <form method="POST" class="generator" id="generator">
                     {% csrf_token %}
-                    <button id="open" name="generate"><i class="fa-solid fa-3x fa-shuffle"></i><br>gime recipe!!</button>
+                    <button id="open" name="generate" data-open="popup"><i class="fa-solid fa-3x fa-shuffle"></i><br>gime recipe!!</button>
                 </form>
             </div>
-            -->
             <div class="cell">
                 <form action="{% url 'recipe-finder' %}">
                     <button type="submit"><i class="fa-solid fa-3x fa-magnifying-glass"></i><br>recipe finder</button>
@@ -44,49 +42,53 @@
             </div>
         </div>
     </div>
-
     <div id="popup" class="modal center">
         <div class="popup-content" id="popup-content">
             <div class="popup-header">
                 <button class="close-modal" aria-label="close modal" id="close">✕</button>
             </div>
            <div class="popup-box">
-                <div><img class="popup-img" src="../static/images/default.png"/></div>
+                <div><img class="popup-img" src="{{ recipe.img_link }}"/></div>
                 <div class="popup-text">
-                    <p class="popup-title">CHICKEN</p>
+                    <p class="popup-title">{{ recipe.name }}</p>
                    <div class="box">
-                        <div><p><i class="fa-solid fa-note-sticky"></i><a class="popup-link" target="blank">more details</a></p></div>
-                        <div><p class="popup-prep"><i class="fa-solid fa-clock"></i>20 min</p></div>
-                        <div><p><i class="fa-solid fa-pizza-slice"></i>spicy</p></div>
+                        <div><p><i class="fa-solid fa-note-sticky"></i><a class="popup-link" target="blank" href="{{ recipe.link }}">more details</a></p></div>
+                        <div><p class="popup-prep"><i class="fa-solid fa-clock"></i>{{ recipe.prep_time }}</p></div>
+                        <div><p><i class="fa-solid fa-pizza-slice"></i>owo</p></div>
                     </div>
                     <h2>ingredients</h2>
                     <ul class="popup-ing" id="ul-ing">
-                        {% for recipe in recipe_list %}
-                        <li>{{ recipe.name }}</li>
-                        {% endfor %}
+                        <li></li>
                     </ul>
                 </div>
             </div>
         </div>
-        
     </div>
     <script>
         var popup = document.getElementById('popup');
         var openbtn = document.getElementById("open");
         var closebtn = document.getElementById("close");
-        openbtn.onclick = function() {
+        var ingredients = '{{ recipe.ingredients }}';
+
+        openbtn.onclick = function(e) {
             popup.classList.add('show');
-        }
+            
+            var ing_list = ingredients.split(", ")
+            ing_list.splice(-1)
+            var ul = document.getElementById("ul-ing");
+            ul.innerHTML = "";
+            for (i of ing_list) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(i));
+                ul.appendChild(li);
+            }
+
+            e.preventDefault();
+        };
+
         closebtn.onclick = function() {
             popup.classList.remove('show');
-        }
-    
-        window.onclick = function(event) {
-            if (event.target == popup) {
-                popup.classList.remove('show');
-            }
-        }
+        };
     </script>
-    
 </body>
 </html>

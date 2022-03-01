@@ -56,12 +56,20 @@ button:not(.close-modal) {
     margin: auto;
 }
 
+.modal a {
+    text-decoration: none;
+}
+
 .popup-content {
     border-radius: 40%;
 }
 
 .popup-content i {
     padding-right: 10px;
+}
+
+.popup-content ul {
+    padding-bottom: 10px;
 }
 
 .close-modal {

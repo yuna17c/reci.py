@@ -24,10 +24,12 @@ class HomePage(TemplateView):
     template_name = "base/home.html"
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
-        context['recipe_list'] = RecipeGenerator.objects.all()
+        recipes = list(RecipeGenerator.objects.all())
+        context['recipe'] = random.choice(random.sample(recipes, 1)) 
         return context
     def post(self, request):
         if 'generate' in request.POST:
+            RecipeGenerator.objects.all().delete()
             ingredients = FoodItem.objects.all()
             input_list=[]
             for a in ingredients:
