@@ -26,16 +26,21 @@ class HomePage(TemplateView):
         context = super(HomePage, self).get_context_data(**kwargs)
         recipes = list(RecipeGenerator.objects.all())
         context['ingredients'] = FoodItem.objects.all()
-        context['recipe'] = random.choice(random.sample(recipes, 1)) 
+        context['recipe'] = random.choice(recipes)
         return context
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         if 'generate' in request.POST:
             RecipeGenerator.objects.all().delete()
-            ingredients = FoodItem.objects.all()
-            input_list=[]
-            for a in ingredients:
-                input_list.append(a.name)
+            all_ingredients = FoodItem.objects.all()
+            ingredients = []
+            for i in all_ingredients:
+                ingredients.append(i.name)
+            random_num = random.randint(1, len(ingredients))
+            input_list = random.choices(ingredients, k=random_num)
             inputSearch(input_list, 1)
+            context = self.get_context_data(**kwargs)
+            return render(request, self.template_name, context=context)
+            
         return HttpResponseRedirect(request.path_info)
     
 class RecipeFinderHome(TemplateView):
@@ -85,6 +90,8 @@ class DeletePantryView(DeleteView):
     model = FoodItem
     context_object_name = 'item'
     success_url = reverse_lazy('pantry')
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 class PantryHome(TemplateView):
     model = FoodItem
@@ -145,11 +152,11 @@ async def fetch(session, url):
     try:
         async with session.get(url) as response:
             text = await response.text()
-            print("++++")
+            #print("++++")
             ingredients = await extract_ingredients(text)
-            print("\\\\")
+            #print("\\\\")
             img_link = await extract_img_link(text)
-            print("====")
+            #print("====")
             prep_time, minute = await extract_prep_time(text)
             return text, url, ingredients, img_link, prep_time, minute
     except Exception as e:
@@ -172,7 +179,7 @@ async def extract_ingredients(text):
 async def extract_img_link(text):
     try:
         soup = BeautifulSoup(text, 'lxml')
-        print("*new*")
+        #print("*new*")
         if soup.find('div', class_="image-container") is not None:
             image = soup.find('div', class_="image-container").find("img")
             img_link = image.attrs['src']

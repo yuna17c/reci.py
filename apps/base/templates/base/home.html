@@ -45,7 +45,10 @@
     <div id="popup" class="modal center">
         <div class="popup-content" id="popup-content">
             <div class="popup-header">
-                <button class="close-modal" aria-label="close modal" id="close">✕</button>
+                <form method="POST" class="close" id="close">
+                    {% csrf_token %}
+                    <button class="close-modal" aria-label="close modal" id="close">✕</button>
+                </form>
             </div>
            <div class="popup-box">
                 <div><img class="popup-img" src="{{ recipe.img_link }}"/></div>
@@ -72,7 +75,6 @@
         var input = '{{ ingredients }}';
 
         openbtn.onclick = function(e) {
-            console.log(input);
             popup.classList.add('show');
             
             var ing_list = ingredients.split(", ")
@@ -89,7 +91,6 @@
 
         closebtn.onclick = function() {
             popup.classList.remove('show');
-            location.reload();
         };
     </script>
 </body>
