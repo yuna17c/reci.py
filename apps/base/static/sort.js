@@ -6,7 +6,7 @@ function formatDate(date) {
 /* ref: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table_desc */
 function sortByName() {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("fridge-table");
+  table = document.getElementById("pantry-table");
   switching = true;
   // Set the sorting direction to ascending:
   dir = "asc";
@@ -61,7 +61,7 @@ function sortByName() {
 
 function sortByDate() {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("fridge-table");
+  table = document.getElementById("pantry-table");
   switching = true;
   // Set the sorting direction to ascending:
   dir = "asc";

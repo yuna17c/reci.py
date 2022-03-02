@@ -6,7 +6,7 @@
     <meta charset="UFT-8">
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'fridge_style.css' %}?{% now "U" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pantry_style.css' %}?{% now "U" %}">
     <script src="{% static 'filter.js' %}?{% now "U" %}"></script>
     <script src="{% static 'sort.js' %}?{% now "U" %}"></script>
     <script src="{% static 'search.js' %}?{% now "U" %}"></script>
@@ -18,11 +18,11 @@
     <div class="nav">
         <table class="nav-items">
             <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
-            <td><a class="active"  href="#">FRIDGE</a></td>
+            <td><a class="active"  href=".">PANTRY</a></td>
             <td><a href="{% url 'recipe-finder' %}">RECIPE FINDER</a></td>
         </table>
     </div>
-    <h1>Fridge</h1>
+    <div class="row"><h1>Pantry</h1></div>
     <div class="notif row">
         <p>there are <span id="count1">0</span> item(s) that are expired and <span id="count2">0</span> item(s) that are expiring soon!</p>
     </div>
@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="row">
-        <table id="fridge-table">
+        <table id="pantry-table">
         <thead>
             <tr>
                 <th>
@@ -101,7 +101,7 @@
                     <td class="name">{{ item.name }}</td>
                     <td class="expiry">EXPIRED</td>
                     <td class="food-group">{{ item.food_group }}</td>
-                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td><a href="{% url 'pantry-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
                 
             {% elif item.is_expiring_soon %}
@@ -109,7 +109,7 @@
                     <td class="name">{{ item.name }}</td>
                     <td class="expiry">{{ item.expiry_date }}</td>
                     <td class="food-group">{{ item.food_group }}</td>
-                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td><a href="{% url 'pantry-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
 
             {% else %}
@@ -117,7 +117,7 @@
                     <td class="name">{{ item.name }}</td>
                     <td class="expiry date">{{ item.expiry_date }}</td>
                     <td class="food-group">{{ item.food_group }}</td>
-                    <td><a href="{% url 'fridge-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                    <td><a href="{% url 'pantry-update' item.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
             </tr>
             {% endif %}
 

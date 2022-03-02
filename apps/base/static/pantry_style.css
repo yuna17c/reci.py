@@ -1,23 +1,11 @@
 @import url("base.css");
 
-.row {
-    display:flex;
-    justify-content:flex-start;
-    align-items:stretch;
-    flex-wrap:nowrap;
-    padding: 0 5vh;
-}
-
-.cell {
-    min-height:75px;
-    flex-basis: 100%;
-}
 
 .notif {
     display: inline-block;
     height: 100%;
     text-align: center;
-    width: 100%;
+    width: 95%;
     background: #FF8181;
     color: white;
     font-weight: 600;
@@ -35,6 +23,7 @@
 h1 {
     color: var(--medium-green);
     padding: 0;
+    padding-top: 5vh;
 }
 
 .home-button {
@@ -75,6 +64,9 @@ input#search_input {
     float: right;
 }
 
+#search {
+}
+
 #input label {
     font-family: 'Baloo 2', sans-serif;
     font-size: 2.5vh;
@@ -96,12 +88,16 @@ input, select, option {
     padding: 10px;
 }
 
-#add_button {
-    padding: 10px;
-    font-size: 2.5vh;
+#add {
+    padding: 5px;
+    font-size: 2.3vh;
 }
 
-table {
+#add_button {
+    padding-top: 5px;
+}
+
+#pantry-table {
     font-size: 2.5vh;
     border-collapse: collapse;
     width: 100%;
@@ -111,19 +107,19 @@ table {
     display: none;
 }
 
-th {
+#pantry-table th {
     color: var(--accent);
     background-color: var(--medium-green);
     text-align: center;
     padding: 8px;
 }
 
-th i {
+#pantry-table th i {
     float: right;
     cursor: pointer;
 }
 
-td {
+#pantry-table td {
     text-align: center;
     padding: 8px;
 }
@@ -132,14 +128,28 @@ td {
     color: #FF8181;
 }
 
-tr:nth-child(even) {
+#pantry-table tr:nth-child(even) {
     background-color: white
 }
 
-td i {
+#pantry-table td i {
     float: right;
     color: var(--accent);
     padding: 10px;
+}
+
+
+@media (max-width: 1500px){
+    .left { 
+        width: 25%;
+    }
+    .right {
+        margin-left: calc(25% + 100px);
+    }
+
+    #food-groups {
+        padding-top: 10px;
+    }
 }
 
 @media(max-width: 1000px) {
@@ -155,16 +165,6 @@ td i {
     #add {
         display: inline-block;
     }
-}
-
-@media (max-width: 840px){
-    .left { 
-        width: 25%;
-    }
-    .right {
-        margin-left: calc(25% + 100px);
-    }
-    
 }
 
 @media (max-width: 685px) {

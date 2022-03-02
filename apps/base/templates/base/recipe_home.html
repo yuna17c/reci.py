@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'recipe_style.css' %}?{% now "U" %}">
     {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> {% endcomment %}
-    <script src="https://kit.fontawesome.com/2fb3127217.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a73e2d7b3a.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
 <div id="overlay">
@@ -16,12 +16,12 @@
     <div class="nav">
         <table class="nav-items">
             <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
-            <td><a href="{% url 'fridge' %}">FRIDGE</a></td>
-            <td><a class="active" href="#">RECIPE FINDER</a></td>
+            <td><a href="{% url 'pantry' %}">PANTRY</a></td>
+            <td><a class="active" href=".">RECIPE FINDER</a></td>
         </table>
     </div>
     <div>
-        <h1>Recipe Finder</h1>
+        <div class="row"><h1>Recipe Finder</h1></div>
         <div class="sort">
                 <p>time
                     <button type="submit" name="desc_button" id="desc"><i class="fas fa-angle-down"></i></button>
@@ -73,9 +73,9 @@
                     <div class="popup-text">
                         <p class="popup-title"></p>
                         <div class="box">
-                            <div><p><a class="popup-link" target="blank">more details</a></p></div>
-                            <div><p class="popup-prep"></p></div>
-                            <div><p>spicy</p></div>
+                            <div><p><i class="fa-solid fa-note-sticky"></i><a class="popup-link" target="blank">more details</a></p></div>
+                            <div><p class="popup-prep"><i class="fa-solid fa-clock"></i></p></div>
+                            <div><p><i class="fa-solid fa-pizza-slice"></i>spicy</p></div>
                         </div>
                         
                         <ul class="popup-ing" id="ul-ing">

@@ -12,21 +12,36 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from bs4 import BeautifulSoup
 import requests
-from .models import Ingredient, FoodItem, RecipeList
+from .models import *
 import random
 import aiohttp
 import asyncio  
 from .changeToMin import changeToMinute
 from .shorten import replaceUnits
 
-def all_food_items(request):
-    food_list = FoodItem.objects.all()
-    return render(request, 'base/recipe-generator.html', 
-    { 'food_list' : food_list })
-
-class HomePage(ListView):
-    model = Ingredient
+class HomePage(TemplateView):
+    model = FoodItem
     template_name = "base/home.html"
+    def get_context_data(self, **kwargs):
+        context = super(HomePage, self).get_context_data(**kwargs)
+        recipes = list(RecipeGenerator.objects.all())
+        context['ingredients'] = FoodItem.objects.all()
+        context['recipe'] = random.choice(recipes)
+        return context
+    def post(self, request, *args, **kwargs):
+        if 'generate' in request.POST:
+            RecipeGenerator.objects.all().delete()
+            all_ingredients = FoodItem.objects.all()
+            ingredients = []
+            for i in all_ingredients:
+                ingredients.append(i.name)
+            random_num = random.randint(1, len(ingredients))
+            input_list = random.choices(ingredients, k=random_num)
+            inputSearch(input_list, 1)
+            context = self.get_context_data(**kwargs)
+            return render(request, self.template_name, context=context)
+            
+        return HttpResponseRedirect(request.path_info)
     
 class RecipeFinderHome(TemplateView):
     template_name = "base/recipe_home.html"
@@ -47,7 +62,7 @@ class RecipeFinderHome(TemplateView):
             for a in all_entries:
                 print(a.name)
                 input_list.append(a.name)
-            inputSearch(input_list)
+            inputSearch(input_list, 0)
         elif 'desc_button' in request.POST:
             # compare = request.POST.get("compare", "")
             # amount = request.POST.get("amount", "")
@@ -71,16 +86,18 @@ class DeleteView(DeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-class DeleteFridgeView(DeleteView):
+class DeletePantryView(DeleteView):
     model = FoodItem
     context_object_name = 'item'
-    success_url = reverse_lazy('fridge')
+    success_url = reverse_lazy('pantry')
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
-class FridgeHome(TemplateView):
+class PantryHome(TemplateView):
     model = FoodItem
-    template_name = "base/fridge_home.html"
+    template_name = "base/pantry_home.html"
     def get_context_data(self, **kwargs):
-        context = super(FridgeHome, self).get_context_data(**kwargs)
+        context = super(PantryHome, self).get_context_data(**kwargs)
         context['food_items'] = FoodItem.objects.all()
         return context
     def post(self, request):
@@ -97,16 +114,7 @@ class FridgeHome(TemplateView):
         request.session['food_names'] = names
         return HttpResponseRedirect(request.path_info)
 
-class RecipeGenerator(TemplateView):
-    model = FoodItem
-    template_name = "base/home.html"
-    def post(self, request):
-        FridgeHome.post(self, request)
-        ingredients = request.session['food_names']
-        #inputSearch(ingredients)
-        return HttpResponseRedirect(request.path_info)
-
-def inputSearch(lst):
+def inputSearch(lst, mode):
     search = "https://www.allrecipes.com/search/results/?IngIncl="
     if (len(lst) == 1):
         search += lst[0]
@@ -115,9 +123,9 @@ def inputSearch(lst):
             search += "&IncIncl=" + ingredient
     
     #webbrowser.open(search)
-    findRecipeNames(search)
+    findRecipeNames(search, mode)
 
-def findRecipeNames(link):
+def findRecipeNames(link, mode):
     recipeNameList = []
     recipeLinkList = []
     source = requests.get(link).text
@@ -129,13 +137,16 @@ def findRecipeNames(link):
     for part in soup.find_all('a', {"class":'card__titleLink'}, href=True):
         parent_tag = part.find_parent('div')['class']
         if parent_tag==['card__detailsContainer-left']:
-            RecipeList.objects.create(recipe_name=recipeNameList[i], link=part['href']).save()
+            if (mode==0):
+                RecipeList.objects.create(recipe_name=recipeNameList[i], link=part['href']).save()
+            elif(mode==1):
+                RecipeGenerator.objects.create(name=recipeNameList[i], link=part['href']).save()
             elems = part.get('href')
             recipeLinkList.append(elems)
             i+=1
 
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    asyncio.run(get_details(recipeLinkList))
+    asyncio.run(get_details(recipeLinkList, mode))
 
 async def fetch(session, url):
     try:
@@ -165,7 +176,7 @@ async def extract_ingredients(text):
 async def extract_img_link(text):
     try:
         soup = BeautifulSoup(text, 'lxml')
-        print("*new*")
+        #print("*new*")
         if soup.find('div', class_="image-container") is not None:
             image = soup.find('div', class_="image-container").find("img")
             img_link = image.attrs['src']
@@ -200,7 +211,7 @@ async def extract_prep_time(text):
         print(str(e))
         return "", 0
 
-async def get_details(urls):
+async def get_details(urls, mode):
     tasks=[]
     all_data=[]
     async with aiohttp.ClientSession() as session:
@@ -208,12 +219,22 @@ async def get_details(urls):
             tasks.append(fetch(session, url))
         htmls = await asyncio.gather(*tasks)
         all_data.extend(htmls)
+
         for html in htmls:
             if html is not None:
-                recipeObject = RecipeList.objects.get(link=html[1])
-                recipeObject.prep_time = html[4]
-                recipeObject.prep_min = html[5]
-                recipeObject.img_link = html[3]
-                recipeObject.ingredients = html[2]
-                recipeObject.save()
+                if (mode==0):
+                    recipeObject = RecipeList.objects.get(link=html[1])
+                    recipeObject.prep_time = html[4]
+                    recipeObject.prep_min = html[5]
+                    recipeObject.img_link = html[3]
+                    recipeObject.ingredients = html[2]
+                    recipeObject.save()
+
+                elif (mode==1):
+                    recipeObject = RecipeGenerator.objects.get(link=html[1])
+                    recipeObject.prep_time = html[4]
+                    recipeObject.prep_min = html[5]
+                    recipeObject.img_link = html[3]
+                    recipeObject.ingredients = html[2]
+                    recipeObject.save()
 

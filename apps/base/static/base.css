@@ -8,6 +8,20 @@
     --accent: rgb(59, 126, 67);
 }
 
+.row {
+    display:flex;
+    justify-content:flex-start;
+    align-items:stretch;
+    flex-wrap:nowrap;
+    padding: 0 5vh;
+}
+
+.cell {
+    min-height:75px;
+    flex-basis: 100%;
+}
+
+
 .left {
     position: fixed;
     margin-left: 30px;
@@ -45,6 +59,7 @@ body {
     background-color: var(--primary);
     color: black;
     font-family: 'Questrial', sans-serif;
+    margin: 0;
 }
 
 /* Navigation bar */
@@ -54,14 +69,14 @@ body {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: var(--primary);
-    box-shadow: 0 3px 2px -2px gray;
+    background-color: var(--medium-green);
+    font-size: 3vh;
 }
 
-.nav-items {
+table.nav-items {
     position: relative;
     display: inline-block;
-    color: black;
+    color: white;
     font-family: 'Baloo 2';
     font-weight: 600;
 }
@@ -71,14 +86,18 @@ body {
     padding-top: 5px;
 }
 
+.nav-items a:link.active, i.active {
+    color: var(--accent);
+}
+
 .nav-items a:visited, .nav-items a:link {
-    color:black;
+    color:white;
     text-decoration: none;
 }
 
 .fa-home {
     font-size: 23px;
-    color: black;
+    color: white;
     padding-top: 2px;
 }
 
@@ -90,10 +109,6 @@ body {
     -webkit-transition: .5s;
     transition: .5s;
     cursor: pointer;
-    color: var(--accent);
-}
-
-.nav-items a.active {
     color: var(--accent);
 }
 
@@ -109,10 +124,10 @@ body {
 
 h1 {
     font-family: 'Baloo 2';
-    font-size: 4vw;
+    font-size: 4.3vw;
     color: var(--medium-green);
     display: flex;
-    margin-left: 2.5vw;
+    padding-top: 5vh;
 }
 
 h3 {
