@@ -141,11 +141,8 @@ async def fetch(session, url):
     try:
         async with session.get(url) as response:
             text = await response.text()
-            print("++++")
             ingredients = await extract_ingredients(text)
-            print("\\\\")
             img_link = await extract_img_link(text)
-            print("====")
             prep_time, minute = await extract_prep_time(text)
             return text, url, ingredients, img_link, prep_time, minute
     except Exception as e:
