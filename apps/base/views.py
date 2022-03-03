@@ -23,6 +23,7 @@ from .shorten import replaceUnits
 class HomePage(TemplateView):
     model = FoodItem
     template_name = "base/home.html"
+    
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
         recipes = list(RecipeGenerator.objects.all())
@@ -34,7 +35,7 @@ class HomePage(TemplateView):
         return context
     def post(self, request, *args, **kwargs):
         if 'generate' in request.POST:
-            print("genrating")
+            print("generating")
             RecipeGenerator.objects.all().delete()
             all_ingredients = FoodItem.objects.all()
             ingredients = []
@@ -42,6 +43,8 @@ class HomePage(TemplateView):
                 ingredients.append(i.name)
             random_num = random.randint(1, len(ingredients))
             input_list = random.choices(ingredients, k=random_num)
+            print("[input list]: ")
+            print(input_list)
             inputSearch(input_list, 1)
             context = self.get_context_data(**kwargs)
             return render(request, self.template_name, context=context)
