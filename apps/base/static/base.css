@@ -86,13 +86,13 @@ table.nav-items {
     padding-top: 5px;
 }
 
-.nav-items a:link.active, i.active {
-    color: var(--accent);
+.nav-items a {
+    text-decoration: none;
+    color: white;
 }
 
-.nav-items a:visited, .nav-items a:link {
-    color:white;
-    text-decoration: none;
+.nav-items .active {
+    color: var(--accent);
 }
 
 .fa-home {

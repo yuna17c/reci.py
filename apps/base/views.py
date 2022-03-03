@@ -1,4 +1,5 @@
 from ast import Try
+from contextlib import nullcontext
 from unicodedata import name
 from django import forms
 from msilib.schema import ListView
@@ -26,10 +27,14 @@ class HomePage(TemplateView):
         context = super(HomePage, self).get_context_data(**kwargs)
         recipes = list(RecipeGenerator.objects.all())
         context['ingredients'] = FoodItem.objects.all()
-        context['recipe'] = random.choice(recipes)
+        if (recipes):
+            context['recipe'] = random.choice(recipes)
+        else:
+            context['recipe'] = nullcontext
         return context
     def post(self, request, *args, **kwargs):
         if 'generate' in request.POST:
+            print("genrating")
             RecipeGenerator.objects.all().delete()
             all_ingredients = FoodItem.objects.all()
             ingredients = []
