@@ -6,24 +6,14 @@ from django.views.generic.edit import DeleteView
 from .models import *
 import random
 from .recipelist import *
-# import the logging library
-import logging
-
-# Get an instance of a logger
-logger = logging.getLogger(__name__)
 
 class HomePage(TemplateView):
     model = FoodItem
     template_name = "base/home.html"    
-    logger.warning('hello')
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
         context['ingredients'] = FoodItem.objects.all()
-        recipes = RecipeGenerator.objects.all()
-        if (recipes):
-            context['recipe'] = random.choice(recipes)
-        else:
-            context['recipe'] = nullcontext
+        context['recipe'] = RecipeGenerator.objects.first()
         return context
     def post(self, request, *args, **kwargs):
         if 'generate' in request.POST:
@@ -35,7 +25,7 @@ class HomePage(TemplateView):
             random_num = random.randint(1, len(ingredients))
             input_list = random.sample(ingredients, k=random_num)
 
-            #generate(input_list)
+            generate(input_list, "one")
             
         return HttpResponseRedirect(request.path_info)
     

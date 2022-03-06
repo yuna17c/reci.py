@@ -60,7 +60,9 @@
                     </div>
                     <h2>ingredients</h2>
                     <ul class="popup-ing" id="ul-ing">
-                        <li></li>
+                        {% for i in ingredients %}
+                        <li>{{ i.name }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -71,8 +73,7 @@
         var openbtn = document.getElementById("open");
         var closebtn = document.getElementById("close");
         var ingredients = '{{ recipe.ingredients }}';
-        var input = '{{ ingredients }}';
-        var recipe = '{{ recipe.name }}'
+        var recipe = '{{ recipe.name }}';
 
         openbtn.onclick = function(e) {
             popup.classList.add('show');

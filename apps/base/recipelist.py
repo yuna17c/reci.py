@@ -1,11 +1,16 @@
-from gettext import find
 from bs4 import BeautifulSoup
 import aiohttp
 import asyncio  
-from .changeToMin import changeToMinute
-from .shorten import replaceUnits
 from .models import RecipeList, RecipeGenerator
+from .extractinfo import *
 import requests
+import random
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 
 def inputSearch(lst, mode):
     search = "https://www.allrecipes.com/search/results/?IngIncl="
@@ -20,11 +25,22 @@ def inputSearch(lst, mode):
     elif (mode == "one"):
         generate(search)
 
-#not done :3
 def generate(link):
+    logging.warning('hi')
+    recipeLinkList = []
     source = requests.get(link).text
     soup = BeautifulSoup(source, 'lxml')
-    
+    all_results = soup.find_all('div', class_='component')
+    recipe = random.choice(all_results)
+
+    soupV2 = BeautifulSoup(recipe, 'lxml')
+    recipeName = soupV2.find('h3', class_='card__title').get_text().strip()
+    part = soup.find('a', {"class": 'card__titleLink'}, href=True)
+    recipeLink = part['href']
+    RecipeGenerator.objects.create(recipe_name = recipeName, link = recipeLink).save()
+    recipeLinkList.append(part.get('href'))
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    asyncio.run(get_details(recipeLinkList, "one"))    
 
 def findRecipeNames(link):
     recipeNameList = []
@@ -42,9 +58,8 @@ def findRecipeNames(link):
             elems = part.get('href')
             recipeLinkList.append(elems)
             i+=1
-
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    asyncio.run(get_details(recipeLinkList))
+    asyncio.run(get_details(recipeLinkList, "many"))
 
 async def fetch(session, url):
     try:
@@ -57,59 +72,8 @@ async def fetch(session, url):
     except Exception as e:
         print(str(e))
 
-async def extract_ingredients(text):
-    try:
-        soup = BeautifulSoup(text, 'lxml')
-        ings = soup.find_all('li', class_="ingredients-item")
-        ing_text=""
-        for i in ings:
-            ing = i.get_text()
-            ing=replaceUnits(ing)
-            ing_text+=ing.replace(",", "")
-            ing_text += ", "
-        return ing_text
-    except Exception as e:
-        print(str(e))
 
-async def extract_img_link(text):
-    try:
-        soup = BeautifulSoup(text, 'lxml')
-        #print("*new*")
-        if soup.find('div', class_="image-container") is not None:
-            image = soup.find('div', class_="image-container").find("img")
-            img_link = image.attrs['src']
-            print("--" , str(img_link))
-        elif soup.find('div', class_="image-slide") is not None:
-            if soup.find_all('div', class_="image-slide")[1]:
-                image = soup.find_all('div', class_="image-slide")[1].find("img")
-                img_link = image.attrs['src']
-        else:
-            img_link = "../static/images/default.png"
-        if img_link=="/img/icons/recipe-add-photo.jpg":
-            img_link ="../static/images/default.png"
-        return img_link
-    except Exception as e:
-        img_link = "../static/images/default.png"
-        print(str(e))
-        return img_link
-
-async def extract_prep_time(text):
-    try:
-        soup = BeautifulSoup(text, 'lxml')
-        minute=0
-        total_time=""
-        if soup.find("div", class_='recipe-meta-item-header', string="total:"):
-            total = soup.find_all("div", class_='recipe-meta-item-header', string="total:")
-            child = total[0].find_next_sibling("div")
-            if child is not None:
-                total_time = child.get_text()
-                minute = changeToMinute(total_time)
-        return total_time, minute
-    except Exception as e:
-        print(str(e))
-        return "", 0
-
-async def get_details(urls):
+async def get_details(urls, mode):
     tasks=[]
     all_data=[]
     async with aiohttp.ClientSession() as session:
@@ -120,10 +84,18 @@ async def get_details(urls):
 
         for html in htmls:
             if html is not None:
-                recipeObject = RecipeList.objects.get(link=html[1])
-                recipeObject.prep_time = html[4]
-                recipeObject.prep_min = html[5]
-                recipeObject.img_link = html[3]
-                recipeObject.ingredients = html[2]
-                recipeObject.save()
+                if (mode == "many"):
+                    recipeObject = RecipeList.objects.get(link=html[1])
+                    recipeObject.prep_time = html[4]
+                    recipeObject.prep_min = html[5]
+                    recipeObject.img_link = html[3]
+                    recipeObject.ingredients = html[2]
+                    recipeObject.save()
+                elif (mode == "one"):
+                    recipeObject = RecipeGenerator.objects.get(link=html[1])
+                    recipeObject.prep_time = html[4]
+                    recipeObject.prep_min = html[5]
+                    recipeObject.img_link = html[3]
+                    recipeObject.ingredients = html[2]
+                    recipeObject.save()
 
