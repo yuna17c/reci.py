@@ -13,7 +13,7 @@ button i {
     padding-bottom: 10px;
 }
 
-button:not(.close-modal) {
+button:not(#close) {
     width: 150px;
     height: 150px;
     font-size: 20px;
@@ -72,7 +72,7 @@ button:not(.close-modal) {
     padding-bottom: 10px;
 }
 
-.close-modal {
+#close {
     font-size: 2.5vh;
     background-color: var(--primary);
     color: black;
@@ -93,7 +93,7 @@ button:not(.close-modal) {
     .cell {
         padding: 10px;
     }
-    button:not(.close-modal) {
+    button:not(#close) {
         width: 100px;
         height: 100px;
         font-size: 10px;

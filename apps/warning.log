@@ -1,1 +1,351 @@
-
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+Forbidden (CSRF token missing or incorrect.): /
+Forbidden (CSRF token missing or incorrect.): /
+generating
+generating
+image
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\views.py", line 39, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 41, in generate
+    asyncio.run(get_details(recipeLinkList, "one"))
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 93, in get_details
+    recipeObject = RecipeGenerator.objects.get(link=html[1])
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\query.py", line 435, in get
+    raise self.model.DoesNotExist(
+base.models.RecipeGenerator.DoesNotExist: RecipeGenerator matching query does not exist.
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\views.py", line 38, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 41, in generate
+    asyncio.run(get_details(recipeLinkList, "one"))
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 98, in get_details
+    generated.save()
+UnboundLocalError: local variable 'recipeObject' referenced before assignment
+generating
+image
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\views.py", line 38, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 41, in generate
+    asyncio.run(get_details(recipeLinkList, "one"))
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 98, in get_details
+    generated.save()
+UnboundLocalError: local variable 'recipeObject' referenced before assignment
+Not Found: /None
+generating
+image
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\views.py", line 38, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 41, in generate
+    asyncio.run(get_details(recipeLinkList, "one"))
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\asyncio\base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 98, in get_details
+    generated.save()
+UnboundLocalError: local variable 'recipeObject' referenced before assignment
+generating
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\views.py", line 38, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 39, in generate
+    RecipeGenerator.objects.create(recipe_name=recipeName, link=part['href']).save()
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\query.py", line 451, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\base.py", line 503, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: RecipeGenerator() got an unexpected keyword argument 'recipe_name'
+generating
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\views.py", line 38, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Dell\Documents\GitHub\FeedMe\apps\base\recipelist.py", line 39, in generate
+    RecipeGenerator.objects.create(recipe_name=recipeName, link=part['href']).save()
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\query.py", line 451, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Dell\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\django\db\models\base.py", line 503, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: RecipeGenerator() got an unexpected keyword argument 'recipe_name'
+generating
+image
+generating
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image
+generating
+image

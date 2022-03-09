@@ -6,6 +6,15 @@ from django.views.generic.edit import DeleteView
 from .models import *
 import random
 from .recipelist import *
+from django.shortcuts import redirect, render
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
+def index(request):
+    return render(request, "home.html")
 
 class HomePage(TemplateView):
     model = FoodItem
@@ -15,8 +24,9 @@ class HomePage(TemplateView):
         context['ingredients'] = FoodItem.objects.all()
         context['recipe'] = RecipeGenerator.objects.first()
         return context
-    def post(self, request, *args, **kwargs):
-        if 'generate' in request.POST:
+    def post(self, request):
+        if 'close' in request.POST:
+            logger.warning("generating")
             RecipeGenerator.objects.all().delete()
             all_ingredients = FoodItem.objects.all()
             ingredients = []
@@ -25,7 +35,7 @@ class HomePage(TemplateView):
             random_num = random.randint(1, len(ingredients))
             input_list = random.sample(ingredients, k=random_num)
 
-            generate(input_list, "one")
+            inputSearch(input_list, "one")
             
         return HttpResponseRedirect(request.path_info)
     

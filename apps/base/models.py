@@ -57,7 +57,7 @@ class RecipeGenerator(models.Model):
     ingredients = models.TextField(null=True, blank=True)
     img_link = models.TextField(null=True, blank=True)
     def __str__(self):
-        return self.recipe_name
+        return self.name
 
 
  

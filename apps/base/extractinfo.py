@@ -3,6 +3,11 @@ from .changeToMin import changeToMinute
 from .shorten import replaceUnits
 from gettext import find
 from bs4 import BeautifulSoup
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 async def extract_ingredients(text):
     try:
@@ -19,6 +24,7 @@ async def extract_ingredients(text):
         print(str(e))
 
 async def extract_img_link(text):
+    logger.warning("image")
     try:
         soup = BeautifulSoup(text, 'lxml')
         #print("*new*")

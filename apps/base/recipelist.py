@@ -26,21 +26,22 @@ def inputSearch(lst, mode):
         generate(search)
 
 def generate(link):
-    logging.warning('hi')
     recipeLinkList = []
     source = requests.get(link).text
     soup = BeautifulSoup(source, 'lxml')
-    all_results = soup.find_all('div', class_='component')
-    recipe = random.choice(all_results)
-
+    all_results = soup.find_all('div', class_='card__facetedSearchResult')
+    recipe = str(random.choice(all_results))
     soupV2 = BeautifulSoup(recipe, 'lxml')
     recipeName = soupV2.find('h3', class_='card__title').get_text().strip()
-    part = soup.find('a', {"class": 'card__titleLink'}, href=True)
-    recipeLink = part['href']
-    RecipeGenerator.objects.create(recipe_name = recipeName, link = recipeLink).save()
-    recipeLinkList.append(part.get('href'))
+    for part in soupV2.find_all('a', {"class":'card__titleLink'}, href=True):
+        parent_tag = part.find_parent('div')['class']
+        if parent_tag==['card__detailsContainer-left']:
+            RecipeGenerator.objects.create(name=recipeName, link=part['href']).save()
+            elems = part.get('href')
+            recipeLinkList.append(elems)
+            break
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    asyncio.run(get_details(recipeLinkList, "one"))    
+    asyncio.run(get_details(recipeLinkList, "one"))
 
 def findRecipeNames(link):
     recipeNameList = []
@@ -92,10 +93,10 @@ async def get_details(urls, mode):
                     recipeObject.ingredients = html[2]
                     recipeObject.save()
                 elif (mode == "one"):
-                    recipeObject = RecipeGenerator.objects.get(link=html[1])
-                    recipeObject.prep_time = html[4]
-                    recipeObject.prep_min = html[5]
-                    recipeObject.img_link = html[3]
-                    recipeObject.ingredients = html[2]
-                    recipeObject.save()
+                    generated = RecipeGenerator.objects.get(link=html[1])
+                    generated.prep_time = html[4]
+                    generated.prep_min = html[5]
+                    generated.img_link = html[3]
+                    generated.ingredients = html[2]
+                    generated.save()
 

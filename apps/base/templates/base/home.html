@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/a73e2d7b3a.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
-<body>
+<body onload="submit()">
     <div class="nav">
         <table class="nav-items">
             <td class="home-button"><i class="fa fa-home active" aria-hidden="true"></i></td>
@@ -31,10 +31,7 @@
             </div>
             
             <div class="cell">
-                <form method="POST" class="generator" id="generator">
-                    {% csrf_token %}
-                    <button id="open" name="generate" data-open="popup"><i class="fa-solid fa-3x fa-shuffle"></i><br>gime recipe!!</button>
-                </form>
+                 <button type="type" name="generate" id="open"><i class="fa-solid fa-3x fa-shuffle"></i><br>generate</button>
             </div>
             
             <div class="cell">
@@ -48,10 +45,13 @@
         <div class="loader" id=loader></div>
         <div class="popup-content" id="popup-content">
             <div class="popup-header">
-                <button class="close-modal" aria-label="close modal" id="close">✕</button>
+                <form method="POST" name="close" id="post">
+                    {% csrf_token %}
+                    <button type="submit" name="close" aria-label="close modal" id="close">✕</button>
+                </form>
             </div>
            <div class="popup-box">
-                <div><img class="popup-img" src=""/></div>
+                <div><img class="popup-img" src="{{ recipe.img_link }}"/></div>
                 <div class="popup-text">
                     <p class="popup-title">{{ recipe.name }}</p>
                    <div class="box">
@@ -60,28 +60,34 @@
                     </div>
                     <h2>ingredients</h2>
                     <ul class="popup-ing" id="ul-ing">
-                        {% for i in ingredients %}
-                        <li>{{ i.name }}</li>
-                        {% endfor %}
+                        <li></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <script>
+        function submit() {
+            if (!sessionStorage.getItem("submitted")) {
+                sessionStorage.setItem("submitted", "true");
+                document.getElementById("post").submit();
+            } else {
+                sessionStorage.removeItem("submitted");
+            }
+        }
+    </script>
+    <script>
         var popup = document.getElementById('popup');
         var openbtn = document.getElementById("open");
         var closebtn = document.getElementById("close");
         var ingredients = '{{ recipe.ingredients }}';
-        var recipe = '{{ recipe.name }}';
+        var input = '{{ ingredients }}';
+
+        console.log('{{ recipe.name }}')
+        console.log('{{ recipe.link }}')
 
         openbtn.onclick = function(e) {
-            popup.classList.add('show');
-                      
-            if (recipe) {
-                loading.classList.remove('show');
-                popup.classList.add('show');
-                var ing_list = ingredients.split(", ")
+            var ing_list = ingredients.split(", ")
                 ing_list.splice(-1)
                 var ul = document.getElementById("ul-ing");
                 ul.innerHTML = "";
@@ -89,12 +95,11 @@
                     var li = document.createElement("li");
                     li.appendChild(document.createTextNode(i));
                     ul.appendChild(li);
-                    e.preventDefault()
+                    if (input.includes(li)) {
+                        li.style.color = "var(--accent)"
+                    }
                 } 
-                
-            }
-            
-            e.preventDefault()
+            popup.classList.add('show');
         };
 
         closebtn.onclick = function() {
