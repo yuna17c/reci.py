@@ -5,6 +5,10 @@ h1 {
     font-size: 100px;
 }
 
+h2 {
+    font-size: 1.7vw;
+}
+
 .cell {
     padding: 30px;
 }
@@ -51,8 +55,8 @@ button:not(#close) {
     transition: all 0.3s ease-in-out;
     top: 50%;
     border-color: black;
-    width: 50%;
-    height: 50%;
+    width: 65%;
+    height: 65%;
     margin: auto;
 }
 
@@ -62,6 +66,13 @@ button:not(#close) {
 
 .popup-content {
     border-radius: 40%;
+}
+
+.popup-img {
+    max-width: 100%; 
+    height: 450px; 
+    margin: auto;
+    object-fit: contain;
 }
 
 .popup-content i {
@@ -86,6 +97,18 @@ button:not(#close) {
 
 /**************************/
 
+@media (max-width: 1500px) {
+    .popup-img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .popup-img {
+        width: 100%;
+        height: 250px;
+    }
+}
 @media (max-width: 650px){
     h1 {
         font-size: 75px;

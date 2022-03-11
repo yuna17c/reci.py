@@ -42,7 +42,6 @@
         </div>
     </div>
     <div id="popup" class="modal center">
-        <div class="loader" id=loader></div>
         <div class="popup-content" id="popup-content">
             <div class="popup-header">
                 <form method="POST" name="close" id="post">
@@ -51,7 +50,7 @@
                 </form>
             </div>
            <div class="popup-box">
-                <div><img class="popup-img" src="{{ recipe.img_link }}"/></div>
+                <div class="recipe_image"><img class="popup-img" src="{{ recipe.img_link }}"/></div>
                 <div class="popup-text">
                     <p class="popup-title">{{ recipe.name }}</p>
                    <div class="box">

@@ -168,7 +168,7 @@ button:hover{ filter: brightness(1.1); }
     display: block;
     position: absolute;
     z-index: 1;
-    width: 80%;
+    width: 100%;
     top: 0;
     left: 0;
     margin-left: 10%;
@@ -202,6 +202,7 @@ button:hover{ filter: brightness(1.1); }
 }
 .popup-box ul li {
     margin-right: 7px;
+    font-size: 1.1vw;
 }
 .popup-header {
     text-align: end;
@@ -229,5 +230,6 @@ button:hover{ filter: brightness(1.1); }
     padding: 10px;
     float:left;
     margin-right: 10px;
+    font-size: 1.3vw; 
 }
 /**********************************/
