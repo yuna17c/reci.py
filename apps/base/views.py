@@ -1,45 +1,41 @@
-from ast import Try
-from unicodedata import name
-from django import forms
-from msilib.schema import ListView
-from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from contextlib import nullcontext
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic.list import ListView
 from django.views.generic import TemplateView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from bs4 import BeautifulSoup
-import requests
+from django.views.generic.edit import DeleteView
 from .models import *
 import random
-import aiohttp
-import asyncio  
-from .changeToMin import changeToMinute
-from .shorten import replaceUnits
+from .recipelist import *
+from django.shortcuts import redirect, render
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
+def index(request):
+    return render(request, "home.html")
 
 class HomePage(TemplateView):
     model = FoodItem
-    template_name = "base/home.html"
+    template_name = "base/home.html"    
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
-        recipes = list(RecipeGenerator.objects.all())
         context['ingredients'] = FoodItem.objects.all()
-        context['recipe'] = random.choice(recipes)
+        context['recipe'] = RecipeGenerator.objects.first()
         return context
-    def post(self, request, *args, **kwargs):
-        if 'generate' in request.POST:
+    def post(self, request):
+        if 'close' in request.POST:
+            logger.warning("generating")
             RecipeGenerator.objects.all().delete()
             all_ingredients = FoodItem.objects.all()
             ingredients = []
             for i in all_ingredients:
                 ingredients.append(i.name)
             random_num = random.randint(1, len(ingredients))
-            input_list = random.choices(ingredients, k=random_num)
-            inputSearch(input_list, 1)
-            context = self.get_context_data(**kwargs)
-            return render(request, self.template_name, context=context)
+            input_list = random.sample(ingredients, k=random_num)
+
+            inputSearch(input_list, "one")
             
         return HttpResponseRedirect(request.path_info)
     
@@ -62,7 +58,7 @@ class RecipeFinderHome(TemplateView):
             for a in all_entries:
                 print(a.name)
                 input_list.append(a.name)
-            inputSearch(input_list, 0)
+            inputSearch(input_list, "many")
         elif 'desc_button' in request.POST:
             # compare = request.POST.get("compare", "")
             # amount = request.POST.get("amount", "")
@@ -76,13 +72,6 @@ class DeleteView(DeleteView):
     model = Ingredient
     context_object_name = 'ingredient'
     success_url = reverse_lazy('recipe-finder')
-    def get(self, request, *args, **kwargs):
-        return self.post(request, *args, **kwargs)
-
-class DeletePantryView(DeleteView):
-    model = FoodItem
-    context_object_name = 'item'
-    success_url = reverse_lazy('pantry')
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
@@ -229,3 +218,9 @@ async def get_details(urls, mode):
                     recipeObject.ingredients = html[2]
                     recipeObject.save()
 
+class DeletePantryView(DeleteView):
+    model = FoodItem
+    context_object_name = 'item'
+    success_url = reverse_lazy('pantry')
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
