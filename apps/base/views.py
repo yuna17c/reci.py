@@ -68,13 +68,6 @@ class RecipeFinderHome(TemplateView):
             # amount = request.POST.get("amount", "")
             print("yes")
             recipe = RecipeList.objects.all().order_by('prep_min')
-            # for i in recipe:
-            #     recipeObject = RecipeList.objects.get(recipe_name=i)
-
-
-            # all_entries = RecipeList.objects.all()
-            # for a in all_entries:
-            #     print(a.recipe_name, a.prep_min)
         elif 'asc_button' in request.POST:
             print("asc")
         return HttpResponseRedirect(request.path_info)
@@ -176,11 +169,9 @@ async def extract_ingredients(text):
 async def extract_img_link(text):
     try:
         soup = BeautifulSoup(text, 'lxml')
-        #print("*new*")
         if soup.find('div', class_="image-container") is not None:
             image = soup.find('div', class_="image-container").find("img")
             img_link = image.attrs['src']
-            print("--" , str(img_link))
         elif soup.find('div', class_="image-slide") is not None:
             if soup.find_all('div', class_="image-slide")[1]:
                 image = soup.find_all('div', class_="image-slide")[1].find("img")

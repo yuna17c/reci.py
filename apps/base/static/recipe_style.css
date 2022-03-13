@@ -7,12 +7,12 @@ td { text-align: left; }
 .left {
     padding: 3px 1% 25px 1%;
     width: 13%;
-    margin-left: 0;
+    margin-left: 2%;
     background-color: var(--primary);
     border: gray 2px solid;
 }
 .right {
-    margin-left: 16%;
+    margin-left: 18%;
 }
 .left h3 {
     margin: auto;
@@ -32,9 +32,14 @@ td { text-align: left; }
     color: gray;
 }
 
-.ingredients-table .cell { padding: 1vh 0 0.45vh 0.75vw; }
+.ingredients-table .box { 
+    padding: 1vh 0 0.45vh 0.75vw; 
+    
+}
 
-.ingredients-table .row { box-shadow: 0 3px 2px -2px var(--accent); }
+.ingredients-table .line { 
+    box-shadow: 0 3px 2px -2px var(--accent);
+ }
 
 input {
     border: 2px inset var(--medium-green);
