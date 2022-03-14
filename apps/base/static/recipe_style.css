@@ -148,7 +148,16 @@ a {
     visibility: hidden;
     opacity: 0;
 }
-
+#modal1 {
+    width: 70%;
+    /* position: sticky; */
+}
+.popup-text .box p {
+    font-size: 1.1vw;
+}
+.popup-text .box i {
+    padding-right: 7 px;
+}
 .modal.is-visible {
     visibility: visible;
     opacity: 1;
