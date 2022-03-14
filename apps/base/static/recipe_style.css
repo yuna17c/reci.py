@@ -50,7 +50,14 @@ input {
     font-size: 1.3vw;
     padding: 1vh 0.7vw;
 }
-
+.done-button {
+    width: 95%;
+    background-color: var(--medium-green);
+    border-radius: 15px;
+    text-align: center;
+    margin: 0 auto;
+}
+.done-button:hover{ filter: brightness(1.1); }
 .ingredients-table input, .ingredients-table button {
     margin-top: 17px;
 }
@@ -149,18 +156,25 @@ a {
     opacity: 0;
 }
 #modal1 {
-    width: 70%;
-    /* position: sticky; */
+    width: 50%;
+    position: fixed;
+    margin-left: 33%;
+    margin-top: 11vh;
+    overflow: scroll;
 }
 .popup-text .box p {
     font-size: 1.1vw;
 }
 .popup-text .box i {
-    padding-right: 7 px;
+    padding-right: 10px;
 }
 .modal.is-visible {
     visibility: visible;
     opacity: 1;
+}
+
+.dark {
+    background: rgba(220, 220, 220, 1);
 }
 
 .open-modal {
