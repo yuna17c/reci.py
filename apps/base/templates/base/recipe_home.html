@@ -36,9 +36,9 @@
             <h3>Ingredients</h3>
             <table class="ingredients-table">
                 {% for i in ingredients %}
-                    <tr class="row">
-                        <td class="cell">{{i.name}}</td>
-                        <td class="cell">
+                    <tr class="line">
+                        <td class="box">{{i.name}}</td>
+                        <td class="box">
                             <a href="{% url 'ingredient-update' i.id %}">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
