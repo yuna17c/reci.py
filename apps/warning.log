@@ -787,3 +787,43 @@ Not Found: /favicon.ico
 Not Found: /favicon.ico
 Not Found: /favicon.ico
 Not Found: /favicon.ico
+generating
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\apps\base\views.py", line 38, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\apps\base\recipelist.py", line 33, in generate
+    recipe = str(random.choice(all_results))
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\random.py", line 347, in choice
+    return seq[self._randbelow(len(seq))]
+IndexError: list index out of range
+generating
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\apps\base\views.py", line 38, in post
+    inputSearch(input_list, "one")
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\apps\base\recipelist.py", line 26, in inputSearch
+    generate(search)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\apps\base\recipelist.py", line 33, in generate
+    recipe = str(random.choice(all_results))
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\random.py", line 347, in choice
+    return seq[self._randbelow(len(seq))]
+IndexError: list index out of range
