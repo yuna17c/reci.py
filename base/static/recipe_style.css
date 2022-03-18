@@ -155,13 +155,15 @@ a {
     visibility: hidden;
     opacity: 0;
 }
+
 #modal1 {
-    width: 50%;
+    width: 60%;
     position: fixed;
-    margin-left: 33%;
+    margin-left: 30%;
     margin-top: 11vh;
-    overflow: scroll;
+    
 }
+
 .popup-text .box p {
     font-size: 1.1vw;
 }
