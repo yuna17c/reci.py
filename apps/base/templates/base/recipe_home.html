@@ -11,8 +11,8 @@
     <script src="https://kit.fontawesome.com/a73e2d7b3a.js" crossorigin="anonymous"></script>
     <title>RECI.PY</title>
 </head>
-<div id="overlay">
-<body class="recipe-home" id="window">
+<div id="overlayd">
+<body class="recipe-home" id="overlay">
     <div class="nav">
         <table class="nav-items">
             <td class="home-button"><a href="{% url 'main' %}" ><i class="fa fa-home" aria-hidden="true"></i></a></td>
@@ -21,7 +21,7 @@
         </table>
     </div>
     <div>
-        <div class="row"><h1>Recipe Finder</h1></div>
+        <div class="row"><h1 id="top">Recipe Finder</h1></div>
         <div class="sort">
                 <p>time
                     <button type="submit" name="desc_button" id="desc"><i class="fas fa-angle-down"></i></button>
@@ -32,7 +32,7 @@
     </div>
     
     <div class="content">        
-        <div class="left">
+        <div class="left" id="left">
             <h3>Ingredients</h3>
             <table class="ingredients-table">
                 {% for i in ingredients %}
@@ -75,7 +75,6 @@
                         <div class="box">
                             <div><p><i class="fa-solid fa-note-sticky"></i><a class="popup-link" target="blank">more details</a></p></div>
                             <div><p class="popup-prep"><i class="fa-solid fa-clock"></i></p></div>
-                            <div><p><i class="fa-solid fa-pizza-slice"></i>spicy</p></div>
                         </div>
                         
                         <ul class="popup-ing" id="ul-ing">
@@ -91,12 +90,12 @@
                 {% endifequal %}
                 <td class="item">
                     <div class="cell">
-                        <div class="wrapper"><img src="{{i.img_link}}"id="slide"/></div>
+                        <div class="wrapper"><img src="{{i.img_link}}" id="slide"/></div>
                         <div class="text-content">       
                             <h3 id="name">{{i.recipe_name}}</h3>
                         </div> 
                     </div>
-                    <button class="open-modal" data-open="modal1">QUICK VIEW</button>
+                    <button class="open-modal" data-open="modal1"><a >QUICK VIEW</a></button>
                     <div class="popup-info">   <!-- this div will be hidden by default and I use it to store all the info I'll need to display on the popup for each project -->
                         <p>{{i.recipe_name}}</p>
                         <p>{{i.ingredients}}</p>
@@ -117,5 +116,3 @@
 </body>
 </div>
 </html>
-
-{% comment %} <a href="{{i.link}}" class="name" target="_blank">{{i.recipe_name}}</a> {% endcomment %}

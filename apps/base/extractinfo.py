@@ -31,7 +31,6 @@ async def extract_img_link(text):
         if soup.find('div', class_="image-container") is not None:
             image = soup.find('div', class_="image-container").find("img")
             img_link = image.attrs['src']
-            print("--" , str(img_link))
         elif soup.find('div', class_="image-slide") is not None:
             if soup.find_all('div', class_="image-slide")[1]:
                 image = soup.find_all('div', class_="image-slide")[1].find("img")
@@ -57,7 +56,11 @@ async def extract_prep_time(text):
             if child is not None:
                 total_time = child.get_text()
                 minute = changeToMinute(total_time)
+        if total_time=="":
+            total_time="unknown"
         return total_time, minute
     except Exception as e:
         print(str(e))
         return "", 0
+
+        

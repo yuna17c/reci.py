@@ -11,7 +11,8 @@ def replaceUnits(text):
     text=text.replace("pounds", "lbs")
     text=text.replace("pound", "lb")
     text=text.replace("ounce", "oz")
-    lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped", "minced", "cooked", "beaten", "peeled"]
+    # lst = ["or to taste", "to taste", "lengthwise", "diced", "chopped", "minced", "minced finely" "cooked", "beaten", "peeled"]
+    lst = ["or to taste", "to taste", "lengthwise", "or more as needed" ]
     find_next=False
     for i in lst:
         words = text.split(" ")
