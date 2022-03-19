@@ -1,0 +1,179 @@
+@import url("base.css");
+
+
+.notif {
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    width: 95%;
+    background: #FF8181;
+    color: white;
+    font-weight: 600;
+    font-size: 2.3vh;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.notif span {
+    color: white;
+    font-size: 3vh;
+    font-weight: 700;
+}
+
+h1 {
+    color: var(--medium-green);
+    padding: 0;
+    padding-top: 5vh;
+}
+
+.home-button {
+    float: right;
+}
+
+.header {
+    display: flex;
+    background-color: var(--secondary);
+    border-radius: 25px;
+}
+
+#checkboxes {
+    flex-basis: 200%;
+    flex-wrap: wrap;
+    color: var(--medium-green);
+    font-size: 21px;
+}
+
+#food-groups {
+    padding-top: 10px;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+ }
+
+ #food-groups label {
+    padding: 5px;
+    display: inline-block;
+ }
+
+#food-groups span {
+    margin-left: 1em;
+ }
+
+input#search_input {
+    float: right;
+}
+
+#input label {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 2.5vh;
+    color: var(--accent);
+    padding-right: 20px;
+}
+
+input, select, option {
+    border-radius: 15px;
+    border: 2px inset var(--medium-green);
+    font-family: 'Baloo 2';
+    text-align: center;
+    color: var(--accent);
+    padding: 2px;
+    font-size: 2.5vh;
+}
+
+#input {
+    padding: 10px;
+}
+
+#add {
+    padding: 5px;
+    font-size: 2.3vh;
+}
+
+#add_button {
+    padding-top: 5px;
+}
+
+#pantry-table {
+    font-size: 2.5vh;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+#pantry-table th {
+    color: var(--accent);
+    background-color: var(--medium-green);
+    text-align: center;
+    padding: 8px;
+}
+
+#pantry-table th i {
+    float: right;
+    cursor: pointer;
+}
+
+#pantry-table td {
+    text-align: center;
+    padding: 8px;
+}
+
+.expired, .warning {
+    color: #FF8181;
+}
+
+#pantry-table tr:nth-child(even) {
+    background-color: white
+}
+
+#pantry-table td i {
+    float: right;
+    color: var(--accent);
+    padding: 10px;
+}
+
+
+@media (max-width: 1500px){
+    .left { 
+        width: 25%;
+    }
+    .right {
+        margin-left: calc(25% + 100px);
+    }
+
+    #food-groups {
+        padding-top: 10px;
+    }
+}
+
+@media(max-width: 1000px) {
+    input#search_input {
+        float: left;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .button {
+        width: 100%;
+    }
+    #add {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 685px) {
+    body {
+        margin: 0;
+    }
+    .left { 
+        width: 75%;
+        position: static;
+    }
+    .right {
+        width: 90%;
+        margin: 0;
+    }
+}
