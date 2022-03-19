@@ -28,10 +28,11 @@
                     <button type="submit"><i class="fa-solid fa-3x fa-box"></i><br>pantry</button>
                 </form>
             </div>
-            
+            <!--
             <div class="cell">
                  <button type="type" name="generate" id="open"><i class="fa-solid fa-3x fa-shuffle"></i><br>generate</button>
             </div>
+            -->
             
             <div class="cell">
                 <form action="{% url 'recipe-finder' %}">
@@ -80,7 +81,6 @@
         var closebtn = document.getElementById("close");
         var ingredients = '{{ recipe.ingredients }}';
         var input = '{{ ingredients }}';
-
         console.log('{{ recipe.name }}')
         console.log('{{ recipe.link }}')
 
