@@ -1,0 +1,277 @@
+@import url("base.aed198be095a.css");
+
+td { text-align: left; }
+
+/* side bar */
+
+.left {
+    padding: 3px 1% 25px 1%;
+    width: 13%;
+    margin-left: 2%;
+    background-color: var(--primary);
+    border: gray 2px solid;
+}
+.right {
+    margin-left: 18%;
+}
+.left h3 {
+    margin: auto;
+    padding: 10px;
+}
+
+.ingredients-table { 
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 1.3vw;
+    font-family: 'Questrial', sans-serif;
+    margin-bottom: 25px;
+}
+
+.fa-trash { 
+    font-size: 1.1vw; 
+    color: gray;
+}
+
+.ingredients-table .box { 
+    padding: 1vh 0 0.45vh 0.75vw; 
+    
+}
+
+.ingredients-table .line { 
+    box-shadow: 0 3px 2px -2px var(--accent);
+ }
+
+input {
+    border: 2px inset var(--medium-green);
+    border-radius: 15px;
+    margin-right: 0.5vw;
+    width: 7.3vw;
+    font-family: 'Questrial';
+    font-size: 1.3vw;
+    padding: 1vh 0.7vw;
+}
+.done-button {
+    width: 95%;
+    background-color: var(--medium-green);
+    border-radius: 15px;
+    text-align: center;
+    margin: 0 auto;
+}
+.done-button:hover{ filter: brightness(1.1); }
+.ingredients-table input, .ingredients-table button {
+    margin-top: 17px;
+}
+
+.container, table {
+    font-family: 'Questrial';
+    font-size: 3vh;
+}
+
+.container {
+    border-spacing: 5px 20px;
+    margin-top: -53px;
+    width: 100%;
+}
+
+.container td {
+    width: 25%;
+}
+
+.wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 24vh;
+}
+
+#slide {
+    position: absolute;
+    width: 100%;
+    height:100%;
+    background-position: center center;
+    object-fit:cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.container .cell {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: var(--secondary);
+    transition: 1s;
+    filter:brightness(100%);
+    height: 36vh;
+}
+
+.cell:hover + .open-modal, .open-modal:hover {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    padding: 10px;
+    font-size: 1.2vw;
+    transform: translate(-50%, -50%);
+}
+
+.container .cell:hover {
+    filter: brightness(50%);
+    background-color: rgba(0,0,0,.4);
+}
+
+.cell h3 {
+    color: black;
+    font-size: 1.3vw;
+    font-weight: 500;
+}
+
+.item .text-content {
+    padding: 0 20px;
+}
+.item {
+    position: relative;
+}
+
+.recipe-table {
+    width: 100%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.recipe-link {
+    transition: all linear 300ms;
+}
+
+.recipe-link:hover {
+    color: var(--medium-green);
+}
+
+/* MODAL */
+.modal {
+    visibility: hidden;
+    opacity: 0;
+}
+
+#modal1 {
+    width: 60%;
+    position: fixed;
+    margin-left: 30%;
+    margin-top: 11vh;
+    
+}
+
+.popup-text .box p {
+    font-size: 1.1vw;
+}
+.popup-text .box i {
+    padding-right: 10px;
+}
+.modal.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dark {
+    background: rgba(220, 220, 220, 1);
+}
+
+.open-modal {
+    display:none;
+}
+
+.close-modal {
+    font-size: 1.5vw;
+    background-color: var(--primary);
+    color: black;
+}
+
+.popup-info {
+    display: none;
+}
+
+.right .spacer {
+    width: 30px;
+    color: var(--primary);
+}
+
+.ingredients-table.spacer { height: 10px; }
+
+/* Filter */
+.filter {
+    display: grid;
+    grid-template-areas: "title plus"
+                           "div div";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 3fr 1fr;
+}
+.filter a {
+    align-self: center;
+}
+.filter > h3 {
+    grid-area: title;
+}
+.filter > button {
+    grid-area: plus;
+}
+.filter > div.filter-content {
+    grid-area: div;
+}
+
+.collapsible {
+    cursor: pointer;
+    background-color: var(--secondary);
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    color: var(--accent);
+    font-size: 1.5vw;
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 700;
+}
+  
+.filter.active, .collapsible:hover {
+    color: var(--medium-green);
+    background-color: var(--secondary);
+}
+
+.filter-content {
+    max-height: 0;
+    overflow: hidden;
+    color: black;
+    transition: max-height 0.2s ease-out;
+    margin-top: -20px;
+}
+
+.filter-content p {
+    font-size: 1.2vw;
+    font-family: 'Baloo 2', sans-serif;
+}
+
+.filter-content button {
+    margin-top: 10px;
+}
+
+.sort {
+    width: 92%;
+    text-align: right;
+    margin-left: 4%;
+}
+.sort p {
+    font-size: 1.2vw;
+    font-family: "Baloo 2", sans-serif;
+}
+.sort p button {
+    background-color: var(--primary);
+    font-size: 1.1vw;
+    padding: 10px;
+    color: black;
+}
+
+.sort p button:last-child {
+    display: none;
+}
