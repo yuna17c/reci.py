@@ -5,3 +5,213 @@ Not Found: /static/images/favicon.ico
 Not Found: /static/images/favicon.ico
 Not Found: /static/images/favicon.ico
 Not Found: /static/images/favicon.ico
+Not Found: /static/images/favicon.ico
+Not Found: /static/images/favicon.ico
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 17, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 78, in find_name
+    sstr_img = re.split("\"", rl_img[i])
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 17, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 78, in find_name
+    sstr_img = re.split("\"", rl_img[i])
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 17, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 78, in find_name
+    sstr_img = re.split("\"", rl_img[i])
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 18, in create_payload
+    response = requests.post(api_url, kitchen = joined)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+TypeError: request() got an unexpected keyword argument 'kitchen'
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 19, in create_payload
+    response = requests.post(api_url, kitchen = joined)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+TypeError: request() got an unexpected keyword argument 'kitchen'
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 34, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 97, in find_name
+    name = sstr_name[3]
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 34, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 97, in find_name
+    name = sstr_name[3]
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 34, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 97, in find_name
+    name = sstr_name[3]
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 35, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 98, in find_name
+    name = sstr_name[3]
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 35, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 98, in find_name
+    name = sstr_name[3]
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 35, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 98, in find_name
+    name = sstr_name[3]
+IndexError: list index out of range
+Internal Server Error: /recipefinder/
+Traceback (most recent call last):
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Yuna\AppData\Local\Programs\Python\Python39\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\views.py", line 63, in post
+    create_payload(input_list)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 38, in create_payload
+    name_lst = find_name(response.text)
+  File "C:\Users\Yuna\OneDrive\Documents\FeedMe\base\request.py", line 102, in find_name
+    name = sstr_name[3]
+IndexError: list index out of range
